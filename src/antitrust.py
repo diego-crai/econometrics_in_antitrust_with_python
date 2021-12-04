@@ -372,3 +372,41 @@ plt.ylabel('Revenue')
 plt.title('Relationship between Market Share and Revenue')
 plt.show()
 ```
+# Change made on 2024-07-01 06:03:49.457266
+```python
+import pandas as pd
+import numpy as np
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Generate fake data using faker library
+fake = Faker()
+
+# Generate fake company names
+company_names = [fake.company() for _ in range(100)]
+
+# Generate fake revenue data
+revenues = [fake.random_int(min=1000000, max=100000000) for _ in range(100)]
+
+# Create a DataFrame from the generated data
+data = {
+    'Company': company_names,
+    'Revenue': revenues
+}
+df = pd.DataFrame(data)
+
+# Perform analysis using statsmodels
+X = np.array(df['Revenue'])
+y = np.array(df['Company'])
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Visualize the data using matplotlib
+plt.scatter(df['Revenue'], df['Company'])
+plt.xlabel('Revenue')
+plt.ylabel('Company')
+plt.title('Revenue vs Company Data')
+plt.show()
+```
