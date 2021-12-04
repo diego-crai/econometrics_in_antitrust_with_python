@@ -298,3 +298,36 @@ plt.ylabel('Revenue')
 plt.title('Revenue vs Market Share')
 plt.show()
 ```
+# Change made on 2024-07-01 06:03:44.935999
+```python
+import pandas as pd
+import numpy as np
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Generate fake data using faker library
+fake = Faker()
+data = {
+    'Company': [fake.company() for _ in range(100)],
+    'Revenue': [fake.random_number(digits=6) for _ in range(100)]
+}
+df = pd.DataFrame(data)
+print(df.head())
+
+# Analyze the data using statsmodels
+X = df['Revenue']
+y = np.random.normal(0, 1, 100)
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+# Print the summary of the model
+print(model.summary())
+
+# Visualize the data
+plt.scatter(df['Revenue'], y)
+plt.title('Revenue vs. Random Variable')
+plt.xlabel('Revenue')
+plt.ylabel('Random Variable')
+plt.show()
+```

@@ -3,3 +3,4 @@ src/play.py
 .history/
 .env
 env/
+src/aaa.py

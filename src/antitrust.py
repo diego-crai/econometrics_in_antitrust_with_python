@@ -314,3 +314,61 @@ plt.title('Revenue vs Profit Margin')
 plt.show()
 ```
 This code snippet generates fake data for economic analysis on antitrust litigation using the Faker library, performs a linear regression analysis with Statsmodels, and visualizes the data using Matplotlib.
+# Change made on 2024-07-01 06:00:46.898795
+import numpy as np
+import pandas as pd
+from faker import Faker
+from statsmodels.formula.api import ols
+import matplotlib.pyplot as plt
+
+# Generate fake data using the faker library
+fake = Faker()
+data = {'company': [fake.company() for _ in range(100)],
+        'revenue': [fake.random_int(min=10000, max=1000000) for _ in range(100)],
+        'market_share': [fake.random_int(min=5, max=50) for _ in range(100)],
+        'price': [fake.random_int(min=50, max=200) for _ in range(100)]}
+df = pd.DataFrame(data)
+
+# Perform economic analysis using statsmodels
+model = ols('revenue ~ market_share + price', data=df).fit()
+print(model.summary())
+
+# Visualize the data
+plt.scatter(df['market_share'], df['revenue'], color='blue', label='Market Share')
+plt.scatter(df['price'], df['revenue'], color='red', label='Price')
+plt.legend()
+plt.xlabel('Market Share/Price')
+plt.ylabel('Revenue')
+plt.title('Economic Analysis for Antitrust Litigation')
+plt.show()
+# Change made on 2024-07-01 06:03:42.320763
+```python
+import pandas as pd
+import numpy as np
+from faker import Faker
+from statsmodels.formula.api import ols
+import matplotlib.pyplot as plt
+
+# Create fake data using Faker library
+fake = Faker()
+data = {
+    'company': [fake.company() for _ in range(100)],
+    'revenue': [fake.random_int(100000, 1000000) for _ in range(100)],
+    'market_share': [fake.random_int(1, 50) for _ in range(100)],
+    'price': [fake.random_int(10, 100) for _ in range(100)]
+}
+
+# Create dataframe
+df = pd.DataFrame(data)
+
+# Linear regression analysis using statsmodels
+model = ols('revenue ~ market_share + price', data=df).fit()
+print(model.summary())
+
+# Visualize the relationship between revenue and market share
+plt.scatter(df['market_share'], df['revenue'])
+plt.xlabel('Market Share')
+plt.ylabel('Revenue')
+plt.title('Relationship between Market Share and Revenue')
+plt.show()
+```
