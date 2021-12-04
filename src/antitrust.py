@@ -92,3 +92,37 @@ plt.xlabel('Predicted Market Cap')
 plt.ylabel('Actual Market Cap')
 plt.title('Antitrust Litigation Economic Analysis')
 plt.show()
+# Change made on 2024-07-01 05:59:47.864915
+import pandas as pd
+import numpy as np
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Generate fake data using Faker library
+fake = Faker()
+data = {
+    'Company': [fake.company() for _ in range(100)],
+    'Revenue': [fake.random_int(1000, 1000000) for _ in range(100)],
+    'Market Share': [fake.random_int(1, 50) for _ in range(100)],
+    'Profit Margin': [fake.random_int(1, 20) for _ in range(100)],
+    'Antitrust Violation': [fake.boolean() for _ in range(100)]
+}
+df = pd.DataFrame(data)
+
+# Analyze the fake data using statsmodels
+X = df[['Revenue', 'Market Share', 'Profit Margin']]
+X = sm.add_constant(X)
+y = df['Antitrust Violation']
+
+model = sm.Logit(y, X)
+result = model.fit()
+
+print(result.summary())
+
+# Visualize the data using matplotlib
+plt.scatter(df['Market Share'], df['Revenue'], c=df['Antitrust Violation'], cmap='coolwarm')
+plt.xlabel('Market Share')
+plt.ylabel('Revenue')
+plt.title('Antitrust Violation Analysis')
+plt.show()
