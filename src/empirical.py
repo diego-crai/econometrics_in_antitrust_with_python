@@ -91,3 +91,32 @@ plt.ylabel('Market Share')
 plt.title('Company Revenue vs Market Share')
 plt.show()
 ```
+# Change made on 2024-07-01 05:59:58.138975
+import pandas as pd
+import numpy as np
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Generating fake data
+fake = Faker()
+data = {'Company': [fake.company() for _ in range(100)],
+        'Revenue': [fake.random_int(1000000, 100000000) for _ in range(100)],
+        'Market Share': [fake.random_number(digits=2, fix_len=False) for _ in range(100)],
+        'Profit Margin': [fake.random_number(digits=2, fix_len=False) for _ in range(100)]}
+df = pd.DataFrame(data)
+
+# Economic analysis using statsmodels
+X = df[['Revenue', 'Market Share', 'Profit Margin']]
+Y = df['Profit Margin']
+
+X = sm.add_constant(X) # adding a constant column for the intercept
+model = sm.OLS(Y, X).fit()
+predictions = model.predict(X)
+
+# Visualizing the analysis
+plt.scatter(df['Revenue'], predictions)
+plt.xlabel('Revenue')
+plt.ylabel('Predicted Profit Margin')
+plt.title('Economic Analysis for Antitrust Litigation')
+plt.show()
