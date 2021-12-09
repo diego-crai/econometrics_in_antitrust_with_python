@@ -410,3 +410,30 @@ plt.ylabel('Company')
 plt.title('Revenue vs Company Data')
 plt.show()
 ```
+# Change made on 2024-07-01 06:03:58.646369
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from faker import Faker
+from statsmodels.formula.api import ols
+
+# Create fake data using the Faker library
+fake = Faker()
+data = {
+    'company': [fake.company() for _ in range(100)],
+    'revenue': [np.random.randint(100000, 1000000) for _ in range(100)],
+    'market_share': [np.random.uniform(0, 0.5) for _ in range(100)],
+    'price': [np.random.uniform(50, 500) for _ in range(100)]
+}
+df = pd.DataFrame(data)
+
+# Visualize the data
+plt.scatter(df['market_share'], df['revenue'])
+plt.title('Market Share vs Revenue')
+plt.xlabel('Market Share')
+plt.ylabel('Revenue')
+plt.show()
+
+# Perform regression analysis using statsmodels
+model = ols('revenue ~ market_share + price', data=df).fit()
+print(model.summary())

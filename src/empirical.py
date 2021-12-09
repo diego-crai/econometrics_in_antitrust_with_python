@@ -361,3 +361,43 @@ print(model.summary())
 ```
 
 This script generates fake data for companies with attributes like revenue, market share, and industry using the Faker library. It then visualizes the relationship between market share and revenue using a scatter plot. Finally, it performs a simple linear regression analysis using statsmodels to analyze the impact of market share on revenue.
+# Change made on 2024-07-01 06:04:01.972344
+import pandas as pd
+import numpy as np
+from faker import Faker
+from statsmodels.formula.api import ols
+import matplotlib.pyplot as plt
+
+# Generate fake data using Faker library
+fake = Faker()
+data = {'Company': [fake.company() for _ in range(100)],
+        'Revenue': [fake.random_number(digits=7) for _ in range(100)],
+        'Profit': [fake.random_number(digits=6) for _ in range(100)],
+        'Market Share': [fake.random_number(digits=2) for _ in range(100)],
+        'Price': [fake.random_number(digits=2) for _ in range(100)]}
+
+df = pd.DataFrame(data)
+
+# Perform regression analysis using statsmodels
+model = ols('Profit ~ Revenue + Market Share + Price', data=df).fit()
+print(model.summary())
+
+# Visualize the data using matplotlib
+plt.figure(figsize=(10, 6))
+
+plt.subplot(2, 2, 1)
+plt.scatter(df['Revenue'], df['Profit'])
+plt.xlabel('Revenue')
+plt.ylabel('Profit')
+
+plt.subplot(2, 2, 2)
+plt.scatter(df['Market Share'], df['Profit'])
+plt.xlabel('Market Share')
+plt.ylabel('Profit')
+
+plt.subplot(2, 2, 3)
+plt.scatter(df['Price'], df['Profit'])
+plt.xlabel('Price')
+plt.ylabel('Profit')
+
+plt.show()
