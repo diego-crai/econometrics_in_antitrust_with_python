@@ -120,3 +120,37 @@ plt.xlabel('Revenue')
 plt.ylabel('Predicted Profit Margin')
 plt.title('Economic Analysis for Antitrust Litigation')
 plt.show()
+# Change made on 2024-07-01 06:00:05.245792
+import pandas as pd
+import numpy as np
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Generate fake data using faker library
+fake = Faker()
+
+data = {'Company': [fake.company() for _ in range(100)],
+        'Revenue': [fake.random_int(min=100000, max=1000000) for _ in range(100)],
+        'Market Share': [fake.random_number(digits=2, fix_len=True, positive=True, max_val=100) for _ in range(100)],
+        'Profit Margin': [fake.random_number(digits=2, fix_len=True, positive=True, max_val=50) for _ in range(100)]}
+
+df = pd.DataFrame(data)
+
+# Economic analysis using statsmodels
+X = df[['Revenue', 'Market Share', 'Profit Margin']]
+y = np.random.randint(0, 2, size=(100,))
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+print(model.summary())
+
+# Visualizations using matplotlib
+plt.figure(figsize=(10,6))
+plt.scatter(df['Market Share'], predictions)
+plt.title('Market Share vs Predictions')
+plt.xlabel('Market Share')
+plt.ylabel('Predictions')
+plt.show()

@@ -156,3 +156,35 @@ plt.ylabel('Revenue')
 plt.title('Fake Revenue Data Analysis for Antitrust Litigation')
 plt.show()
 ```
+# Change made on 2024-07-01 06:00:02.089801
+```python
+import pandas as pd
+import numpy as np
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Generate fake data using Faker library
+fake = Faker()
+companies = [fake.company() for _ in range(100)]
+revenues = [fake.random_int(min=1000000, max=1000000000) for _ in range(100)]
+market_caps = [fake.random_int(min=1000000, max=100000000) for _ in range(100)]
+
+data = {'Company': companies, 'Revenue': revenues, 'Market Cap': market_caps}
+df = pd.DataFrame(data)
+
+# Perform economic analysis using statsmodels
+X = df['Revenue']
+y = df['Market Cap']
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Plot the results
+plt.scatter(df['Revenue'], df['Market Cap'])
+plt.plot(df['Revenue'], predictions, color='red')
+plt.xlabel('Revenue')
+plt.ylabel('Market Cap')
+plt.title('Antitrust Litigation Economic Analysis')
+plt.show()
+```
