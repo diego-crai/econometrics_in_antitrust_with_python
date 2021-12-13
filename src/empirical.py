@@ -154,3 +154,39 @@ plt.title('Market Share vs Predictions')
 plt.xlabel('Market Share')
 plt.ylabel('Predictions')
 plt.show()
+# Change made on 2024-07-01 06:00:14.792788
+import pandas as pd
+import numpy as np
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Generate fake data using Faker library
+fake = Faker()
+
+companies = [fake.company() for _ in range(100)]
+markets = [fake.city() for _ in range(100)]
+revenue = [fake.random_int(min=100000, max=1000000) for _ in range(100)]
+market_share = [np.random.uniform(0, 1) for _ in range(100)]
+
+data = pd.DataFrame({
+    'Company': companies,
+    'Market': markets,
+    'Revenue': revenue,
+    'Market_Share': market_share
+})
+
+# Perform economic analysis using statsmodels
+X = data[['Revenue', 'Market_Share']]
+y = data['Market_Share']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+# Visualize the data
+plt.scatter(data['Revenue'], data['Market_Share'])
+plt.xlabel('Revenue')
+plt.ylabel('Market Share')
+plt.title('Revenue vs Market Share')
+plt.show()
