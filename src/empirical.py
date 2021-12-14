@@ -401,3 +401,42 @@ plt.xlabel('Price')
 plt.ylabel('Profit')
 
 plt.show()
+# Change made on 2024-07-01 06:04:09.350383
+import pandas as pd
+import numpy as np
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Initialize Faker object for generating fake data
+fake = Faker()
+
+# Generate fake data for economic analysis
+data = {
+    'Company': [fake.company() for _ in range(100)],
+    'Revenue': [fake.random_number(digits=7) for _ in range(100)],
+    'Expenses': [fake.random_number(digits=6) for _ in range(100)],
+    'Profit': []
+}
+
+# Calculate profit using generated data
+for i in range(100):
+    data['Profit'].append(data['Revenue'][i] - data['Expenses'][i])
+
+# Create pandas dataframe from generated data
+df = pd.DataFrame(data)
+
+# Perform economic analysis using statsmodels
+X = df['Revenue']
+X = sm.add_constant(X)
+y = df['Profit']
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+# Visualize the data
+plt.scatter(df['Revenue'], df['Profit'])
+plt.xlabel('Revenue')
+plt.ylabel('Profit')
+plt.title('Economic Analysis for Antitrust Litigation')
+plt.show()
