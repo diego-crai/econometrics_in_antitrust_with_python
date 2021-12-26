@@ -504,3 +504,48 @@ plt.ylabel('Revenue')
 plt.title('Revenue vs. Market Share')
 plt.show()
 ```
+# Change made on 2024-07-01 06:04:25.743343
+```python
+import pandas as pd
+import numpy as np
+from faker import Faker
+from faker.providers import company
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Initialize Faker with company provider
+fake = Faker()
+fake.add_provider(company)
+
+# Generate fake data for economic analysis on antitrust litigation
+companies = [fake.company() for _ in range(100)]
+revenues = np.random.normal(loc=1000, scale=200, size=100)
+market_share = np.random.uniform(0, 1, 100)
+prices = np.random.uniform(10, 100, 100)
+antitrust_violation = np.random.choice([0, 1], size=100)
+
+data = pd.DataFrame({
+    'Company': companies,
+    'Revenue': revenues,
+    'Market Share': market_share,
+    'Price': prices,
+    'Antitrust Violation': antitrust_violation
+})
+
+# Perform analysis using statsmodels
+X = data[['Revenue', 'Market Share', 'Price']]
+X = sm.add_constant(X)
+y = data['Antitrust Violation']
+
+model = sm.Logit(y, X)
+result = model.fit()
+
+print(result.summary())
+
+# Visualize the data
+plt.scatter(data['Market Share'], data['Price'], c=data['Antitrust Violation'])
+plt.xlabel("Market Share")
+plt.ylabel("Price")
+plt.title("Antitrust Violation Analysis")
+plt.show()
+```
