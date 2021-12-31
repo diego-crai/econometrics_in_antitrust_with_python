@@ -268,3 +268,33 @@ plt.xlabel('Market Share')
 plt.ylabel('Price')
 plt.show()
 ```
+# Change made on 2024-07-01 06:00:42.517457
+```python
+import pandas as pd
+import numpy as np
+from faker import Faker
+from statsmodels.formula.api import ols
+import matplotlib.pyplot as plt
+
+fake = Faker()
+
+# Generate fake data for economic analysis
+data = {
+    'Company': [fake.company() for _ in range(100)],
+    'Revenue': [fake.random_number(digits=6) for _ in range(100)],
+    'Market Share': [fake.random_number(digits=2) for _ in range(100)],
+}
+
+df = pd.DataFrame(data)
+
+# Explore the data using statsmodels
+model = ols('Revenue ~ Market Share', data=df).fit()
+print(model.summary())
+
+# Create a scatter plot to visualize the relationship between Revenue and Market Share
+plt.scatter(df['Market Share'], df['Revenue'])
+plt.xlabel('Market Share')
+plt.ylabel('Revenue')
+plt.title('Revenue vs Market Share')
+plt.show()
+```
