@@ -507,3 +507,40 @@ plt.ylabel('Market Share')
 plt.title('Revenue vs Market Share')
 plt.show()
 ```
+# Change made on 2024-07-01 06:04:36.412683
+```python
+import pandas as pd
+import numpy as np
+from faker import Faker
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+import matplotlib.pyplot as plt
+
+# Generate fake data using the faker library
+fake = Faker()
+np.random.seed(42)
+
+data = {'Company': [fake.company() for _ in range(100)],
+        'Revenue': [np.random.randint(10000, 1000000) for _ in range(100)],
+        'Market Share (%)': [np.random.uniform(0, 100) for _ in range(100)],
+        'Price': [np.random.uniform(1, 100) for _ in range(100)]}
+
+df = pd.DataFrame(data)
+
+# Calculate variance inflation factor to check for multicollinearity
+X = df[['Revenue', 'Market Share (%)', 'Price']]
+X['Intercept'] = 1
+
+vif = pd.DataFrame()
+vif["Variable"] = X.columns
+vif["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
+
+print("Variance Inflation Factor:")
+print(vif)
+
+# Plotting Market Share vs Revenue
+plt.scatter(df['Market Share (%)'], df['Revenue'])
+plt.xlabel('Market Share (%)')
+plt.ylabel('Revenue')
+plt.title('Market Share vs Revenue')
+plt.show()
+```
