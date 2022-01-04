@@ -689,3 +689,72 @@ plt.xlabel('Market Share')
 plt.ylabel('Revenue')
 plt.title('Antitrust Litigation Economic Analysis')
 plt.show()
+# Change made on 2024-07-01 06:05:17.337161
+```python
+import pandas as pd
+import numpy as np
+from faker import Faker
+from statsmodels.regression.linear_model import OLS
+import matplotlib.pyplot as plt
+
+# Generate fake data using faker library
+fake = Faker()
+data = pd.DataFrame({
+    'Company': [fake.company() for _ in range(100)],
+    'Revenue': [fake.random_int(10000, 1000000) for _ in range(100)],
+    'Market Share': [fake.random.randfloat(0, 1) for _ in range(100)],
+    'Antitrust Violations': [fake.random_int(0, 10) for _ in range(100)]
+})
+
+# Perform economic analysis using statsmodels
+X = data[['Revenue', 'Market Share']]
+y = data['Antitrust Violations']
+
+model = OLS(y, X).fit()
+print(model.summary())
+
+# Visualize the data
+plt.scatter(data['Revenue'], data['Antitrust Violations'])
+plt.xlabel('Revenue')
+plt.ylabel('Antitrust Violations')
+plt.title('Antitrust Violations vs. Revenue')
+plt.show()
+```
+# Change made on 2024-07-01 06:08:25.234584
+```python
+import pandas as pd
+import numpy as np
+from faker import Faker
+from statsmodels.formula.api import ols
+import matplotlib.pyplot as plt
+
+# Generate fake data
+fake = Faker()
+np.random.seed(42)
+
+data = {
+    'Company': [fake.company() for _ in range(100)],
+    'Revenue': np.random.randint(100000, 10000000, size=100),
+    'Market Share': np.random.uniform(0.05, 0.5, size=100),
+    'Antitrust Fine': np.random.randint(1000, 1000000, size=100)
+}
+
+df = pd.DataFrame(data)
+
+# Perform econometric analysis using OLS
+model = ols(formula='AntitrustFine ~ Revenue + MarketShare', data=df).fit()
+print(model.summary())
+
+# Visualize the data
+plt.scatter(df['Revenue'], df['AntitrustFine'])
+plt.xlabel('Revenue')
+plt.ylabel('Antitrust Fine')
+plt.title('Revenue vs Antitrust Fine')
+plt.show()
+
+plt.scatter(df['MarketShare'], df['AntitrustFine'])
+plt.xlabel('Market Share')
+plt.ylabel('Antitrust Fine')
+plt.title('Market Share vs Antitrust Fine')
+plt.show()
+```

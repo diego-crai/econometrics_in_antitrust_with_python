@@ -709,3 +709,76 @@ X = sm.add_constant(np.arange(len(df)))
 model = sm.OLS(df['Revenue'], X).fit()
 print("\nRegression results:")
 print(model.summary())
+# Change made on 2024-07-01 06:05:13.835984
+```python
+import pandas as pd
+import numpy as np
+from faker import Faker
+from statsmodels.formula.api import ols
+import matplotlib.pyplot as plt
+
+# Set up Faker library for fake data generation
+fake = Faker()
+
+# Generate fake data for antitrust litigation economic analysis
+data = {
+    'market_share': [fake.random_int(min=1, max=50) for _ in range(100)],
+    'price': [fake.random_int(min=50, max=200) for _ in range(100)],
+    'revenue': [fake.random_int(min=1000, max=5000) for _ in range(100)]
+}
+
+df = pd.DataFrame(data)
+
+# Perform OLS regression analysis using statsmodels
+result = ols(formula='price ~ market_share + revenue', data=df).fit()
+print(result.summary())
+
+# Visualize the data using matplotlib
+plt.figure(figsize=(10, 6))
+plt.scatter(df['market_share'], df['price'], color='blue')
+plt.xlabel('Market Share')
+plt.ylabel('Price')
+plt.title('Market Share vs. Price')
+plt.show()
+```
+This code snippet generates fake data using the `faker` library and performs OLS regression analysis on the data using `statsmodels`. It then visualizes the relationship between market share and price using `matplotlib`. This analysis can be used for economic analysis in antitrust litigation.
+# Change made on 2024-07-01 06:08:22.401909
+import pandas as pd
+import numpy as np
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Generate fake data for antitrust litigation analysis
+fake = Faker()
+num_cases = 1000
+
+case_id = [i for i in range(1, num_cases+1)]
+company1 = [fake.company() for _ in range(num_cases)]
+company2 = [fake.company() for _ in range(num_cases)]
+antitrust_violation = [fake.random_element(elements=('price fixing', 'market allocation', 'monopolization')) for _ in range(num_cases)]
+fine_amount = [fake.random_number(digits=5) for _ in range(num_cases)]
+damages_awarded = [fake.random_number(digits=6) for _ in range(num_cases)]
+legal_costs = [fake.random_number(digits=4) for _ in range(num_cases)]
+
+data = pd.DataFrame({'Case ID': case_id, 'Company 1': company1, 'Company 2': company2, 
+                     'Antitrust Violation': antitrust_violation, 'Fine Amount': fine_amount, 
+                     'Damages Awarded': damages_awarded, 'Legal Costs': legal_costs})
+
+# Perform econometric analysis
+X = data[['Fine Amount', 'Damages Awarded', 'Legal Costs']]
+y = data['Antitrust Violation']
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print summary of regression analysis
+print(model.summary())
+
+# Visualize data
+plt.scatter(data['Fine Amount'], data['Damages Awarded'])
+plt.xlabel('Fine Amount')
+plt.ylabel('Damages Awarded')
+plt.title('Fine Amount vs Damages Awarded')
+plt.show()
