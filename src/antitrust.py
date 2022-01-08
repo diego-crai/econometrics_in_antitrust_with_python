@@ -813,3 +813,51 @@ plt.xlabel('Market Share')
 plt.ylabel('Antitrust Violation')
 plt.title('Relationship between Market Share and Antitrust Violation')
 plt.show()
+# Change made on 2024-07-01 06:08:39.134073
+```python
+import pandas as pd
+import numpy as np
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Generate fake data for economic analysis
+fake = Faker()
+n_obs = 100
+data = {
+    'market_share': np.random.uniform(0, 1, n_obs),
+    'price_level': np.random.randint(50, 200, n_obs),
+    'revenue': np.random.randint(1000, 5000, n_obs),
+    'profit_margin': np.random.uniform(0, 0.5, n_obs),
+    'antitrust_violation': np.random.choice([0, 1], n_obs)
+}
+
+df = pd.DataFrame(data)
+
+# Econometric analysis using statsmodels
+X = df[['market_share', 'price_level', 'revenue', 'profit_margin']]
+X = sm.add_constant(X)
+y = df['antitrust_violation']
+
+model = sm.Logit(y, X)
+result = model.fit()
+
+print(result.summary())
+
+# Visualizations
+plt.figure(figsize=(12, 6))
+
+plt.subplot(1, 2, 1)
+plt.scatter(df['market_share'], df['antitrust_violation'])
+plt.xlabel('Market Share')
+plt.ylabel('Antitrust Violation')
+plt.title('Market Share vs Antitrust Violation')
+
+plt.subplot(1, 2, 2)
+plt.scatter(df['revenue'], df['profit_margin'])
+plt.xlabel('Revenue')
+plt.ylabel('Profit Margin')
+plt.title('Revenue vs Profit Margin')
+
+plt.show()
+```
