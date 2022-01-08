@@ -580,3 +580,36 @@ plt.xlabel('Revenue')
 plt.ylabel('Market Share')
 plt.title('Revenue vs Market Share')
 plt.show()
+# Change made on 2024-07-01 06:04:41.807620
+import pandas as pd
+import numpy as np
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Initialize faker object
+fake = Faker()
+
+# Generate fake data
+num_records = 1000
+company_names = [fake.company() for _ in range(num_records)]
+revenue = [fake.random_number(digits=5) for _ in range(num_records)]
+stock_price = [fake.random_number(digits=2) for _ in range(num_records)]
+market_cap = [rev * price for rev, price in zip(revenue, stock_price)]
+
+data = {'Company': company_names, 'Revenue': revenue, 'Stock Price': stock_price, 'Market Cap': market_cap}
+df = pd.DataFrame(data)
+
+# Analyze the data
+X = df[['Revenue', 'Stock Price']]
+y = df['Market Cap']
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Visualize the data
+plt.scatter(y, predictions)
+plt.xlabel('Actual Market Cap')
+plt.ylabel('Predicted Market Cap')
+plt.title('Actual vs Predicted Market Cap')
+plt.show()
