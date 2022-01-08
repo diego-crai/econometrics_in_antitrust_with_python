@@ -782,3 +782,34 @@ plt.xlabel('Fine Amount')
 plt.ylabel('Damages Awarded')
 plt.title('Fine Amount vs Damages Awarded')
 plt.show()
+# Change made on 2024-07-01 06:08:30.268026
+import numpy as np
+import pandas as pd
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Generating fake data for econometric analysis
+fake = Faker()
+num_samples = 1000
+data = pd.DataFrame({
+    'market_share': np.random.uniform(0.1, 0.8, num_samples),
+    'price': np.random.uniform(10, 100, num_samples),
+    'revenue': np.random.uniform(1000, 5000, num_samples),
+    'antitrust_violation': np.random.choice([0, 1], num_samples)
+})
+
+# Performing econometric analysis using OLS
+X = data[['market_share', 'price', 'revenue']]
+X = sm.add_constant(X)
+y = data['antitrust_violation']
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+# Visualizing the results
+plt.scatter(data['market_share'], data['antitrust_violation'])
+plt.xlabel('Market Share')
+plt.ylabel('Antitrust Violation')
+plt.title('Relationship between Market Share and Antitrust Violation')
+plt.show()
