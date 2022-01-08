@@ -861,3 +861,45 @@ plt.title('Revenue vs Profit Margin')
 
 plt.show()
 ```
+# Change made on 2024-07-01 06:08:48.302453
+```python
+import numpy as np
+import pandas as pd
+from faker import Faker
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Generate fake data for economic analysis of antitrust litigation
+fake = Faker()
+n = 1000
+
+data = {
+    'firm_size': np.random.normal(100, 20, n),
+    'market_share': np.random.uniform(0, 1, n),
+    'price_change': np.random.normal(0, 2, n),
+    'antitrust_case': np.random.choice([0, 1], n)
+}
+
+df = pd.DataFrame(data)
+
+# Perform econometric analysis using statsmodels
+X = df[['firm_size', 'market_share', 'price_change']]
+X = sm.add_constant(X)
+y = df['antitrust_case']
+
+model = sm.Logit(y, X)
+results = model.fit()
+
+print(results.summary())
+
+# Visualizations
+fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+
+df.boxplot(column='firm_size', by='antitrust_case', ax=ax[0])
+ax[0].set_title('Firm Size vs Antitrust Case')
+
+df.boxplot(column='market_share', by='antitrust_case', ax=ax[1])
+ax[1].set_title('Market Share vs Antitrust Case')
+
+plt.show()
+```
