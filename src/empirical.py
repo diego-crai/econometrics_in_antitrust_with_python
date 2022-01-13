@@ -625,3 +625,35 @@ plt.show()
 ```
 
 This script generates fake data for companies including revenue, market share, and price using the Faker library. It then uses Statsmodels to perform OLS regression analysis on the data and prints out the model summary. Finally, it visualizes the relationship between revenue and market share using a scatter plot.
+# Change made on 2024-07-01 06:05:02.232193
+import numpy as np
+import pandas as pd
+from faker import Faker
+from statsmodels.regression.linear_model import OLS
+import matplotlib.pyplot as plt
+
+# Generate fake data using Faker library
+fake = Faker()
+data = {'revenue': [fake.random_number(digits=5) for _ in range(100)],
+        'expenses': [fake.random_number(digits=4) for _ in range(100)],
+        'profit': []}
+
+for i in range(100):
+    data['profit'].append(data['revenue'][i] - data['expenses'][i])
+
+df = pd.DataFrame(data)
+
+# Perform economic analysis using statsmodels
+X = df[['revenue', 'expenses']]
+X = np.column_stack((np.ones(len(X)), X))
+y = df['profit']
+
+model = OLS(y, X).fit()
+print(model.summary())
+
+# Visualize the data
+plt.scatter(df['revenue'], df['profit'])
+plt.xlabel('Revenue')
+plt.ylabel('Profit')
+plt.title('Antitrust Litigation Analysis')
+plt.show()
