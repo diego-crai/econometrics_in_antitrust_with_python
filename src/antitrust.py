@@ -937,3 +937,34 @@ plt.xlabel('Market Share')
 plt.ylabel('Antitrust Violation')
 plt.legend()
 plt.show()
+# Change made on 2024-07-01 06:09:05.400767
+import numpy as np
+import pandas as pd
+from faker import Faker
+from statsmodels.api import OLS
+import matplotlib.pyplot as plt
+
+# Generating fake data for economic analysis
+fake = Faker()
+n_obs = 1000
+data = pd.DataFrame({
+    'antitrust_case': [fake.random_int(0, 1) for _ in range(n_obs)],
+    'market_share': np.random.uniform(0, 1, n_obs),
+    'price': np.random.normal(100, 10, n_obs),
+    'revenue': np.random.normal(1000, 100, n_obs)
+})
+
+# Performing econometric analysis
+X = data[['market_share', 'price']]
+X = sm.add_constant(X)
+y = data['revenue']
+
+model = OLS(y, X).fit()
+print(model.summary())
+
+# Visualizing the data
+plt.scatter(data['market_share'], data['revenue'])
+plt.xlabel('Market Share')
+plt.ylabel('Revenue')
+plt.title('Relationship between Market Share and Revenue')
+plt.show()
