@@ -657,3 +657,35 @@ plt.xlabel('Revenue')
 plt.ylabel('Profit')
 plt.title('Antitrust Litigation Analysis')
 plt.show()
+# Change made on 2024-07-01 06:05:08.883600
+from faker import Faker
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+
+# Generate fake data using Faker library
+fake = Faker()
+companies = [fake.company() for _ in range(100)]
+revenue = [fake.random_number(3) for _ in range(100)]
+market_share = [fake.random_element(elements=(0.1, 0.2, 0.3, 0.4, 0.5)) for _ in range(100)]
+
+data = {'Company': companies, 'Revenue': revenue, 'Market Share': market_share}
+df = pd.DataFrame(data)
+
+# Perform economic analysis using statsmodels
+X = df['Market Share']
+y = df['Revenue']
+
+X = sm.add_constant(X)  # Adding a constant (intercept) term
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+
+# Visualization
+plt.scatter(df['Market Share'], df['Revenue'])
+plt.plot(df['Market Share'], model.fittedvalues, color='red')
+plt.xlabel('Market Share')
+plt.ylabel('Revenue')
+plt.title('Antitrust Litigation Economic Analysis')
+plt.show()

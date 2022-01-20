@@ -676,3 +676,36 @@ plt.xlabel('Revenue')
 plt.ylabel('Antitrust Violations')
 plt.title('Antitrust Litigation Analysis')
 plt.show()
+# Change made on 2024-07-01 06:05:06.536869
+import numpy as np
+import pandas as pd
+from faker import Faker
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+
+# Create fake data using Faker library
+fake = Faker()
+companies = [fake.company() for _ in range(100)]
+revenues = [fake.random_number(digits=5) for _ in range(100)]
+
+data = {'Company': companies, 'Revenue': revenues}
+df = pd.DataFrame(data)
+
+# Basic analysis
+print("Summary statistics:")
+print(df.describe())
+
+# Visualize the data
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Company'], df['Revenue'])
+plt.title('Revenue of Companies')
+plt.xlabel('Company')
+plt.ylabel('Revenue')
+plt.xticks(rotation=90)
+plt.show()
+
+# Regression analysis
+X = sm.add_constant(np.arange(len(df)))
+model = sm.OLS(df['Revenue'], X).fit()
+print("\nRegression results:")
+print(model.summary())
