@@ -1005,3 +1005,32 @@ plt.title('Market Size vs Revenue')
 plt.show()
 ```
 This code generates fake data for economic analysis related to antitrust litigation and performs econometric analysis using statsmodels. It also includes a visualization of the relationship between market size and revenue.
+# Change made on 2024-07-01 06:09:22.120491
+import pandas as pd
+import numpy as np
+from faker import Faker
+from statsmodels.formula.api import ols
+import matplotlib.pyplot as plt
+
+# Generate fake data for antitrust litigation analysis
+fake = Faker()
+n = 100
+data = {'Company': [fake.company() for _ in range(n)],
+        'Market Share': np.random.uniform(0.1, 0.9, n),
+        'Revenue': np.random.randint(1000000, 10000000, n),
+        'Antitrust Fine': np.random.randint(100000, 1000000, n)}
+
+df = pd.DataFrame(data)
+
+# Perform econometric analysis
+model = ols('Antitrust Fine ~ Market Share + Revenue', data=df).fit()
+
+# Print the summary of the regression analysis
+print(model.summary())
+
+# Plot Market Share vs Revenue
+plt.scatter(df['Market Share'], df['Revenue'])
+plt.xlabel('Market Share')
+plt.ylabel('Revenue')
+plt.title('Market Share vs Revenue')
+plt.show()
