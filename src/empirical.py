@@ -1084,3 +1084,48 @@ results = model.fit()
 results.plot()
 plt.show()
 ```
+# Change made on 2024-07-01 06:09:51.645597
+```python
+import numpy as np
+import pandas as pd
+from faker import Faker
+from statsmodels.formula.api import ols
+import matplotlib.pyplot as plt
+
+# Generate fake data for economic analysis on antitrust litigation
+fake = Faker()
+np.random.seed(123)
+
+num_companies = 100
+num_years = 10
+
+data = {
+    'Company': [fake.company() for _ in range(num_companies)],
+    'Year': np.random.randint(2010, 2020, num_companies*num_years),
+    'Revenue': np.random.normal(100, 20, num_companies*num_years),
+    'Profit': np.random.normal(10, 5, num_companies*num_years),
+    'Market Share': np.random.uniform(0, 1, num_companies*num_years)
+}
+
+df = pd.DataFrame(data)
+
+# Perform econometric analysis using statsmodels
+model = ols('Revenue ~ Profit + Market Share', data=df).fit()
+print(model.summary())
+
+# Visualize the data
+plt.figure(figsize=(12, 6))
+plt.subplot(1, 2, 1)
+plt.scatter(df['Profit'], df['Revenue'])
+plt.xlabel('Profit')
+plt.ylabel('Revenue')
+plt.title('Profit vs Revenue')
+
+plt.subplot(1, 2, 2)
+plt.scatter(df['Market Share'], df['Revenue'])
+plt.xlabel('Market Share')
+plt.ylabel('Revenue')
+plt.title('Market Share vs Revenue')
+
+plt.show()
+```
