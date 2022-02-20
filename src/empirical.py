@@ -1197,3 +1197,41 @@ plt.title('Antitrust Violation Analysis')
 plt.colorbar()
 plt.show()
 ```
+# Change made on 2024-07-01 06:10:16.797696
+```python
+import numpy as np
+import pandas as pd
+from faker import Faker
+from statsmodels.formula.api import ols
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+# Generate random data for economic analysis
+fake = Faker()
+np.random.seed(123)
+
+num_companies = 100
+num_observations = 1000
+
+data = {
+    'company_id': [fake.random_int(min=1, max=num_companies) for _ in range(num_observations)],
+    'revenue': np.random.normal(1000000, 500000, num_observations),
+    'market_share': np.random.uniform(0, 1, num_observations),
+    'antitrust_violation': np.random.choice([0, 1], num_observations)
+}
+
+df = pd.DataFrame(data)
+
+# Create econometric model
+model = ols('revenue ~ market_share + antitrust_violation', data=df).fit()
+
+# Print regression summary
+print(model.summary())
+
+# Plotting market share vs revenue
+plt.scatter(df['market_share'], df['revenue'])
+plt.xlabel('Market Share')
+plt.ylabel('Revenue')
+plt.title('Market Share vs Revenue')
+plt.show()
+```
