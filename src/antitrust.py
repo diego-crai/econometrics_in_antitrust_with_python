@@ -1249,3 +1249,19 @@ data['HHI'] = data['Market Share Squared'] / data['Market Share Squared_total']
 antitrust_years = data[data['HHI'] > 0.25]['Year'].unique()
 
 print("Years with potential antitrust concerns:", antitrust_years)
+# Change made on 2024-07-01 06:13:05.611624
+```
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of the top 3 firms in each market
+data['Top3_Market_Share'] = data.groupby('Market')['Market Share'].transform(lambda x: x.nlargest(3).sum())
+
+# Identify markets where the top 3 firms have a market share of over 70%
+high_concentration_markets = data[data['Top3_Market_Share'] > 0.7]
+
+# Print the list of high concentration markets
+print(high_concentration_markets['Market'].unique())
+```

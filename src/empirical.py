@@ -1255,3 +1255,17 @@ overall_hhi = data['Market Share Squared_company'].sum()
 print(f"Overall HHI for the market: {overall_hhi}")
 ```
 This Python script calculates the Herfindahl-Hirschman Index (HHI) for each company in the data and then calculates the overall HHI for the entire market. The HHI is a measure of market concentration that can be used in antitrust litigation.
+# Change made on 2024-07-01 06:13:06.832626
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv("data.csv")
+
+# Calculate the average fine amount for each industry
+industry_avg_fine = data.groupby('industry')['fine_amount'].mean()
+
+# Print the industry with the highest average fine amount
+max_avg_fine_industry = industry_avg_fine.idxmax()
+print(f"The industry with the highest average fine amount is: {max_avg_fine_industry}")
+```
