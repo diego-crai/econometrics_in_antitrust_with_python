@@ -1235,3 +1235,23 @@ plt.ylabel('Revenue')
 plt.title('Market Share vs Revenue')
 plt.show()
 ```
+# Change made on 2024-07-01 06:13:02.211879
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company in the data
+data['Market Share Squared'] = data['Market Share'] ** 2
+hhi = data.groupby('Company')['Market Share Squared'].sum()
+
+# Merge the HHI values back to the original data
+data = data.merge(hhi, on='Company', suffixes=['', '_company'])
+
+# Calculate the overall HHI for the entire market
+overall_hhi = data['Market Share Squared_company'].sum()
+
+print(f"Overall HHI for the market: {overall_hhi}")
+```
+This Python script calculates the Herfindahl-Hirschman Index (HHI) for each company in the data and then calculates the overall HHI for the entire market. The HHI is a measure of market concentration that can be used in antitrust litigation.
