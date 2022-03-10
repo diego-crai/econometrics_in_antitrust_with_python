@@ -1286,3 +1286,28 @@ data["hhi"] = data["market"].map(market_hhi)
 
 # Print the data with the added HHI values
 print(data)
+# Change made on 2024-07-01 06:13:15.897929
+```python
+import pandas as pd
+
+# Read data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average price by market
+average_price_by_market = data.groupby('market')['price'].mean()
+
+# Calculate the average quantity sold by market
+average_quantity_by_market = data.groupby('market')['quantity_sold'].mean()
+
+# Calculate the market share for each firm
+data['market_share'] = data['quantity_sold'] / data.groupby('market')['quantity_sold'].transform('sum')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['HHI'] = (data['market_share'] ** 2).groupby(data['market']).sum()
+
+# Add a new column to indicate whether the market is concentrated
+data['concentrated_market'] = data['HHI'].apply(lambda x: 'Yes' if x >= 0.25 else 'No')
+
+# Output the results
+print(data)
+```

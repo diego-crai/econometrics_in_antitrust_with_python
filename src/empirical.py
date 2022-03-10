@@ -1282,3 +1282,21 @@ antitrust_data = data[data['case_type'] == 'antitrust']
 average_damages = antitrust_data['damages'].mean()
 
 print(f"The average damages for antitrust litigation cases is: ${average_damages:.2f}")
+# Change made on 2024-07-01 06:13:18.436429
+import pandas as pd
+
+# load the data
+data = pd.read_csv('data.csv')
+
+# calculate the average price of the products involved in the antitrust litigation
+average_price = data['price'].mean()
+
+# calculate the standard deviation of the prices
+std_deviation = data['price'].std()
+
+# calculate the coefficient of variation
+coefficient_of_variation = std_deviation / average_price
+
+print(f"The average price of the products involved in the antitrust litigation is: {average_price}")
+print(f"The standard deviation of the prices is: {std_deviation}")
+print(f"The coefficient of variation is: {coefficient_of_variation}")
