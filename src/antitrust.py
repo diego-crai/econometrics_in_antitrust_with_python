@@ -1265,3 +1265,24 @@ high_concentration_markets = data[data['Top3_Market_Share'] > 0.7]
 # Print the list of high concentration markets
 print(high_concentration_markets['Market'].unique())
 ```
+# Change made on 2024-07-01 06:13:10.490216
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Define a function to calculate the Herfindahl-Hirschman Index (HHI) for a given market
+def calculate_hhi(market_data):
+    market_data["market_share_squared"] = market_data["market_share"] ** 2
+    hhi = market_data["market_share_squared"].sum() * 10000
+    return hhi
+
+# Group the data by market and calculate the HHI for each market
+market_groups = data.groupby("market")
+market_hhi = market_groups.apply(calculate_hhi)
+
+# Add the HHI values to the original data
+data["hhi"] = data["market"].map(market_hhi)
+
+# Print the data with the added HHI values
+print(data)

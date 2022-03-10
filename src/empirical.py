@@ -1269,3 +1269,16 @@ industry_avg_fine = data.groupby('industry')['fine_amount'].mean()
 max_avg_fine_industry = industry_avg_fine.idxmax()
 print(f"The industry with the highest average fine amount is: {max_avg_fine_industry}")
 ```
+# Change made on 2024-07-01 06:13:11.657330
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter data for antitrust litigation cases
+antitrust_data = data[data['case_type'] == 'antitrust']
+
+# Calculate average damages for antitrust litigation cases
+average_damages = antitrust_data['damages'].mean()
+
+print(f"The average damages for antitrust litigation cases is: ${average_damages:.2f}")
