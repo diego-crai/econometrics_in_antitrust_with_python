@@ -1311,3 +1311,18 @@ data['concentrated_market'] = data['HHI'].apply(lambda x: 'Yes' if x >= 0.25 els
 # Output the results
 print(data)
 ```
+# Change made on 2024-07-01 06:13:21.704304
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the HHI index for each market in the data
+data['HHI'] = data['Market Share'] ** 2
+
+# Determine if the market is concentrated based on the HHI index
+data['Concentrated'] = data['HHI'].apply(lambda x: "Yes" if x > 1000 else "No")
+
+# Print the markets that are concentrated
+concentrated_markets = data[data['Concentrated'] == 'Yes']
+print(concentrated_markets)

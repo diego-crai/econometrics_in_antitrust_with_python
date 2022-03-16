@@ -1300,3 +1300,17 @@ coefficient_of_variation = std_deviation / average_price
 print(f"The average price of the products involved in the antitrust litigation is: {average_price}")
 print(f"The standard deviation of the prices is: {std_deviation}")
 print(f"The coefficient of variation is: {coefficient_of_variation}")
+# Change made on 2024-07-01 06:13:23.335411
+import pandas as pd
+
+# Load the data
+data = pd.read_csv("data.csv")
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for market concentration
+def calculate_hhi(data):
+    data['market_share_squared'] = data['market_share'] ** 2
+    hhi = data.groupby('industry')['market_share_squared'].sum()
+    return hhi
+
+hhi_results = calculate_hhi(data)
+print(hhi_results)
