@@ -1314,3 +1314,22 @@ def calculate_hhi(data):
 
 hhi_results = calculate_hhi(data)
 print(hhi_results)
+# Change made on 2024-07-01 06:13:28.702602
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Calculate the market share of each company
+data['market_share'] = data['revenue'] / data['total_revenue']
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['market_share'] * 100) ** 2
+
+# Sort the data by HHI in descending order to identify the largest market players
+data.sort_values('HHI', ascending=False, inplace=True)
+
+# Print the top 5 companies with the highest HHI
+print(data.head(5))
+```

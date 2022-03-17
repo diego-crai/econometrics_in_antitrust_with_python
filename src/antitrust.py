@@ -1326,3 +1326,17 @@ data['Concentrated'] = data['HHI'].apply(lambda x: "Yes" if x > 1000 else "No")
 # Print the markets that are concentrated
 concentrated_markets = data[data['Concentrated'] == 'Yes']
 print(concentrated_markets)
+# Change made on 2024-07-01 06:13:26.631738
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Add a new column to calculate market concentration using the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['Market Share'] ** 2) * 10000
+
+# Print the data with the new HHI column
+print(data)
+```
+In this script, we load a dataset from data.csv and calculate the market concentration using the Herfindahl-Hirschman Index (HHI). The HHI is calculated by squaring the market share of each firm in the market and summing them up. This allows us to measure and analyze the concentration of market power among the different firms in the dataset.
