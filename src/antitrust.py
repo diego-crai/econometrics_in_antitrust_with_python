@@ -1340,3 +1340,24 @@ data['HHI'] = (data['Market Share'] ** 2) * 10000
 print(data)
 ```
 In this script, we load a dataset from data.csv and calculate the market concentration using the Herfindahl-Hirschman Index (HHI). The HHI is calculated by squaring the market share of each firm in the market and summing them up. This allows us to measure and analyze the concentration of market power among the different firms in the dataset.
+# Change made on 2024-07-01 06:13:33.007237
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total sum of fines imposed in the antitrust litigation cases
+total_fines = data['Fine Amount'].sum()
+
+# Calculate the average fine amount imposed in the antitrust litigation cases
+average_fine = data['Fine Amount'].mean()
+
+# Calculate the highest fine amount imposed in the antitrust litigation cases
+highest_fine = data['Fine Amount'].max()
+
+# Print the results
+print("Total sum of fines imposed: ${:.2f}".format(total_fines))
+print("Average fine amount imposed: ${:.2f}".format(average_fine))
+print("Highest fine amount imposed: ${:.2f}".format(highest_fine))
+```

@@ -1333,3 +1333,16 @@ data.sort_values('HHI', ascending=False, inplace=True)
 # Print the top 5 companies with the highest HHI
 print(data.head(5))
 ```
+# Change made on 2024-07-01 06:13:34.200558
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share for each firm over time
+avg_market_share = data.groupby('Firm')['Market Share'].mean()
+
+# Print the average market share for each firm
+print(avg_market_share)
+```
