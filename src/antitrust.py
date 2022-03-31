@@ -1361,3 +1361,20 @@ print("Total sum of fines imposed: ${:.2f}".format(total_fines))
 print("Average fine amount imposed: ${:.2f}".format(average_fine))
 print("Highest fine amount imposed: ${:.2f}".format(highest_fine))
 ```
+# Change made on 2024-07-01 06:13:37.349524
+```python
+import pandas as pd
+
+# Load the data from CSV file
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust cases in the dataset
+total_cases = data['Antitrust Cases'].sum()
+
+# Calculate the average settlement amount for antitrust cases
+average_settlement = data['Settlement Amount'].mean()
+
+# Print the results
+print(f'Total number of antitrust cases: {total_cases}')
+print(f'Average settlement amount for antitrust cases: ${average_settlement:.2f}')
+```

@@ -1346,3 +1346,18 @@ avg_market_share = data.groupby('Firm')['Market Share'].mean()
 # Print the average market share for each firm
 print(avg_market_share)
 ```
+# Change made on 2024-07-01 06:13:39.147392
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company involved in the antitrust litigation
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Print the results
+print("Average Market Share for each company:")
+print(average_market_share)
+```
+This script calculates and prints the average market share for each company involved in the antitrust litigation based on the data available in data.csv.
