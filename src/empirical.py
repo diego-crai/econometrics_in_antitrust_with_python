@@ -1361,3 +1361,24 @@ print("Average Market Share for each company:")
 print(average_market_share)
 ```
 This script calculates and prints the average market share for each company involved in the antitrust litigation based on the data available in data.csv.
+# Change made on 2024-07-01 06:13:46.722663
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the market share for each company
+data['Market Share'] = data['Company Revenue'] / data['Total Industry Revenue']
+
+# Define a function to check for potential antitrust violations based on market share
+def antitrust_violation(share):
+    if share > 0.5:
+        return 'Potential Violation'
+    else:
+        return 'No Violation'
+
+# Add a column to flag potential antitrust violations
+data['Antitrust Violation'] = data['Market Share'].apply(antitrust_violation)
+
+# Print the companies with potential antitrust violations
+print(data[data['Antitrust Violation'] == 'Potential Violation'])

@@ -1378,3 +1378,40 @@ average_settlement = data['Settlement Amount'].mean()
 print(f'Total number of antitrust cases: {total_cases}')
 print(f'Average settlement amount for antitrust cases: ${average_settlement:.2f}')
 ```
+# Change made on 2024-07-01 06:13:44.532133
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+data['market_share'] = data['revenue'] / data['total_market_revenue']
+data['HHI'] = (data['market_share'] * 100) ** 2
+HHI_total = data['HHI'].sum()
+
+# Calculate the pre-merger HHI
+pre_merger_data = data[data['company'] != 'Company ABC']
+pre_merger_HHI = pre_merger_data['HHI'].sum()
+
+# Calculate the post-merger HHI
+post_merger_revenue = data[data['company'] == 'Company ABC']['revenue'].sum()
+post_merger_market_share = post_merger_revenue / data['total_market_revenue'].sum()
+post_merger_HHI = (pre_merger_HHI - pre_merger_data[pre_merger_data['company'] == 'Company XYZ']['HHI'].values[0] + (post_merger_market_share * 100) ** 2)
+
+# Calculate the change in the HHI due to the merger
+HHI_change = post_merger_HHI - pre_merger_HHI
+
+# Determine the impact of the merger on market concentration
+if HHI_change > 100:
+    merger_impact = "The merger will result in a highly concentrated market."
+elif HHI_change > 50:
+    merger_impact = "The merger will result in a moderately concentrated market."
+else:
+    merger_impact = "The merger will not have a significant impact on market concentration."
+
+print("Pre-merger HHI:", pre_merger_HHI)
+print("Post-merger HHI:", post_merger_HHI)
+print("Change in HHI due to merger:", HHI_change)
+print("Merger impact on market concentration:", merger_impact)
+```
