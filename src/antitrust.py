@@ -1415,3 +1415,24 @@ print("Post-merger HHI:", post_merger_HHI)
 print("Change in HHI due to merger:", HHI_change)
 print("Merger impact on market concentration:", merger_impact)
 ```
+# Change made on 2024-07-01 06:13:50.414341
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Filter for antitrust cases
+antitrust_cases = data[data['Type'] == 'antitrust']
+
+# Calculate the average damages in antitrust cases
+average_damages = antitrust_cases['Damages'].mean()
+
+# Calculate the median damages in antitrust cases
+median_damages = antitrust_cases['Damages'].median()
+
+# Output the results
+print(f'The average damages in antitrust cases is ${average_damages:.2f}')
+print(f'The median damages in antitrust cases is ${median_damages:.2f}')
+```
+This script calculates and outputs the average and median damages in antitrust cases from the provided data file. It filters the data for antitrust cases, calculates the average and median damages for these cases, and then prints out the results.

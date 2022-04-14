@@ -1382,3 +1382,19 @@ data['Antitrust Violation'] = data['Market Share'].apply(antitrust_violation)
 
 # Print the companies with potential antitrust violations
 print(data[data['Antitrust Violation'] == 'Potential Violation'])
+# Change made on 2024-07-01 06:13:52.743723
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue by multiplying price and quantity
+data['total_revenue'] = data['price'] * data['quantity']
+
+# Calculate the market share for each company by dividing their total revenue by the total revenue in the market
+data['market_share'] = data['total_revenue'] / data['total_revenue'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+HHI = (data['market_share'] ** 2).sum()
+
+print("Herfindahl-Hirschman Index (HHI) for the market is:", HHI)
