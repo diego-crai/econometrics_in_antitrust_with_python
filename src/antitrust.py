@@ -1436,3 +1436,28 @@ print(f'The average damages in antitrust cases is ${average_damages:.2f}')
 print(f'The median damages in antitrust cases is ${median_damages:.2f}')
 ```
 This script calculates and outputs the average and median damages in antitrust cases from the provided data file. It filters the data for antitrust cases, calculates the average and median damages for these cases, and then prints out the results.
+# Change made on 2024-07-01 06:13:56.625009
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total sum of damages in antitrust litigation cases
+total_damages = data['Damages'].sum()
+
+# Extract the unique list of companies involved in the litigation cases
+companies_involved = data['Company'].unique()
+
+# Calculate the average damages per company
+avg_damages_per_company = data.groupby('Company')['Damages'].mean()
+
+# Find the company with the highest average damages
+company_highest_avg_damages = avg_damages_per_company.idxmax()
+
+# Display the results
+print(f'Total damages in antitrust litigation cases: ${total_damages}')
+print(f'Companies involved in the litigation cases: {companies_involved}')
+print(f'Average damages per company: {avg_damages_per_company}')
+print(f'Company with the highest average damages: {company_highest_avg_damages}')
+```
