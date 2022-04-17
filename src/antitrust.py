@@ -1461,3 +1461,24 @@ print(f'Companies involved in the litigation cases: {companies_involved}')
 print(f'Average damages per company: {avg_damages_per_company}')
 print(f'Company with the highest average damages: {company_highest_avg_damages}')
 ```
+# Change made on 2024-07-01 06:14:01.122342
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total sales for each company
+total_sales = data.groupby('company')['sales'].sum()
+
+# Calculate the market share for each company
+market_share = total_sales / data['sales'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+HHI = (market_share ** 2).sum() * 10000
+
+print('Market Share:')
+print(market_share)
+print('Herfindahl-Hirschman Index (HHI):')
+print(HHI)
+```

@@ -1413,3 +1413,28 @@ average_damages = antitrust_data['damages_awarded'].mean()
 
 print(f"The average damages awarded in antitrust litigation cases is ${average_damages}")
 ```
+# Change made on 2024-07-01 06:14:03.688063
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Select the relevant columns for the analysis
+relevant_data = data[['Company', 'Market Share', 'Revenue']]
+
+# Calculate the total market share of all companies
+total_market_share = relevant_data['Market Share'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+relevant_data['HHI'] = (relevant_data['Market Share'] ** 2) * 10000
+market_hhi = relevant_data['HHI'].sum()
+
+# Determine if the market is highly concentrated or not
+if market_hhi > 2500:
+    market_concentration = 'Highly Concentrated'
+else:
+    market_concentration = 'Not Highly Concentrated'
+
+print(f'Total Market Share: {total_market_share}')
+print(f'Market HHI: {market_hhi}')
+print(f'Market Concentration: {market_concentration}')
