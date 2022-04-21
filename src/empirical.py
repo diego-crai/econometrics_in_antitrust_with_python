@@ -1438,3 +1438,16 @@ else:
 print(f'Total Market Share: {total_market_share}')
 print(f'Market HHI: {market_hhi}')
 print(f'Market Concentration: {market_concentration}')
+# Change made on 2024-07-01 06:14:09.050013
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total amount spent on antitrust litigation cases
+total_spent = data['Antitrust_Litigation_Cost'].sum()
+
+# Display the total amount spent on antitrust litigation cases
+print(f'Total amount spent on antitrust litigation cases: ${total_spent}')
+```

@@ -1482,3 +1482,26 @@ print(market_share)
 print('Herfindahl-Hirschman Index (HHI):')
 print(HHI)
 ```
+# Change made on 2024-07-01 06:14:07.616482
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each industry
+data['HHI'] = data['Market Share'] ** 2
+hhi_data = data.groupby('Industry')['HHI'].sum()
+
+# Check for potential antitrust concerns based on HHI threshold
+threshold = 2500
+potential_concerns = hhi_data[hhi_data > threshold]
+
+if len(potential_concerns) > 0:
+    print("Potential antitrust concerns identified in the following industries:")
+    for industry in potential_concerns.index:
+        print(industry)
+else:
+    print("No potential antitrust concerns identified.")
+
+```
