@@ -1451,3 +1451,17 @@ total_spent = data['Antitrust_Litigation_Cost'].sum()
 # Display the total amount spent on antitrust litigation cases
 print(f'Total amount spent on antitrust litigation cases: ${total_spent}')
 ```
+# Change made on 2024-07-01 06:14:13.764530
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue for each company
+data['total_revenue'] = data['price'] * data['quantity']
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market concentration
+market_share = data.groupby('company')['total_revenue'].sum() / data['total_revenue'].sum()
+hhi = (market_share**2).sum() * 10000
+
+print("Herfindahl-Hirschman Index (HHI) for the market concentration: ", hhi)

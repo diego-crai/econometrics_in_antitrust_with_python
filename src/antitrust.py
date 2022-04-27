@@ -1505,3 +1505,20 @@ else:
     print("No potential antitrust concerns identified.")
 
 ```
+# Change made on 2024-07-01 06:14:11.767413
+```python
+import pandas as pd
+import statsmodels.formula.api as smf
+
+# Load the data
+data = pd.read_csv("data.csv")
+
+# Specify the regression model
+model = smf.ols(formula='Market_Share ~ Price + Advertising + Industry_Concentration', data=data)
+
+# Fit the model
+results = model.fit()
+
+# Print the regression results
+print(results.summary())
+```
