@@ -1465,3 +1465,16 @@ market_share = data.groupby('company')['total_revenue'].sum() / data['total_reve
 hhi = (market_share**2).sum() * 10000
 
 print("Herfindahl-Hirschman Index (HHI) for the market concentration: ", hhi)
+# Change made on 2024-07-01 06:14:19.197732
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust litigation cases
+antitrust_data = data[data['case_type'] == 'antitrust']
+
+# Calculate the average damages awarded in antitrust litigation cases
+average_damages = antitrust_data['damages_awarded'].mean()
+
+print(f'The average damages awarded in antitrust litigation cases is: ${average_damages}')
