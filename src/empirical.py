@@ -1478,3 +1478,19 @@ antitrust_data = data[data['case_type'] == 'antitrust']
 average_damages = antitrust_data['damages_awarded'].mean()
 
 print(f'The average damages awarded in antitrust litigation cases is: ${average_damages}')
+# Change made on 2024-07-01 06:14:24.445386
+```python
+import pandas as pd
+
+# Read the data from data.csv into a pandas DataFrame
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue for each company
+total_revenue = data.groupby('Company')['Revenue'].sum()
+
+# Calculate the market share for each company by dividing their revenue by the total revenue
+market_share = total_revenue / total_revenue.sum()
+
+# Output the market share for each company
+print(market_share)
+```

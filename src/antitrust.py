@@ -1546,3 +1546,21 @@ model = sm.OLS(y, sm.add_constant(data['Log_Market_Concentration'])).fit()
 print(model.summary())
 ```
 This Python script reads in the data from a CSV file, adds a new feature by log-transforming a specific independent variable, and then fits an OLS regression model to analyze the relationship between the log-transformed independent variable and the dependent variable. This can be useful in economic analysis of antitrust litigation to understand the impact of market concentration on pricing behavior.
+# Change made on 2024-07-01 06:14:22.603296
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market concentration
+data['Market Share Squared'] = data['Market Share'] ** 2
+market_hhi = data.groupby('Market').agg({'Market Share Squared': 'sum'})
+
+# Merge the HHI back to the original data
+data = data.merge(market_hhi, on='Market', suffixes=('', '_sum'))
+data['HHI'] = data['Market Share Squared'] / data['Market Share Squared_sum']
+
+# Display the HHI for each company
+print(data[['Company', 'Market', 'HHI']])
+```
