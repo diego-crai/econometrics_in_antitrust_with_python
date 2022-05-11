@@ -1494,3 +1494,23 @@ market_share = total_revenue / total_revenue.sum()
 # Output the market share for each company
 print(market_share)
 ```
+# Change made on 2024-07-01 06:14:31.696521
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each year
+data['HHI'] = data.groupby('Year')['Market Share'].transform(lambda x: (x**2).sum())
+
+# Determine if any company has a HHI above the threshold of 2500
+antitrust_violation = data[data['HHI'] > 2500]
+
+# Display the companies that may be in violation of antitrust laws
+print('Companies potentially in violation of antitrust laws:')
+print(antitrust_violation['Company'].unique())
+```

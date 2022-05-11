@@ -1564,3 +1564,21 @@ data['HHI'] = data['Market Share Squared'] / data['Market Share Squared_sum']
 # Display the HHI for each company
 print(data[['Company', 'Market', 'HHI']])
 ```
+# Change made on 2024-07-01 06:14:29.502426
+```python
+import pandas as pd
+
+# Read in the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each year
+data['HHI'] = data['Market Share'] ** 2
+
+# Group by year and sum the HHI values
+HHI_values = data.groupby('Year')['HHI'].sum()
+
+# Print the HHI values for each year
+print(HHI_values)
+```
+
+This script calculates the Herfindahl-Hirschman Index (HHI) for each year in the economic analysis on antitrust litigation based on the market share data provided in data.csv. The HHI is a measure of market concentration and can be used to assess competition in a market. The script then groups the HHI values by year and calculates the total HHI value for each year. Finally, it prints out the HHI values for each year.
