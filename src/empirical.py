@@ -1514,3 +1514,20 @@ antitrust_violation = data[data['HHI'] > 2500]
 print('Companies potentially in violation of antitrust laws:')
 print(antitrust_violation['Company'].unique())
 ```
+# Change made on 2024-07-01 06:14:37.125186
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust litigations
+total_litigations = data['Antitrust Litigations'].sum()
+
+# Calculate the average cost of antitrust litigations
+average_cost = data['Total Cost'].mean()
+
+# Print the results
+print(f'Total number of antitrust litigations: {total_litigations}')
+print(f'Average cost of antitrust litigations: ${average_cost:.2f}')
+```
