@@ -1602,3 +1602,25 @@ data['concentrated_market'] = data['HHI'] > 2500
 # Print the results
 print(data)
 ```
+# Change made on 2024-07-01 06:14:40.781066
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average price for each product
+average_price = data.groupby('Product')['Price'].mean()
+
+# Calculate the total revenue for each product
+data['Total Revenue'] = data['Price'] * data['Sales']
+
+# Calculate the total revenue for all products
+total_revenue_all = data['Total Revenue'].sum()
+
+# Calculate the market share for each product
+data['Market Share'] = data['Total Revenue'] / total_revenue_all
+
+# Calculate the Herfindahl-Hirschman Index (HHI) as a measure of market concentration
+data['HHI'] = (data['Market Share'] ** 2).sum()
+
+print(data)

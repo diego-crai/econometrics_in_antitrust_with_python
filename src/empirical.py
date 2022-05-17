@@ -1531,3 +1531,16 @@ average_cost = data['Total Cost'].mean()
 print(f'Total number of antitrust litigations: {total_litigations}')
 print(f'Average cost of antitrust litigations: ${average_cost:.2f}')
 ```
+# Change made on 2024-07-01 06:14:42.018516
+```python
+import pandas as pd
+
+# Load data
+data = pd.read_csv('data.csv')
+
+# Calculate average price of products involved in antitrust litigation
+average_price = data['price'].mean()
+
+# Print the result
+print('The average price of products involved in antitrust litigation is: $', round(average_price, 2))
+```
