@@ -1624,3 +1624,20 @@ data['Market Share'] = data['Total Revenue'] / total_revenue_all
 data['HHI'] = (data['Market Share'] ** 2).sum()
 
 print(data)
+# Change made on 2024-07-01 06:14:45.545941
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv("data.csv")
+
+# Group the data by the 'company' column and calculate the average 'market share' for each company
+average_market_share = data.groupby('company')['market_share'].mean()
+
+# Generate a new column 'market_share_difference' which calculates the difference between each company's market share 
+# and the average market share of all companies
+data['market_share_difference'] = data.apply(lambda row: row['market_share'] - average_market_share[row['company']], axis=1)
+
+# Display the updated data with the new 'market_share_difference' column
+print(data)
+```

@@ -1544,3 +1544,22 @@ average_price = data['price'].mean()
 # Print the result
 print('The average price of products involved in antitrust litigation is: $', round(average_price, 2))
 ```
+# Change made on 2024-07-01 06:14:48.827205
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Select the columns needed for the analysis
+data = data[['company', 'market_share', 'revenue', 'penalties']]
+
+# Calculate the penalty as a percentage of revenue
+data['penalty_percentage'] = (data['penalties'] / data['revenue']) * 100
+
+# Calculate the average penalty percentage for companies with a market share above 20%
+avg_penalty_percentage = data[data['market_share'] > 20]['penalty_percentage'].mean()
+
+print(f"The average penalty percentage for companies with a market share above 20% is: {avg_penalty_percentage}")
+```
+This script calculates the average penalty percentage for companies with a market share above 20% based on the data provided in data.csv. It selects the required columns and calculates the penalty as a percentage of revenue, finally calculating the average penalty percentage for the specified companies.
