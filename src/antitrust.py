@@ -1641,3 +1641,17 @@ data['market_share_difference'] = data.apply(lambda row: row['market_share'] - a
 # Display the updated data with the new 'market_share_difference' column
 print(data)
 ```
+# Change made on 2024-07-01 06:14:53.133603
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average litigation costs for each company
+avg_litigation_costs = data.groupby('Company')['Litigation Costs'].mean()
+
+# Print the average litigation costs for each company
+print(avg_litigation_costs)
+```
+This Python script calculates the average litigation costs for each company in the dataset provided in data.csv. It groups the data by company and then calculates the mean of the Litigation Costs column. Finally, it prints out the average litigation costs for each company.

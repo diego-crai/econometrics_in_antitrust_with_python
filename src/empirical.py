@@ -1563,3 +1563,26 @@ avg_penalty_percentage = data[data['market_share'] > 20]['penalty_percentage'].m
 print(f"The average penalty percentage for companies with a market share above 20% is: {avg_penalty_percentage}")
 ```
 This script calculates the average penalty percentage for companies with a market share above 20% based on the data provided in data.csv. It selects the required columns and calculates the penalty as a percentage of revenue, finally calculating the average penalty percentage for the specified companies.
+# Change made on 2024-07-01 06:14:55.238861
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['Market_Share_Squared'] = data['Market_Share'] ** 2
+
+market_hhi = data.groupby('Market')['Market_Share_Squared'].sum()
+
+data = data.merge(market_hhi, on='Market', suffixes=('', '_total'))
+data['HHI'] = data['Market_Share_Squared'] / data['Market_Share_Squared_total']
+
+# Identify markets with high concentration
+high_concentration_markets = data[data['HHI'] > 0.25]['Market'].unique()
+
+# Print the list of markets with high concentration
+print("Markets with high concentration:")
+for market in high_concentration_markets:
+    print(market)
+```
