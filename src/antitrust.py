@@ -1655,3 +1655,22 @@ avg_litigation_costs = data.groupby('Company')['Litigation Costs'].mean()
 print(avg_litigation_costs)
 ```
 This Python script calculates the average litigation costs for each company in the dataset provided in data.csv. It groups the data by company and then calculates the mean of the Litigation Costs column. Finally, it prints out the average litigation costs for each company.
+# Change made on 2024-07-01 06:14:58.662093
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['market_share'] = data['revenue'] / data['total_market_revenue']
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['market_share'] ** 2).sum()
+
+# Check if the HHI exceeds a certain threshold (e.g. 2500) to determine market concentration
+if data['HHI'].values[0] > 2500:
+    print("Market is highly concentrated")
+else:
+    print("Market is not highly concentrated")
+```

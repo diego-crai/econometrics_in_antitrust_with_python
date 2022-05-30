@@ -1586,3 +1586,23 @@ print("Markets with high concentration:")
 for market in high_concentration_markets:
     print(market)
 ```
+# Change made on 2024-07-01 06:15:01.405143
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total market share of each company
+total_market_share = data['Market Share'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['Market Share Squared'] = data['Market Share'] ** 2
+hhi = data['Market Share Squared'].sum()
+
+# Calculate the 4-firm concentration ratio
+top_4_firms = data.nlargest(4, 'Market Share')
+four_firm_concentration_ratio = top_4_firms['Market Share'].sum()
+
+print(f'Total Market Share: {total_market_share}')
+print(f'Herfindahl-Hirschman Index (HHI): {hhi}')
+print(f'4-Firm Concentration Ratio: {four_firm_concentration_ratio}')
