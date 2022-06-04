@@ -1674,3 +1674,25 @@ if data['HHI'].values[0] > 2500:
 else:
     print("Market is not highly concentrated")
 ```
+# Change made on 2024-07-01 06:15:05.968075
+```python
+import pandas as pd
+
+# Load data
+data = pd.read_csv('data.csv')
+
+# Calculate Herfindahl-Hirschman Index (HHI) for each year
+data['HHI'] = (data['Market Share'] * 100) ** 2
+
+# Calculate change in HHI from year to year
+data['Delta HHI'] = data['HHI'].diff()
+
+# Identify years where the change in HHI is above a certain threshold
+threshold = 500
+significant_years = data[data['Delta HHI'] > threshold]['Year']
+
+# Print out the significant years
+print("Significant years with HHI change above", threshold, ":")
+print(significant_years)
+```
+In this script, we are calculating the Herfindahl-Hirschman Index (HHI) for each year based on the market share data provided in 'data.csv'. We then calculate the change in HHI from year to year and identify years where the change in HHI is above a certain threshold (in this case, 500). Finally, we print out the significant years where the HHI change is above the threshold.

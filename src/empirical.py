@@ -1606,3 +1606,19 @@ four_firm_concentration_ratio = top_4_firms['Market Share'].sum()
 print(f'Total Market Share: {total_market_share}')
 print(f'Herfindahl-Hirschman Index (HHI): {hhi}')
 print(f'4-Firm Concentration Ratio: {four_firm_concentration_ratio}')
+# Change made on 2024-07-01 06:15:07.887595
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for a specific industry in the dataset
+industry_data = data[data['industry'] == 'specific_industry']
+
+# Calculate the market shares squared
+industry_data['market_share_squared'] = industry_data['market_share'] ** 2
+
+# Calculate the HHI
+HHI = industry_data['market_share_squared'].sum() * 10000
+
+print(f"The Herfindahl-Hirschman Index (HHI) for the specific industry is: {HHI}")
