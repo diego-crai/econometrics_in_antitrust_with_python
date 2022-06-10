@@ -1622,3 +1622,24 @@ industry_data['market_share_squared'] = industry_data['market_share'] ** 2
 HHI = industry_data['market_share_squared'].sum() * 10000
 
 print(f"The Herfindahl-Hirschman Index (HHI) for the specific industry is: {HHI}")
+# Change made on 2024-07-01 06:15:15.281148
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column 'Market Concentration' by calculating the Herfindahl-Hirschman Index (HHI)
+data['Market Concentration'] = (data['Market Share'] * 100) ** 2
+
+# Define the threshold for a highly concentrated market
+threshold = 2500
+
+# Identify the markets that are highly concentrated based on the HHI
+highly_concentrated_markets = data[data['Market Concentration'] > threshold]
+
+# Print the results
+print("Highly Concentrated Markets:")
+print(highly_concentrated_markets)
+```
+This code reads the data from data.csv and calculates the Herfindahl-Hirschman Index (HHI) for each market to determine its level of concentration. It then identifies the markets that are highly concentrated based on a specified threshold and prints out the results.

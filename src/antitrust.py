@@ -1696,3 +1696,17 @@ print("Significant years with HHI change above", threshold, ":")
 print(significant_years)
 ```
 In this script, we are calculating the Herfindahl-Hirschman Index (HHI) for each year based on the market share data provided in 'data.csv'. We then calculate the change in HHI from year to year and identify years where the change in HHI is above a certain threshold (in this case, 500). Finally, we print out the significant years where the HHI change is above the threshold.
+# Change made on 2024-07-01 06:15:12.806681
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['HHI'] = data['market_share']**2
+
+# Group by the antitrust case and sum the HHIs for each case
+antitrust_cases = data.groupby('antitrust_case')['HHI'].sum()
+
+# Output the antitrust cases and their corresponding HHI
+print(antitrust_cases)
