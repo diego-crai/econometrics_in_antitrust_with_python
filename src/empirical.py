@@ -1643,3 +1643,22 @@ print("Highly Concentrated Markets:")
 print(highly_concentrated_markets)
 ```
 This code reads the data from data.csv and calculates the Herfindahl-Hirschman Index (HHI) for each market to determine its level of concentration. It then identifies the markets that are highly concentrated based on a specified threshold and prints out the results.
+# Change made on 2024-07-01 06:15:21.833614
+```python
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each industry
+data['HHI'] = data.groupby('Industry')['Market Share'].transform(lambda x: (x**2).sum() * 10000)
+
+# Identify industries with HHI above 2500 as concentrated markets
+concentrated_markets = data[data['HHI'] > 2500]
+
+# Calculate the average market share of firms in concentrated markets
+avg_market_share_concentrated = concentrated_markets['Market Share'].mean()
+
+print('Industries with a Herfindahl-Hirschman Index above 2500 are considered concentrated markets.')
+print('The average market share of firms in concentrated markets is:', avg_market_share_concentrated)
+```

@@ -1710,3 +1710,16 @@ antitrust_cases = data.groupby('antitrust_case')['HHI'].sum()
 
 # Output the antitrust cases and their corresponding HHI
 print(antitrust_cases)
+# Change made on 2024-07-01 06:15:19.660881
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a column with a binary value indicating whether a company is involved in antitrust litigation or not
+data['antitrust_litigation'] = data['company_name'].apply(lambda x: 1 if x in ['Company A', 'Company B', 'Company C'] else 0)
+
+# Print the companies involved in antitrust litigation
+antitrust_companies = data[data['antitrust_litigation'] == 1]['company_name']
+print("Companies involved in antitrust litigation:")
+print(antitrust_companies)
