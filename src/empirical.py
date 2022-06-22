@@ -1662,3 +1662,18 @@ avg_market_share_concentrated = concentrated_markets['Market Share'].mean()
 print('Industries with a Herfindahl-Hirschman Index above 2500 are considered concentrated markets.')
 print('The average market share of firms in concentrated markets is:', avg_market_share_concentrated)
 ```
+# Change made on 2024-07-01 06:15:27.228787
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column 'Herfindahl_Hirschman_Index' to calculate the concentration of market share
+data['Herfindahl_Hirschman_Index'] = data['Market_Share'] ** 2
+
+# Calculate the overall HHI for the market
+overall_hhi = data['Herfindahl_Hirschman_Index'].sum()
+
+print(f"The overall Herfindahl-Hirschman Index for the market is: {overall_hhi}")
+```

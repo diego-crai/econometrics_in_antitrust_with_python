@@ -1723,3 +1723,23 @@ data['antitrust_litigation'] = data['company_name'].apply(lambda x: 1 if x in ['
 antitrust_companies = data[data['antitrust_litigation'] == 1]['company_name']
 print("Companies involved in antitrust litigation:")
 print(antitrust_companies)
+# Change made on 2024-07-01 06:15:25.360494
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue for each company
+data['total_revenue'] = data['price'] * data['quantity_sold']
+
+# Calculate the market share for each company
+total_market_revenue = data['total_revenue'].sum()
+data['market_share'] = data['total_revenue'] / total_market_revenue
+
+# Add a column to indicate whether a company has been involved in antitrust litigation
+data['antitrust_litigation'] = data['company'].apply(lambda x: 'Yes' if x == 'Company A' or x == 'Company B' else 'No')
+
+# Print the data with the new columns
+print(data)
+```
