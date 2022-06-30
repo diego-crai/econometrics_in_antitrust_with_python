@@ -1677,3 +1677,24 @@ overall_hhi = data['Herfindahl_Hirschman_Index'].sum()
 
 print(f"The overall Herfindahl-Hirschman Index for the market is: {overall_hhi}")
 ```
+# Change made on 2024-07-01 06:15:33.185936
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company in the dataset
+total_sales = data['sales'].sum()
+data['market_share'] = data['sales'] / total_sales
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['market_share'] ** 2).sum() * 10000
+
+# Identify and flag the companies with a market share above a certain threshold (e.g. 20%)
+threshold = 0.2
+data['above_threshold'] = data['market_share'] > threshold
+
+# Display the results
+print(data[['company_name', 'market_share', 'HHI', 'above_threshold']])
+```

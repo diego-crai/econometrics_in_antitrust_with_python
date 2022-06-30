@@ -1743,3 +1743,16 @@ data['antitrust_litigation'] = data['company'].apply(lambda x: 'Yes' if x == 'Co
 # Print the data with the new columns
 print(data)
 ```
+# Change made on 2024-07-01 06:15:29.875949
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of companies involved in antitrust litigation
+average_market_share = data['Market Share'].mean()
+
+# Display the average market share
+print("The average market share of companies involved in antitrust litigation is: ", average_market_share)
+```
