@@ -1756,3 +1756,17 @@ average_market_share = data['Market Share'].mean()
 # Display the average market share
 print("The average market share of companies involved in antitrust litigation is: ", average_market_share)
 ```
+# Change made on 2024-07-01 06:15:38.721378
+import pandas as pd
+
+# Read data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column calculating the Herfindahl-Hirschman Index (HHI) for each company
+data['HHI'] = (data['Market Share'] * 100) ** 2
+
+# Group data by year and calculate the overall HHI for each year
+yearly_hhi = data.groupby('Year')['HHI'].sum()
+
+# Print the yearly HHI values
+print(yearly_hhi)

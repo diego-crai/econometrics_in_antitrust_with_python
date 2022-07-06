@@ -1698,3 +1698,13 @@ data['above_threshold'] = data['market_share'] > threshold
 # Display the results
 print(data[['company_name', 'market_share', 'HHI', 'above_threshold']])
 ```
+# Change made on 2024-07-01 06:15:39.615160
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average fines imposed by antitrust litigation cases
+avg_fines = data['Fine Amount'].mean()
+
+print("The average fines imposed by antitrust litigation cases is: $" + str(avg_fines))
