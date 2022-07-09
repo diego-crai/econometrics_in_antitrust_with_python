@@ -1770,3 +1770,18 @@ yearly_hhi = data.groupby('Year')['HHI'].sum()
 
 # Print the yearly HHI values
 print(yearly_hhi)
+# Change made on 2024-07-01 06:15:43.153556
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for a specific industry
+industry_data = data[data['industry'] == 'specific industry']
+market_shares = industry_data['market_share']
+hhi = (market_shares ** 2).sum() * 10000
+
+# Print the calculated HHI for the specific industry
+print(f"The Herfindahl-Hirschman Index (HHI) for the specific industry is: {hhi}")
+```

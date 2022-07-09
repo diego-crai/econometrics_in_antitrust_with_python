@@ -1708,3 +1708,25 @@ data = pd.read_csv('data.csv')
 avg_fines = data['Fine Amount'].mean()
 
 print("The average fines imposed by antitrust litigation cases is: $" + str(avg_fines))
+# Change made on 2024-07-01 06:15:45.643402
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust cases
+total_cases = data['Antitrust_Case'].sum()
+
+# Calculate the average duration of antitrust cases in months
+average_duration = data['Duration_Months'].mean()
+
+# Calculate the average settlement amount in millions of dollars
+average_settlement = data['Settlement_Amount'].mean()
+
+# Display the results
+print(f'Total number of antitrust cases: {total_cases}')
+print(f'Average duration of antitrust cases: {average_duration} months')
+print(f'Average settlement amount: ${average_settlement} million')
+```
+This script reads the data from a CSV file, calculates the total number of antitrust cases, the average duration of antitrust cases in months, and the average settlement amount in millions of dollars. It then prints out these results.
