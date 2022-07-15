@@ -1730,3 +1730,19 @@ print(f'Average duration of antitrust cases: {average_duration} months')
 print(f'Average settlement amount: ${average_settlement} million')
 ```
 This script reads the data from a CSV file, calculates the total number of antitrust cases, the average duration of antitrust cases in months, and the average settlement amount in millions of dollars. It then prints out these results.
+# Change made on 2024-07-01 06:15:51.138147
+import pandas as pd
+
+# Read in the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each industry
+data['HHI'] = data.groupby('industry')['market_share'].transform(lambda x: (x**2).sum())
+
+# Identify industries with an HHI above 2500 as having a concentrated market
+concentrated_markets = data[data['HHI'] > 2500]['industry'].unique()
+
+# Print the list of industries with concentrated markets
+print('Industries with concentrated markets:')
+for industry in concentrated_markets:
+    print(industry)

@@ -1785,3 +1785,15 @@ hhi = (market_shares ** 2).sum() * 10000
 # Print the calculated HHI for the specific industry
 print(f"The Herfindahl-Hirschman Index (HHI) for the specific industry is: {hhi}")
 ```
+# Change made on 2024-07-01 06:15:48.615583
+```python
+import pandas as pd
+
+# Read in the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average settlement amount for cases where antitrust litigation was involved
+average_settlement = data[data['antitrust_litigation'] == True]['settlement_amount'].mean()
+
+print('Average settlement amount for cases involving antitrust litigation: $', average_settlement)
+```
