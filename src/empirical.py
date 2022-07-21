@@ -1746,3 +1746,21 @@ concentrated_markets = data[data['HHI'] > 2500]['industry'].unique()
 print('Industries with concentrated markets:')
 for industry in concentrated_markets:
     print(industry)
+# Change made on 2024-07-01 06:15:56.866043
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust cases in the dataset
+total_cases = data['Antitrust Case'].nunique()
+
+# Calculate the total amount of damages awarded in antitrust cases
+total_damages = data['Damages Awarded'].sum()
+
+# Calculate the average damages awarded per case
+average_damages = total_damages / total_cases
+
+print(f'Total number of antitrust cases: {total_cases}')
+print(f'Total amount of damages awarded: {total_damages}')
+print(f'Average damages awarded per case: {average_damages}')

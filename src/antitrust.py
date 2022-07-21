@@ -1797,3 +1797,23 @@ average_settlement = data[data['antitrust_litigation'] == True]['settlement_amou
 
 print('Average settlement amount for cases involving antitrust litigation: $', average_settlement)
 ```
+# Change made on 2024-07-01 06:15:55.150312
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total amount of fines imposed in antitrust litigation cases
+total_fines = data['Fine'].sum()
+
+# Calculate the average fine amount per case
+average_fine = data['Fine'].mean()
+
+# Calculate the number of cases with fines over 1 million dollars
+cases_over_1m = len(data[data['Fine'] > 1000000])
+
+print(f"Total amount of fines imposed: {total_fines}")
+print(f"Average fine amount per case: {average_fine}")
+print(f"Number of cases with fines over 1 million dollars: {cases_over_1m}")
+```
