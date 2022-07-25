@@ -1764,3 +1764,21 @@ average_damages = total_damages / total_cases
 print(f'Total number of antitrust cases: {total_cases}')
 print(f'Total amount of damages awarded: {total_damages}')
 print(f'Average damages awarded per case: {average_damages}')
+# Change made on 2024-07-01 06:16:02.928951
+```python
+import pandas as pd
+
+# Load data from data.csv file
+data = pd.read_csv('data.csv')
+
+# Calculate the concentration ratios for the top 4 firms in the industry
+data['market_share'] = data['firm_sales'] / data['total_sales']
+top_firms = data.sort_values('market_share', ascending=False).head(4)
+CR4 = top_firms['market_share'].sum()
+
+# Determine if the industry is highly concentrated
+if CR4 > 0.6:
+    print("The industry is highly concentrated with a CR4 of", CR4)
+else:
+    print("The industry is not highly concentrated with a CR4 of", CR4)
+```

@@ -1817,3 +1817,28 @@ print(f"Total amount of fines imposed: {total_fines}")
 print(f"Average fine amount per case: {average_fine}")
 print(f"Number of cases with fines over 1 million dollars: {cases_over_1m}")
 ```
+# Change made on 2024-07-01 06:16:00.874704
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share for each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each year
+data['HHI'] = (data['Market Share'] * 100) ** 2
+hhi = data.groupby('Year')['HHI'].sum()
+
+# Add a column to indicate if a company has a market share above 30%
+data['Above_30_percent'] = data['Market Share'] > 0.3
+
+# Print the results
+print("Average Market Share for each company:")
+print(average_market_share)
+print("\nHHI for each year:")
+print(hhi)
+print("\nCompanies with market share above 30%:")
+print(data[data['Above_30_percent']])
+```
