@@ -1782,3 +1782,19 @@ if CR4 > 0.6:
 else:
     print("The industry is not highly concentrated with a CR4 of", CR4)
 ```
+# Change made on 2024-07-01 06:16:07.474829
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market concentration using the Herfindahl-Hirschman Index (HHI)
+data['market_share_squared'] = data['market_share'] ** 2
+market_concentration = data.groupby('industry')['market_share_squared'].sum()
+
+# Add the market concentration to the original data
+data = data.merge(market_concentration, on='industry', suffixes=('', '_total'))
+data['market_concentration'] = data['market_share_squared'] / data['market_share_squared_total']
+
+# Display the data with market concentration added
+print(data)

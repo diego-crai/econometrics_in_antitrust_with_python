@@ -1842,3 +1842,16 @@ print(hhi)
 print("\nCompanies with market share above 30%:")
 print(data[data['Above_30_percent']])
 ```
+# Change made on 2024-07-01 06:16:05.884403
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of all companies involved in antitrust litigation
+average_market_share = data['Market Share'].mean()
+
+# Display the result
+print("Average Market Share of Companies involved in Antitrust Litigation: ", average_market_share)
+```
