@@ -1855,3 +1855,21 @@ average_market_share = data['Market Share'].mean()
 # Display the result
 print("Average Market Share of Companies involved in Antitrust Litigation: ", average_market_share)
 ```
+# Change made on 2024-07-01 06:16:10.715789
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the concentration ratio for the industry
+total_market_share = data['Market Share'].sum()
+concentration_ratio = data['Market Share'] / total_market_share
+
+# Add a new column to the data frame with the concentration ratio
+data['Concentration Ratio'] = concentration_ratio
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['Market Share'] ** 2) * 10000
+
+# Display the updated data frame
+print(data)

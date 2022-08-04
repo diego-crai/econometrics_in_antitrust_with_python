@@ -1798,3 +1798,19 @@ data['market_concentration'] = data['market_share_squared'] / data['market_share
 
 # Display the data with market concentration added
 print(data)
+# Change made on 2024-07-01 06:16:12.942363
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['market_share'] = data['sales'] / data['total_sales']
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+hhi = (data['market_share'] ** 2).sum()
+
+# Print the HHI for the market
+print('Herfindahl-Hirschman Index (HHI) for the market: {:.2f}'.format(hhi))
+```
