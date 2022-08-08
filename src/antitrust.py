@@ -1873,3 +1873,22 @@ data['HHI'] = (data['Market Share'] ** 2) * 10000
 
 # Display the updated data frame
 print(data)
+# Change made on 2024-07-01 06:16:16.831873
+import pandas as pd
+
+# load the data
+data = pd.read_csv('data.csv')
+
+# calculate the market concentration ratio
+data['market_share'] = data['company_sales'] / data['total_sales']
+market_concentration_ratio = data['market_share'].sum()
+
+# calculate the Herfindahl-Hirschman Index (HHI)
+data['market_share_squared'] = data['market_share'] ** 2
+HHI = data['market_share_squared'].sum() * 10000
+
+# check if the market is highly concentrated
+if HHI > 2500:
+    print('The market is highly concentrated with an HHI of', HHI)
+else:
+    print('The market is not highly concentrated with an HHI of', HHI)

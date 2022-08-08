@@ -1814,3 +1814,16 @@ hhi = (data['market_share'] ** 2).sum()
 # Print the HHI for the market
 print('Herfindahl-Hirschman Index (HHI) for the market: {:.2f}'.format(hhi))
 ```
+# Change made on 2024-07-01 06:16:17.827875
+```
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the total damages incurred by each company involved in the antitrust litigation
+total_damages = data.groupby('Company')['Damages'].sum()
+
+# Display the total damages incurred by each company
+print(total_damages)
+```
