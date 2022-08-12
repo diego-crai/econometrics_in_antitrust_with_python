@@ -1892,3 +1892,26 @@ if HHI > 2500:
     print('The market is highly concentrated with an HHI of', HHI)
 else:
     print('The market is not highly concentrated with an HHI of', HHI)
+# Change made on 2024-07-01 06:16:22.083351
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average price for each product
+avg_price = data.groupby('Product')['Price'].mean()
+
+# Calculate the market share for each product
+total_sales = data.groupby('Product')['Sales'].sum()
+market_share = total_sales / total_sales.sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+hhi = (market_share ** 2).sum() * 10000
+
+# Display the results
+print("Average price for each product:")
+print(avg_price)
+print("\nMarket share for each product:")
+print(market_share)
+print("\nHerfindahl-Hirschman Index (HHI) for the market:")
+print(hhi)

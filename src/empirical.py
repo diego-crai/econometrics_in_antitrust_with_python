@@ -1827,3 +1827,26 @@ total_damages = data.groupby('Company')['Damages'].sum()
 # Display the total damages incurred by each company
 print(total_damages)
 ```
+# Change made on 2024-07-01 06:16:24.499032
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share for each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Calculate the total market share for all companies combined
+total_market_share = data['Market Share'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+hhi = (data['Market Share'] ** 2).sum() * 10000
+
+print("Average Market Share by Company:")
+print(average_market_share)
+
+print("\nTotal Market Share for all Companies Combined:")
+print(total_market_share)
+
+print("\nHerfindahl-Hirschman Index (HHI):")
+print(hhi)
