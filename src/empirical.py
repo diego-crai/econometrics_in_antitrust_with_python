@@ -1850,3 +1850,27 @@ print(total_market_share)
 
 print("\nHerfindahl-Hirschman Index (HHI):")
 print(hhi)
+# Change made on 2024-07-01 06:16:31.312386
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Calculate the average price for each product
+average_price = data.groupby('Product')['Price'].mean()
+
+# Display the average price for each product
+print("Average price for each product:")
+print(average_price)
+
+# Calculate the market share of each company
+data['Total_Sales'] = data.groupby('Company')['Sales'].transform('sum')
+data['Market_Share'] = data['Sales'] / data['Total_Sales']
+
+# Display the market share of each company
+print("\nMarket share for each company:")
+print(data[['Company', 'Market_Share']])
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+hhi = (data['Market_Share'] ** 2).sum()
+print("\nHerfindahl-Hirschman Index (HHI) for the market: %.2f" % hhi)

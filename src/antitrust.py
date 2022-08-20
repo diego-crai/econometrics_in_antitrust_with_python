@@ -1915,3 +1915,22 @@ print("\nMarket share for each product:")
 print(market_share)
 print("\nHerfindahl-Hirschman Index (HHI) for the market:")
 print(hhi)
+# Change made on 2024-07-01 06:16:28.238963
+```python
+import pandas as pd
+
+# Load the data from data.csv file
+data = pd.read_csv('data.csv')
+
+# Calculate market share for each company
+data['market_share'] = data['revenue'] / data['total_revenue']
+
+# Check if any company has a market share above a certain threshold (e.g. 0.3)
+threshold = 0.3
+antitrust_violation = any(data['market_share'] > threshold)
+
+if antitrust_violation:
+    print("Antitrust violation detected: At least one company has a market share above", threshold)
+
+# You can continue to add more sophisticated analysis or visualizations here
+```
