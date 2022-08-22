@@ -1874,3 +1874,14 @@ print(data[['Company', 'Market_Share']])
 # Calculate the Herfindahl-Hirschman Index (HHI) for the market
 hhi = (data['Market_Share'] ** 2).sum()
 print("\nHerfindahl-Hirschman Index (HHI) for the market: %.2f" % hhi)
+# Change made on 2024-07-01 06:16:36.343613
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Add a new column "Market Concentration Index" to the data
+data["Market Concentration Index"] = data["Market Share"] ** 2
+
+# Display the updated data
+print(data)

@@ -1934,3 +1934,19 @@ if antitrust_violation:
 
 # You can continue to add more sophisticated analysis or visualizations here
 ```
+# Change made on 2024-07-01 06:16:34.947594
+import pandas as pd
+
+# read the data from data.csv into a pandas dataframe
+data = pd.read_csv('data.csv')
+
+# calculate the total revenue for each company
+data['Total Revenue'] = data['Price'] * data['Quantity']
+
+# calculate the market share for each company
+data['Market Share'] = data['Total Revenue'] / data['Total Revenue'].sum()
+
+# calculate the Herfindahl-Hirschman Index (HHI) for the market
+hhi = (data['Market Share'] ** 2).sum()
+
+print("Herfindahl-Hirschman Index (HHI) for the market is:", hhi)
