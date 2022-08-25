@@ -1885,3 +1885,21 @@ data["Market Concentration Index"] = data["Market Share"] ** 2
 
 # Display the updated data
 print(data)
+# Change made on 2024-07-01 06:16:40.961023
+```python
+import pandas as pd
+
+# Load data
+data = pd.read_csv('data.csv')
+
+# Calculate HHI (Herfindahl-Hirschman Index) for each firm
+data['Market Share Squared'] = data['Market Share'] ** 2
+HHI = data.groupby('Industry')['Market Share Squared'].sum()
+
+# Identify industries with HHI above threshold for antitrust concern
+threshold = 2500
+concentration = HHI[HHI > threshold].index
+
+print("Industries with high concentration (HHI > 2500) that may warrant antitrust scrutiny:")
+print(concentration)
+```
