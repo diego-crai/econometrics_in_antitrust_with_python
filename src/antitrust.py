@@ -1965,3 +1965,19 @@ average_damages = antitrust_cases['damages_awarded'].mean()
 
 print(f"The average damages awarded in antitrust litigation cases is: {average_damages}")
 ```
+# Change made on 2024-07-01 06:16:43.879262
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['market_share'] = data['revenue'] / data['total_market_revenue']
+
+# Identify the company with the largest market share
+largest_market_share_company = data.loc[data['market_share'].idxmax(), 'company']
+
+# Print the company with the largest market share
+print(f"The company with the largest market share is {largest_market_share_company}")
+```

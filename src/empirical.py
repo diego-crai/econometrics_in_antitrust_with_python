@@ -1903,3 +1903,21 @@ concentration = HHI[HHI > threshold].index
 print("Industries with high concentration (HHI > 2500) that may warrant antitrust scrutiny:")
 print(concentration)
 ```
+# Change made on 2024-07-01 06:16:47.138722
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['Total_Market_Sales'] = data.groupby('Company')['Sales'].transform('sum')
+data['Market_Share'] = data['Sales'] / data['Total_Market_Sales']
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['Market_Share'] ** 2).sum()
+
+# Print the HHI value
+print("HHI for the market: ", data['HHI'].iloc[0])
+```
+This code calculates the market share of each company in a dataset of economic data, then computes the Herfindahl-Hirschman Index (HHI) for the market. The HHI is a measure of market concentration that can be used in antitrust litigation to determine if a market is competitive or dominated by a few firms.
