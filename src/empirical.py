@@ -1921,3 +1921,16 @@ data['HHI'] = (data['Market_Share'] ** 2).sum()
 print("HHI for the market: ", data['HHI'].iloc[0])
 ```
 This code calculates the market share of each company in a dataset of economic data, then computes the Herfindahl-Hirschman Index (HHI) for the market. The HHI is a measure of market concentration that can be used in antitrust litigation to determine if a market is competitive or dominated by a few firms.
+# Change made on 2024-07-01 06:16:51.992826
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Calculate the average market share of the top 5 firms in each year
+top5_avg_market_share = data.groupby("Year")["Market Share"].nlargest(5).groupby(level=0).mean().reset_index()
+
+# Print the average market share of the top 5 firms in each year
+print(top5_avg_market_share)
+```

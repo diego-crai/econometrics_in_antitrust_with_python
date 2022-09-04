@@ -1981,3 +1981,18 @@ largest_market_share_company = data.loc[data['market_share'].idxmax(), 'company'
 # Print the company with the largest market share
 print(f"The company with the largest market share is {largest_market_share_company}")
 ```
+# Change made on 2024-07-01 06:16:50.594881
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average number of days between each antitrust litigation case
+data['Date'] = pd.to_datetime(data['Date'])
+data = data.sort_values(by='Date')
+data['Days_since_last_case'] = data['Date'].diff().dt.days
+average_days_between_cases = data['Days_since_last_case'].mean()
+
+print(f'The average number of days between each antitrust litigation case is: {average_days_between_cases}')
+```
