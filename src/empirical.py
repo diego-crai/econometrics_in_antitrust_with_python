@@ -1934,3 +1934,26 @@ top5_avg_market_share = data.groupby("Year")["Market Share"].nlargest(5).groupby
 # Print the average market share of the top 5 firms in each year
 print(top5_avg_market_share)
 ```
+# Change made on 2024-07-01 06:16:56.740449
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue for each company
+total_revenue = data.groupby('company')['revenue'].sum()
+
+# Calculate the market share for each company
+market_share = total_revenue / total_revenue.sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+hhi = (market_share ** 2).sum() * 10000
+
+# Check if the HHI is above the threshold for antitrust scrutiny
+threshold = 2500
+if hhi > threshold:
+    print("The market concentration is above the threshold for antitrust scrutiny.")
+else:
+    print("The market concentration is below the threshold for antitrust scrutiny.")
+```

@@ -1996,3 +1996,16 @@ average_days_between_cases = data['Days_since_last_case'].mean()
 
 print(f'The average number of days between each antitrust litigation case is: {average_days_between_cases}')
 ```
+# Change made on 2024-07-01 06:16:54.829884
+```python
+import pandas as pd
+
+# Load data from csv file
+data = pd.read_csv('data.csv')
+
+# Calculate the average settlement amount for cases that resulted in a guilty verdict
+guilty_cases = data[data['Verdict'] == 'Guilty']
+average_settlement_amount = guilty_cases['Settlement Amount'].mean()
+
+print(f"The average settlement amount for cases that resulted in a guilty verdict is: ${average_settlement_amount:.2f}")
+```
