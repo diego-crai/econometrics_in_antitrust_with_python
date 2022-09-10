@@ -2009,3 +2009,28 @@ average_settlement_amount = guilty_cases['Settlement Amount'].mean()
 
 print(f"The average settlement amount for cases that resulted in a guilty verdict is: ${average_settlement_amount:.2f}")
 ```
+# Change made on 2024-07-01 06:17:01.314280
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total amount of fines imposed in the antitrust litigation
+total_fines = data['Fines'].sum()
+
+# Calculate the average fine amount imposed
+average_fine = data['Fines'].mean()
+
+# Calculate the highest amount of fine imposed
+max_fine = data['Fines'].max()
+
+# Calculate the lowest amount of fine imposed
+min_fine = data['Fines'].min()
+
+# Print the results
+print(f'Total amount of fines imposed: {total_fines}')
+print(f'Average fine amount imposed: {average_fine}')
+print(f'Highest amount of fine imposed: {max_fine}')
+print(f'Lowest amount of fine imposed: {min_fine}')
+```

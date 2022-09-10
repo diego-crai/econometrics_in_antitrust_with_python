@@ -1957,3 +1957,25 @@ if hhi > threshold:
 else:
     print("The market concentration is below the threshold for antitrust scrutiny.")
 ```
+# Change made on 2024-07-01 06:17:05.003295
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Extract relevant columns for analysis
+relevant_data = data[['Company', 'Revenue', 'Market Share']]
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+relevant_data['HHI'] = (relevant_data['Market Share'] * 100) ** 2
+hhi_per_company = relevant_data.groupby('Company')['HHI'].sum()
+
+# Determine the concentration level of the market
+total_hhi = hhi_per_company.sum()
+market_concentration = total_hhi / 10000
+
+# Display the results
+print("Market Concentration Level: {:.2f}".format(market_concentration))
+```
+This script extracts the Company, Revenue, and Market Share columns from the data, calculates the Herfindahl-Hirschman Index (HHI) for each company, and then calculates the market concentration level based on the total HHI. The results are displayed at the end.
