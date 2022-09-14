@@ -1979,3 +1979,22 @@ market_concentration = total_hhi / 10000
 print("Market Concentration Level: {:.2f}".format(market_concentration))
 ```
 This script extracts the Company, Revenue, and Market Share columns from the data, calculates the Herfindahl-Hirschman Index (HHI) for each company, and then calculates the market concentration level based on the total HHI. The results are displayed at the end.
+# Change made on 2024-07-01 06:17:10.155085
+import pandas as pd
+
+# Load the data from data.csv
+df = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+total_market_size = df['Revenue'].sum()
+df['Market_Share'] = df['Revenue'] / total_market_size
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+df['HHI'] = (df['Market_Share'] * 100) ** 2
+hhi = df['HHI'].sum()
+
+# Check if market is concentrated based on HHI
+if hhi > 2500:
+    print('Market is highly concentrated with HHI:', hhi)
+else:
+    print('Market is not highly concentrated with HHI:', hhi)

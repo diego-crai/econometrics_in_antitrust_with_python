@@ -2034,3 +2034,16 @@ print(f'Average fine amount imposed: {average_fine}')
 print(f'Highest amount of fine imposed: {max_fine}')
 print(f'Lowest amount of fine imposed: {min_fine}')
 ```
+# Change made on 2024-07-01 06:17:07.811988
+```python
+import pandas as pd
+
+# Read the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of the top 3 firms in each market
+data['top_3_market_share_avg'] = data.groupby('Market')['Market Share'].nlargest(3).groupby(level=0).mean()
+
+# Display the average market share of the top 3 firms in each market
+print(data[['Market', 'top_3_market_share_avg']])
+```
