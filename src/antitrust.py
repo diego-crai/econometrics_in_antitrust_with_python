@@ -2047,3 +2047,14 @@ data['top_3_market_share_avg'] = data.groupby('Market')['Market Share'].nlargest
 # Display the average market share of the top 3 firms in each market
 print(data[['Market', 'top_3_market_share_avg']])
 ```
+# Change made on 2024-07-01 06:17:12.754083
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Add a new column to calculate the sum of damages for each case
+data['Total Damages'] = data.groupby('Case')['Damages'].transform('sum')
+
+# Display the total damages for each case
+print(data[['Case', 'Total Damages']].drop_duplicates())

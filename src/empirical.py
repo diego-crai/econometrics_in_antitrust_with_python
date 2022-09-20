@@ -1998,3 +1998,23 @@ if hhi > 2500:
     print('Market is highly concentrated with HHI:', hhi)
 else:
     print('Market is not highly concentrated with HHI:', hhi)
+# Change made on 2024-07-01 06:17:14.769861
+```python
+import pandas as pd
+
+# Read the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Calculate the HHI index for each market
+data['HHI Index'] = data['Market Share'] ** 2
+HHI_index = data.groupby('Market')['HHI Index'].sum()
+
+# Print the results
+print("Average Market Share of Each Company:")
+print(average_market_share)
+print("\nHHI Index for Each Market:")
+print(HHI_index)
+```
