@@ -2074,3 +2074,19 @@ average_damages = data[data['antitrust_litigation'] == 1]['damages_awarded'].mea
 print(f'Total number of antitrust litigation cases: {num_cases}')
 print(f'Average damages awarded in antitrust litigation cases: {average_damages}')
 ```
+# Change made on 2024-07-01 06:17:22.809288
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Create a new column in the data with the average market share for each company
+data['Average Market Share'] = data['Company'].map(average_market_share)
+
+# Calculate the market concentration based on the average market share
+market_concentration = data['Average Market Share'].sum()
+
+print("Market Concentration:", market_concentration)

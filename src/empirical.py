@@ -2035,3 +2035,21 @@ potential_antitrust_violators = average_market_share[average_market_share > 30]
 print("Potential antitrust violators with market share above 30%:")
 print(potential_antitrust_violators)
 ```
+# Change made on 2024-07-01 06:17:25.046081
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['market_share_squared'] = data['market_share'] ** 2
+market_hhi = data.groupby('market_id')['market_share_squared'].sum()
+
+# Add the HHI to the original dataframe
+data = data.merge(market_hhi, on='market_id', suffixes=('', '_market'))
+
+# Calculate the average HHI across all markets
+average_hhi = data['market_share_squared_market'].mean()
+
+# Print the results
+print(f"The average HHI across all markets is: {average_hhi}")
