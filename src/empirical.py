@@ -2018,3 +2018,20 @@ print(average_market_share)
 print("\nHHI Index for Each Market:")
 print(HHI_index)
 ```
+# Change made on 2024-07-01 06:17:19.573645
+```python
+import pandas as pd
+
+# Load data from CSV file
+data = pd.read_csv('data.csv')
+
+# Calculate average market share for each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Identify companies with market share above 30%
+potential_antitrust_violators = average_market_share[average_market_share > 30]
+
+# Print out the list of potential antitrust violators
+print("Potential antitrust violators with market share above 30%:")
+print(potential_antitrust_violators)
+```

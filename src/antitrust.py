@@ -2058,3 +2058,19 @@ data['Total Damages'] = data.groupby('Case')['Damages'].transform('sum')
 
 # Display the total damages for each case
 print(data[['Case', 'Total Damages']].drop_duplicates())
+# Change made on 2024-07-01 06:17:17.706000
+```python
+import pandas as pd
+
+# Read the data from data.csv file
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust litigation cases in the data
+num_cases = data['antitrust_litigation'].sum()
+
+# Calculate the average damages awarded in antitrust litigation cases
+average_damages = data[data['antitrust_litigation'] == 1]['damages_awarded'].mean()
+
+print(f'Total number of antitrust litigation cases: {num_cases}')
+print(f'Average damages awarded in antitrust litigation cases: {average_damages}')
+```
