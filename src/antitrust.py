@@ -2090,3 +2090,16 @@ data['Average Market Share'] = data['Company'].map(average_market_share)
 market_concentration = data['Average Market Share'].sum()
 
 print("Market Concentration:", market_concentration)
+# Change made on 2024-07-01 06:17:28.355593
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Filter the data for antitrust litigation cases
+antitrust_data = data[data['case_type'] == 'antitrust']
+
+# Calculate the total damages awarded in antitrust litigation cases
+total_damages = antitrust_data['damages_awarded'].sum()
+
+print("Total damages awarded in antitrust litigation cases: $" + str(total_damages))

@@ -2053,3 +2053,17 @@ average_hhi = data['market_share_squared_market'].mean()
 
 # Print the results
 print(f"The average HHI across all markets is: {average_hhi}")
+# Change made on 2024-07-01 06:17:30.014292
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Calculate the concentration ratio (CR) of the market
+# CR4 = (market share of the top 4 firms in the market) * 100
+data['Market Share'] = data['Revenue'] / data['Total Revenue']
+top_firms = data.nlargest(4, 'Market Share')
+CR4 = top_firms['Market Share'].sum() * 100
+
+# Print the concentration ratio
+print("CR4 for the market is: {}%".format(CR4))
