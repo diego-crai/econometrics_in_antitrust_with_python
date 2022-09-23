@@ -2067,3 +2067,27 @@ CR4 = top_firms['Market Share'].sum() * 100
 
 # Print the concentration ratio
 print("CR4 for the market is: {}%".format(CR4))
+# Change made on 2024-07-01 06:17:35.579581
+```python
+import pandas as pd
+from scipy.stats import ttest_ind
+
+# Load the data
+data = pd.read_csv("data.csv")
+
+# Define two groups for comparison
+group1 = data[data['antitrust_case'] == 'Group A']['sale_amount']
+group2 = data[data['antitrust_case'] == 'Group B']['sale_amount']
+
+# Perform t-test for comparing the average sale amounts of the two groups
+t_stat, p_value = ttest_ind(group1, group2)
+
+# Print the results
+print("T-statistic:", t_stat)
+print("P-value:", p_value)
+
+if p_value < 0.05:
+    print("The difference in average sale amounts between Group A and Group B is statistically significant.")
+else:
+    print("There is no statistically significant difference in average sale amounts between Group A and Group B.")
+```

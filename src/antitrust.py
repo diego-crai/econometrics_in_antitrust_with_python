@@ -2103,3 +2103,24 @@ antitrust_data = data[data['case_type'] == 'antitrust']
 total_damages = antitrust_data['damages_awarded'].sum()
 
 print("Total damages awarded in antitrust litigation cases: $" + str(total_damages))
+# Change made on 2024-07-01 06:17:33.175453
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average price for each product
+average_price = data.groupby('Product')['Price'].mean()
+
+# Print the average price for each product
+print(average_price)
+
+# Identify the products with the highest and lowest average prices
+highest_price_product = average_price.idxmax()
+lowest_price_product = average_price.idxmin()
+
+# Print the products with the highest and lowest average prices
+print(f'The product with the highest average price is: {highest_price_product}')
+print(f'The product with the lowest average price is: {lowest_price_product}')
+```
