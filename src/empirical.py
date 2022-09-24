@@ -2091,3 +2091,18 @@ if p_value < 0.05:
 else:
     print("There is no statistically significant difference in average sale amounts between Group A and Group B.")
 ```
+# Change made on 2024-07-01 06:17:39.967691
+```python
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company across all years
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Identify the company with the highest average market share
+top_company = average_market_share.idxmax()
+
+print(f'The company with the highest average market share is {top_company}')
+```

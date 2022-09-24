@@ -2124,3 +2124,16 @@ lowest_price_product = average_price.idxmin()
 print(f'The product with the highest average price is: {highest_price_product}')
 print(f'The product with the lowest average price is: {lowest_price_product}')
 ```
+# Change made on 2024-07-01 06:17:38.443707
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of the top 3 firms in each industry
+top_3_market_share = data.groupby('Industry')['Market Share'].nlargest(3).groupby(level=0).mean()
+
+# Display the average market share of the top 3 firms in each industry
+print(top_3_market_share)
+```
