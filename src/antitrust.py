@@ -2137,3 +2137,24 @@ top_3_market_share = data.groupby('Industry')['Market Share'].nlargest(3).groupb
 # Display the average market share of the top 3 firms in each industry
 print(top_3_market_share)
 ```
+# Change made on 2024-07-01 06:17:44.422897
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company
+average_market_share = data.groupby('company')['market_share'].mean()
+
+# Calculate the total market share of the top three companies
+top_three_market_share = data.groupby('company')['market_share'].sum().nlargest(3).sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for antitrust analysis
+HHI = sum([(share/100)**2 for share in data['market_share']]) * 10000
+
+print("Average Market Share of Each Company:")
+print(average_market_share)
+print("\nTotal Market Share of the Top Three Companies:")
+print(top_three_market_share)
+print("\nHerfindahl-Hirschman Index (HHI):")
+print(HHI)

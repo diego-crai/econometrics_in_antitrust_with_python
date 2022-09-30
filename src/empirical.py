@@ -2106,3 +2106,20 @@ top_company = average_market_share.idxmax()
 
 print(f'The company with the highest average market share is {top_company}')
 ```
+# Change made on 2024-07-01 06:17:46.536225
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Calculate the market share of each company
+data['market_share'] = data['revenue'] / data['total_revenue']
+
+# Create a new column to identify potential antitrust violations based on market share
+data['potential_violation'] = data['market_share'].apply(lambda x: 'Yes' if x > 0.5 else 'No')
+
+# Display the companies that potentially violate antitrust laws
+potential_violators = data[data['potential_violation'] == 'Yes']
+print(potential_violators)
+```
