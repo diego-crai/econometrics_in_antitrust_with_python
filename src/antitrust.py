@@ -2158,3 +2158,18 @@ print("\nTotal Market Share of the Top Three Companies:")
 print(top_three_market_share)
 print("\nHerfindahl-Hirschman Index (HHI):")
 print(HHI)
+# Change made on 2024-07-01 06:17:49.742391
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter out only the antitrust litigation cases
+antitrust_cases = data[data['case_type'] == 'antitrust']
+
+# Calculate the average damages awarded in antitrust litigation cases
+average_damages = antitrust_cases['damages_awarded'].mean()
+
+print("Average damages awarded in antitrust litigation cases: ${:,.2f}".format(average_damages))
+```

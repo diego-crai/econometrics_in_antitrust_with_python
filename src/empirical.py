@@ -2123,3 +2123,24 @@ data['potential_violation'] = data['market_share'].apply(lambda x: 'Yes' if x > 
 potential_violators = data[data['potential_violation'] == 'Yes']
 print(potential_violators)
 ```
+# Change made on 2024-07-01 06:17:51.693658
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue for each company
+total_revenue = data.groupby('Company')['Revenue'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+market_share = data['Revenue'] / data.groupby('Year')['Revenue'].transform('sum')
+hhi = (market_share**2).sum()
+
+# Add the HHI to the data
+data['HHI'] = hhi
+
+# Display the results
+print(total_revenue)
+print(hhi)
+```
