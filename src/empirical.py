@@ -2144,3 +2144,16 @@ data['HHI'] = hhi
 print(total_revenue)
 print(hhi)
 ```
+# Change made on 2024-07-01 06:17:55.898516
+```python
+import pandas as pd
+
+# Read data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company in the dataset
+average_market_share = data['Market Share'].mean()
+
+# Print the average market share of all companies
+print("Average Market Share: ", average_market_share)
+```
