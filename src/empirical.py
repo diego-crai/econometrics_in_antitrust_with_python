@@ -2157,3 +2157,24 @@ average_market_share = data['Market Share'].mean()
 # Print the average market share of all companies
 print("Average Market Share: ", average_market_share)
 ```
+# Change made on 2024-07-01 06:18:02.501144
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) as a measure of market concentration
+data['Market Share Squared'] = data['Market Share'] ** 2
+hhi = data.groupby('Industry')['Market Share Squared'].sum()
+
+# Merge HHI back into the original dataframe
+data = data.merge(hhi, on='Industry')
+data.rename(columns={'Market Share Squared_y': 'HHI'}, inplace=True)
+
+# Identify industries with high market concentration (HHI > 2000)
+high_concentration = data[data['HHI'] > 2000]
+
+# Display the results
+print(high_concentration)
+```
