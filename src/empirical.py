@@ -2178,3 +2178,25 @@ high_concentration = data[data['HHI'] > 2000]
 # Display the results
 print(high_concentration)
 ```
+# Change made on 2024-07-01 06:18:08.134221
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Define a function to calculate the Herfindahl-Hirschman Index (HHI) for a given market
+def calculate_herfindahl_index(market_data):
+    market_share = market_data['Market Share']
+    hhi = sum(market_share**2) * 10000
+    return hhi
+
+# Group the data by market and calculate the HHI for each market
+market_groups = data.groupby('Market')
+hhis = market_groups.apply(calculate_herfindahl_index)
+
+# Print the results
+print(hhis)
+```
+
+This script calculates the Herfindahl-Hirschman Index (HHI) for each market in the dataset. The HHI is a measure of market concentration that takes into account the market shares of all firms in the market. The HHI is calculated by summing the squares of the market shares of all firms in the market and multiplying by 10,000. The script loads the data from a file called data.csv, groups the data by market, calculates the HHI for each market using the calculate_herfindahl_index function, and then prints the results.

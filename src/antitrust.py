@@ -2207,3 +2207,16 @@ if data['hhi'] > 2500:
     print("The market is concentrated")
 else:
     print("The market is not concentrated")
+# Change made on 2024-07-01 06:18:05.187978
+```python
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average fine amount imposed on companies in antitrust litigation cases
+average_fine_amount = data['Fine Amount'].mean()
+
+# Print the average fine amount
+print(f'The average fine amount imposed on companies in antitrust litigation cases is: ${average_fine_amount:.2f}')
+```
