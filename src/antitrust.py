@@ -2220,3 +2220,18 @@ average_fine_amount = data['Fine Amount'].mean()
 # Print the average fine amount
 print(f'The average fine amount imposed on companies in antitrust litigation cases is: ${average_fine_amount:.2f}')
 ```
+# Change made on 2024-07-01 06:18:10.941941
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust litigation cases
+antitrust_cases = data[data['case_type'] == 'antitrust']
+
+# Calculate the average settlement amount for antitrust litigation cases
+average_settlement = antitrust_cases['settlement_amount'].mean()
+
+print(f'The average settlement amount for antitrust litigation cases is ${average_settlement}')
+```

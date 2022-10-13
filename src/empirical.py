@@ -2200,3 +2200,20 @@ print(hhis)
 ```
 
 This script calculates the Herfindahl-Hirschman Index (HHI) for each market in the dataset. The HHI is a measure of market concentration that takes into account the market shares of all firms in the market. The HHI is calculated by summing the squares of the market shares of all firms in the market and multiplying by 10,000. The script loads the data from a file called data.csv, groups the data by market, calculates the HHI for each market using the calculate_herfindahl_index function, and then prints the results.
+# Change made on 2024-07-01 06:18:13.339170
+```python
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company by dividing their revenue by the total revenue
+data['market_share'] = data['revenue'] / data['revenue'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) as the sum of the squares of each company's market share
+data['HHI'] = (data['market_share'] ** 2).sum() * 10000
+
+# Display companies with HHI above 2500, indicating highly concentrated market
+highly_concentrated = data[data['HHI'] > 2500]
+print(highly_concentrated)
+```
