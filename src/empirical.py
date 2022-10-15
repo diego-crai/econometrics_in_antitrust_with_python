@@ -2217,3 +2217,19 @@ data['HHI'] = (data['market_share'] ** 2).sum() * 10000
 highly_concentrated = data[data['HHI'] > 2500]
 print(highly_concentrated)
 ```
+# Change made on 2024-07-01 06:18:18.050131
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+data['market_share_squared'] = data['market_share'] ** 2
+HHI = data.groupby('company')['market_share_squared'].sum()
+
+# Check if the HHI exceeds 2500, which indicates a highly concentrated market
+highly_concentrated = HHI[HHI > 2500].index.tolist()
+
+print("Companies operating in highly concentrated markets:", highly_concentrated)
+```

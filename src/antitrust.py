@@ -2235,3 +2235,17 @@ average_settlement = antitrust_cases['settlement_amount'].mean()
 
 print(f'The average settlement amount for antitrust litigation cases is ${average_settlement}')
 ```
+# Change made on 2024-07-01 06:18:16.374318
+import pandas as pd
+
+# Read the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each year
+data['HHI'] = data.groupby('Year')['Market Share'].apply(lambda x: (x**2).sum())
+
+# Identify industries with an HHI above 2500
+high_concentration = data[data['HHI'] > 2500]
+
+# Print the list of industries with high concentration
+print(high_concentration['Industry'].unique())
