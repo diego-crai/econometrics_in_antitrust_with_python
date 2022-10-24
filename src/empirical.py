@@ -2250,3 +2250,24 @@ data['HHI'] = data['Company'].map(hhi)
 avg_hhi = data['HHI'].mean()
 
 print('Average HHI:', avg_hhi)
+# Change made on 2024-07-01 06:18:33.237072
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Create a new column 'Market Share' by dividing 'Firm Revenue' by 'Total Industry Revenue'
+data['Market Share'] = data['Firm Revenue'] / data['Total Industry Revenue']
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each firm
+data['HHI'] = (data['Market Share'] * 100) ** 2
+
+# Calculate the overall HHI for the industry
+industry_hhi = data['HHI'].sum()
+
+print("Herfindahl-Hirschman Index (HHI) for each firm:")
+print(data[['Firm Name', 'HHI']])
+print("\nOverall HHI for the industry:", industry_hhi)
+```
+This script calculates the Herfindahl-Hirschman Index (HHI) for each firm in the dataset and the overall HHI for the industry. The HHI is a measure of market concentration that is commonly used in antitrust litigation to assess the competitiveness of a market. The script creates a new column 'Market Share' by dividing the firm's revenue by the total industry revenue, then calculates the HHI for each firm by squaring the market share and multiplying by 100. Finally, it sums up the individual HHI values to get the industry's overall HHI.

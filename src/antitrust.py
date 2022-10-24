@@ -2273,3 +2273,23 @@ print(high_concentration_markets['Market'].unique())
 ```
 
 This script adds a feature to calculate the Herfindahl-Hirschman Index (HHI) for market concentration in an economic analysis on antitrust litigation. It calculates the HHI for each market and identifies markets with high concentration by comparing the HHI value with a threshold (in this case, 0.25). The script then prints out the unique markets with high concentration.
+# Change made on 2024-07-01 06:18:29.176698
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the share of market for each company
+data['market_share'] = data['revenue'] / data['total_revenue']
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['market_share'] * 100) ** 2
+HHI = data['HHI'].sum()
+
+# Determine if the market concentration is high
+if HHI > 2500:
+    print("The market is highly concentrated")
+else:
+    print("The market is not highly concentrated")
+```
