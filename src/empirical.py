@@ -2271,3 +2271,31 @@ print(data[['Firm Name', 'HHI']])
 print("\nOverall HHI for the industry:", industry_hhi)
 ```
 This script calculates the Herfindahl-Hirschman Index (HHI) for each firm in the dataset and the overall HHI for the industry. The HHI is a measure of market concentration that is commonly used in antitrust litigation to assess the competitiveness of a market. The script creates a new column 'Market Share' by dividing the firm's revenue by the total industry revenue, then calculates the HHI for each firm by squaring the market share and multiplying by 100. Finally, it sums up the individual HHI values to get the industry's overall HHI.
+# Change made on 2024-07-01 06:18:42.775628
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Select the relevant columns for analysis
+relevant_data = data[['company', 'market_share', 'competition_type', 'antitrust_complaints']]
+
+# Calculate the average market share for each competition type
+average_market_share = relevant_data.groupby('competition_type')['market_share'].mean()
+
+# Merge the average market share with the original data
+data = data.merge(average_market_share, on='competition_type', suffixes=('', '_avg'))
+
+# Calculate the difference between market share and average market share
+data['market_share_difference'] = data['market_share'] - data['market_share_avg']
+
+# Identify companies with market share significantly higher than average
+potential_monopolies = data[data['market_share_difference'] >= 10]
+
+# Sort potential monopolies by number of antitrust complaints
+potential_monopolies = potential_monopolies.sort_values('antitrust_complaints', ascending=False)
+
+# Display the top 5 potential monopolies
+print(potential_monopolies.head())
+```

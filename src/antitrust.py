@@ -2293,3 +2293,25 @@ if HHI > 2500:
 else:
     print("The market is not highly concentrated")
 ```
+# Change made on 2024-07-01 06:18:39.506378
+```python
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['total_market_share'] = data.groupby('company')['revenue'].transform('sum')
+data['market_share'] = data['revenue'] / data['total_market_share']
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['market_share'] * 100) ** 2
+HHI = data.groupby('year')['HHI'].sum()
+
+# Check for anticompetitive behavior
+if any(HHI > 2500):
+    print("Antitrust concerns detected based on the Herfindahl-Hirschman Index")
+else:
+    print("No antitrust concerns detected based on the Herfindahl-Hirschman Index")
+```
+This code calculates the Herfindahl-Hirschman Index (HHI) for each year based on the market share of each company in the data and checks for antitrust concerns using a threshold of 2500. If the HHI exceeds 2500 for any year, it will print "Antitrust concerns detected based on the Herfindahl-Hirschman Index". Otherwise, it will print "No antitrust concerns detected based on the Herfindahl-Hirschman Index".
