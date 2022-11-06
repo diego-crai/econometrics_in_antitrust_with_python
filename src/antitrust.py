@@ -2315,3 +2315,17 @@ else:
     print("No antitrust concerns detected based on the Herfindahl-Hirschman Index")
 ```
 This code calculates the Herfindahl-Hirschman Index (HHI) for each year based on the market share of each company in the data and checks for antitrust concerns using a threshold of 2500. If the HHI exceeds 2500 for any year, it will print "Antitrust concerns detected based on the Herfindahl-Hirschman Index". Otherwise, it will print "No antitrust concerns detected based on the Herfindahl-Hirschman Index".
+# Change made on 2024-07-01 06:18:45.695293
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company in the dataset
+data['total_sales'] = data.groupby('company')['sales'].transform('sum')
+data['market_share'] = data['sales'] / data['total_sales']
+
+# Identify the company with the highest market share
+company_with_highest_market_share = data.loc[data['market_share'].idxmax()]['company']
+
+print(f'The company with the highest market share is {company_with_highest_market_share}')

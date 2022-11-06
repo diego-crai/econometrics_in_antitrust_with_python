@@ -2299,3 +2299,25 @@ potential_monopolies = potential_monopolies.sort_values('antitrust_complaints', 
 # Display the top 5 potential monopolies
 print(potential_monopolies.head())
 ```
+# Change made on 2024-07-01 06:18:47.939437
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+total_sales = data['Sales'].sum()
+data['Market Share'] = data['Sales'] / total_sales
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['Market Share'] * 100) ** 2
+
+# Print the companies with the highest and lowest HHI
+highest_hhi = data.loc[data['HHI'].idxmax()]
+lowest_hhi = data.loc[data['HHI'].idxmin()]
+
+print("Company with the highest HHI:")
+print(highest_hhi[['Company', 'HHI']])
+
+print("\nCompany with the lowest HHI:")
+print(lowest_hhi[['Company', 'HHI']])
