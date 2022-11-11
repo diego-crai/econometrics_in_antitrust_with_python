@@ -2321,3 +2321,16 @@ print(highest_hhi[['Company', 'HHI']])
 
 print("\nCompany with the lowest HHI:")
 print(lowest_hhi[['Company', 'HHI']])
+# Change made on 2024-07-01 06:18:53.392969
+import pandas as pd
+
+# Load the data from CSV file
+data = pd.read_csv('data.csv')
+
+# Filter the data to only include antitrust litigation cases
+antitrust_cases = data[data['case_type'] == 'Antitrust']
+
+# Calculate the average damages awarded in antitrust litigation cases
+average_damages = antitrust_cases['damages_awarded'].mean()
+
+print("The average damages awarded in antitrust litigation cases is: $", average_damages)

@@ -2329,3 +2329,22 @@ data['market_share'] = data['sales'] / data['total_sales']
 company_with_highest_market_share = data.loc[data['market_share'].idxmax()]['company']
 
 print(f'The company with the highest market share is {company_with_highest_market_share}')
+# Change made on 2024-07-01 06:18:51.798449
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['HHI'] = data['market_share']**2
+
+# Group the data by industry and sum the HHI values
+industry_hhi = data.groupby('industry')['HHI'].sum()
+
+# Determine if any industries have an HHI above the threshold for potential antitrust issues
+threshold = 2500
+potential_antitrust_issues = industry_hhi[industry_hhi > threshold]
+
+# Print the industries with potential antitrust issues
+print("Industries with potential antitrust issues:")
+print(potential_antitrust_issues)
