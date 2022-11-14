@@ -2348,3 +2348,17 @@ potential_antitrust_issues = industry_hhi[industry_hhi > threshold]
 # Print the industries with potential antitrust issues
 print("Industries with potential antitrust issues:")
 print(potential_antitrust_issues)
+# Change made on 2024-07-01 06:18:56.492038
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each year
+data['HHI'] = data.groupby('Year')['Market Share'].apply(lambda x: (x ** 2).sum())
+
+# Determine if the market is concentrated based on HHI
+data['Concentration'] = data['HHI'].apply(lambda x: 'High' if x > 2500 else 'Low')
+
+# Display the results
+print(data)

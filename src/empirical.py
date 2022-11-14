@@ -2334,3 +2334,30 @@ antitrust_cases = data[data['case_type'] == 'Antitrust']
 average_damages = antitrust_cases['damages_awarded'].mean()
 
 print("The average damages awarded in antitrust litigation cases is: $", average_damages)
+# Change made on 2024-07-01 06:18:59.436762
+```python
+import pandas as pd
+from scipy import stats
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the concentration ratio as the sum of market shares of the top 4 firms
+data['market_share'] = data['revenue'] / data['total_revenue']
+top_4_market_share = data['market_share'].nlargest(4).sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['market_share'] * 100) ** 2
+HHI = data['HHI'].sum()
+
+# Perform a statistical test to determine the significance of the concentrated market structure
+p_value = stats.ttest_1samp(data['market_share'], 0.25)[1]
+
+# Print the results
+print(f'Top 4 Firm Concentration Ratio: {top_4_market_share:.2%}')
+print(f'Herfindahl-Hirschman Index (HHI): {HHI:.2f}')
+if p_value < 0.05:
+    print('The market structure is statistically significantly concentrated.')
+else:
+    print('The market structure is not statistically significantly concentrated.')
+```
