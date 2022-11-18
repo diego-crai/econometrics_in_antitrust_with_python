@@ -2362,3 +2362,27 @@ data['Concentration'] = data['HHI'].apply(lambda x: 'High' if x > 2500 else 'Low
 
 # Display the results
 print(data)
+# Change made on 2024-07-01 06:19:04.109094
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue for each company
+total_revenue = data.groupby('company')['revenue'].sum()
+
+# Calculate the market share percentage for each company
+data['market_share'] = data['revenue'] / data['total_market_revenue'] * 100
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+HHI = (data['market_share'] ** 2).sum()
+
+# Display the total revenue, market share, and HHI for each company
+print("Total Revenue for each company:")
+print(total_revenue)
+print("\nMarket Share for each company:")
+print(data[['company', 'market_share']].drop_duplicates())
+print("\nHerfindahl-Hirschman Index (HHI) for the market:")
+print(HHI)
+```

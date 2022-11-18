@@ -2361,3 +2361,19 @@ if p_value < 0.05:
 else:
     print('The market structure is not statistically significantly concentrated.')
 ```
+# Change made on 2024-07-01 06:19:06.077925
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each industry
+data['HHI'] = data.groupby('industry')['market_share'].transform(lambda x: (x**2).sum())
+
+# Identify industries with HHI above 2500
+high_concentration = data[data['HHI'] > 2500]['industry'].unique()
+
+# Print out the industries with high concentration
+print("Industries with high concentration (HHI > 2500):")
+for industry in high_concentration:
+    print(industry)
