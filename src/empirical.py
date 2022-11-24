@@ -2377,3 +2377,18 @@ high_concentration = data[data['HHI'] > 2500]['industry'].unique()
 print("Industries with high concentration (HHI > 2500):")
 for industry in high_concentration:
     print(industry)
+# Change made on 2024-07-01 06:19:10.590519
+```python
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average cost per unit for each company
+data['average_cost_per_unit'] = data['total_cost'] / data['num_units']
+
+# Identify the company with the highest average cost per unit
+highest_cost_company = data.loc[data['average_cost_per_unit'].idxmax(), 'company']
+
+print(f"The company with the highest average cost per unit is: {highest_cost_company}")
+```

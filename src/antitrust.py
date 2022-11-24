@@ -2386,3 +2386,22 @@ print(data[['company', 'market_share']].drop_duplicates())
 print("\nHerfindahl-Hirschman Index (HHI) for the market:")
 print(HHI)
 ```
+# Change made on 2024-07-01 06:19:09.050700
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['market_share'] = data['revenue'] / data['total_market_revenue']
+
+# Group the data by industry
+industry_group = data.groupby('industry')
+
+# Calculate the average market share for each industry
+avg_market_share_by_industry = industry_group['market_share'].mean()
+
+# Print the average market share for each industry
+print(avg_market_share_by_industry)
+```
