@@ -2392,3 +2392,26 @@ highest_cost_company = data.loc[data['average_cost_per_unit'].idxmax(), 'company
 
 print(f"The company with the highest average cost per unit is: {highest_cost_company}")
 ```
+# Change made on 2024-07-01 06:19:16.768747
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Define a function to calculate the Herfindahl-Hirschman Index (HHI)
+def calculate_hhi(data):
+    data['market_share_squared'] = data['market_share'] ** 2
+
+    hhi = data.groupby('market').agg({'market_share_squared': 'sum'}).reset_index()
+    hhi.rename(columns={'market_share_squared': 'hhi'}, inplace=True)
+
+    return hhi
+
+# Calculate HHI for the data
+hhi_results = calculate_hhi(data)
+
+# Merge the HHI results back to the original data
+final_data = pd.merge(data, hhi_results, on='market')
+
+# Display the final data with the HHI values
+print(final_data)

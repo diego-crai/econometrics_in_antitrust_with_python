@@ -2405,3 +2405,22 @@ avg_market_share_by_industry = industry_group['market_share'].mean()
 # Print the average market share for each industry
 print(avg_market_share_by_industry)
 ```
+# Change made on 2024-07-01 06:19:14.438407
+import pandas as pd
+
+# Load the data
+df = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each market
+df['market_share_squared'] = df['market_share'] ** 2
+HHI = df.groupby('market')['market_share_squared'].sum()
+
+# Merge the HHI values back into the original dataframe
+df = df.merge(HHI, on='market', suffixes=('', '_total'))
+df['HHI'] = df['market_share_squared'] / df['market_share_squared_total']
+
+# Identify markets with HHI above the threshold of 0.25
+high_concentration = df.loc[df['HHI'] > 0.25, 'market'].unique()
+
+# Output the markets with high concentration
+print("Antitrust concern in markets: ", high_concentration)
