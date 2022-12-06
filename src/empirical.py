@@ -2415,3 +2415,21 @@ final_data = pd.merge(data, hhi_results, on='market')
 
 # Display the final data with the HHI values
 print(final_data)
+# Change made on 2024-07-01 06:19:21.876878
+```python
+import pandas as pd
+
+# Load data from csv file
+data = pd.read_csv('data.csv')
+
+# Calculate market concentration ratio (HHI)
+data['Market Share Squared'] = data['Market Share']**2
+HHI = data.groupby('Market')["Market Share Squared"].sum()
+
+# Determine if any market has a significant increase in HHI
+significant_increase = HHI.pct_change() > 0.1
+
+# Print out markets with significant increase in HHI
+print("Markets with significant increase in market concentration ratio (HHI):")
+print(significant_increase)
+```

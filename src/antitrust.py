@@ -2424,3 +2424,20 @@ high_concentration = df.loc[df['HHI'] > 0.25, 'market'].unique()
 
 # Output the markets with high concentration
 print("Antitrust concern in markets: ", high_concentration)
+# Change made on 2024-07-01 06:19:20.195118
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each year
+data['Market_Share_Squared'] = data['Market_Share'] ** 2
+hhi = data.groupby('Year')['Market_Share_Squared'].sum()
+
+# Create a new column to indicate market concentration based on HHI
+data['Market_Concentration'] = ''
+data.loc[data['Year'].isin(hhi[hhi >= 2500].index), 'Market_Concentration'] = 'High'
+data.loc[data['Year'].isin(hhi[hhi < 2500].index), 'Market_Concentration'] = 'Low'
+
+# Output the results
+print(data[['Year', 'Market_Share', 'Market_Concentration']])
