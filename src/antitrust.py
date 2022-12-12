@@ -2441,3 +2441,29 @@ data.loc[data['Year'].isin(hhi[hhi < 2500].index), 'Market_Concentration'] = 'Lo
 
 # Output the results
 print(data[['Year', 'Market_Share', 'Market_Concentration']])
+# Change made on 2024-07-01 06:19:26.308158
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share for each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['HHI'] = data.groupby('Market')['Market Share'].transform(lambda x: (x**2).sum())
+
+# Calculate the concentration ratio for each market
+data['Concentration Ratio'] = data.groupby('Market')['Market Share'].transform(lambda x: x.nlargest(4).sum())
+
+# Identify markets with high concentration (HHI > 2500 or Concentration Ratio > 60)
+highly_concentrated_markets = data[(data['HHI'] > 2500) | (data['Concentration Ratio'] > 60)]['Market'].unique()
+
+# Output the results
+print("Average Market Share by Company:")
+print(average_market_share)
+print("\nHighly Concentrated Markets:")
+print(highly_concentrated_markets)
+```
+This script calculates the average market share for each company, the Herfindahl-Hirschman Index (HHI) and concentration ratio for each market, and identifies markets with high concentration based on predefined thresholds.

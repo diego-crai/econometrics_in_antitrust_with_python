@@ -2433,3 +2433,14 @@ significant_increase = HHI.pct_change() > 0.1
 print("Markets with significant increase in market concentration ratio (HHI):")
 print(significant_increase)
 ```
+# Change made on 2024-07-01 06:19:27.710066
+import pandas as pd
+
+# Read the data from data.csv file
+data = pd.read_csv('data.csv')
+
+# Calculate the average price of goods involved in the antitrust litigation
+average_price = data['Price'].mean()
+
+# Print the result
+print(f'The average price of goods involved in the antitrust litigation is: {average_price}')
