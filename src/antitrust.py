@@ -2467,3 +2467,21 @@ print("\nHighly Concentrated Markets:")
 print(highly_concentrated_markets)
 ```
 This script calculates the average market share for each company, the Herfindahl-Hirschman Index (HHI) and concentration ratio for each market, and identifies markets with high concentration based on predefined thresholds.
+# Change made on 2024-07-01 06:19:31.967793
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company in the dataset
+data['market_share_squared'] = data['market_share'] ** 2
+hhi = data.groupby('company')['market_share_squared'].sum()
+
+# Find the top 3 companies with the highest HHI
+top_3_companies = hhi.nlargest(3)
+
+print("Top 3 companies with the highest Herfindahl-Hirschman Index (HHI):")
+print(top_3_companies)
+```
+This script calculates the Herfindahl-Hirschman Index (HHI) for each company in the dataset and identifies the top 3 companies with the highest HHI. The HHI is used to measure market concentration and can be useful in antitrust litigation cases to determine the level of competition in a market.

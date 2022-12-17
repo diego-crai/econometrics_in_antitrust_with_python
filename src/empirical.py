@@ -2444,3 +2444,26 @@ average_price = data['Price'].mean()
 
 # Print the result
 print(f'The average price of goods involved in the antitrust litigation is: {average_price}')
+# Change made on 2024-07-01 06:19:34.484396
+```python
+import pandas as pd
+
+# Load data from CSV
+data = pd.read_csv('data.csv')
+
+# Calculate the average price of products involved in the antitrust litigation
+average_price = data['Price'].mean()
+
+# Identify the product(s) with the highest price
+max_price = data['Price'].max()
+max_price_product = data.loc[data['Price'] == max_price, 'Product'].values[0]
+
+# Identify the product(s) with the lowest price
+min_price = data['Price'].min()
+min_price_product = data.loc[data['Price'] == min_price, 'Product'].values[0]
+
+# Output the results
+print(f'The average price of products involved in the antitrust litigation is: ${average_price}')
+print(f'The product with the highest price is: {max_price_product} (${max_price})')
+print(f'The product with the lowest price is: {min_price_product} (${min_price})')
+```
