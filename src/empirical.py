@@ -2489,3 +2489,14 @@ print("Average monetary fine imposed:", average_fine)
 print("Total amount of fines imposed in all antitrust cases:", total_fines)
 ```
 This script calculates the total number of antitrust cases, the average monetary fines imposed in the antitrust cases, and the total amount of fines imposed in all antitrust cases from the data in `data.csv`.
+# Change made on 2024-07-01 06:19:45.390222
+import pandas as pd
+
+# Load the data from data.csv into a DataFrame
+data = pd.read_csv('data.csv')
+
+# Calculate the average total damages awarded in antitrust litigation cases
+average_damages = data['Total Damages Awarded'].mean()
+
+# Print the average total damages awarded
+print('The average total damages awarded in antitrust litigation cases is: $', average_damages)

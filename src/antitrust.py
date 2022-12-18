@@ -2510,3 +2510,26 @@ print(data)
 ```
 
 This script calculates the market share and Herfindahl-Hirschman Index (HHI) for each company in the dataset and then determines if there may be antitrust concerns in the market based on the calculated HHI. The HHI is a measure of market concentration and an HHI value above 2500 is often considered a potential indicator of anticompetitive behavior.
+# Change made on 2024-07-01 06:19:43.825088
+```python
+import pandas as pd
+
+# Load the data from data.csv
+df = pd.read_csv('data.csv')
+
+# Calculate the average price for each product
+avg_price_per_product = df.groupby('product_id')['price'].mean()
+
+# Calculate the market share for each product
+total_sales = df.groupby('product_id')['sales'].sum()
+market_share = total_sales / total_sales.sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for antitrust analysis
+HHI = (market_share ** 2).sum() * 10000
+
+print("Average price per product:")
+print(avg_price_per_product)
+print("\nMarket share for each product:")
+print(market_share)
+print("\nHerfindahl-Hirschman Index (HHI):", HHI)
+```
