@@ -2485,3 +2485,28 @@ print("Top 3 companies with the highest Herfindahl-Hirschman Index (HHI):")
 print(top_3_companies)
 ```
 This script calculates the Herfindahl-Hirschman Index (HHI) for each company in the dataset and identifies the top 3 companies with the highest HHI. The HHI is used to measure market concentration and can be useful in antitrust litigation cases to determine the level of competition in a market.
+# Change made on 2024-07-01 06:19:38.240621
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the market share for each company
+total_market_share = data['Sales'].sum()
+data['Market Share'] = data['Sales'] / total_market_share
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['Market Share']**2) * 10000
+
+# Identify potential antitrust concerns
+if data['HHI'].max() >= 2500:
+    print("There may be antitrust concerns in the market based on HHI calculation.")
+else:
+    print("No antitrust concerns based on current market concentration.")
+
+# Print the results
+print(data)
+```
+
+This script calculates the market share and Herfindahl-Hirschman Index (HHI) for each company in the dataset and then determines if there may be antitrust concerns in the market based on the calculated HHI. The HHI is a measure of market concentration and an HHI value above 2500 is often considered a potential indicator of anticompetitive behavior.

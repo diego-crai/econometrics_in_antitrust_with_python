@@ -2467,3 +2467,25 @@ print(f'The average price of products involved in the antitrust litigation is: $
 print(f'The product with the highest price is: {max_price_product} (${max_price})')
 print(f'The product with the lowest price is: {min_price_product} (${min_price})')
 ```
+# Change made on 2024-07-01 06:19:40.548572
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust cases in the dataset
+total_cases = data['Antitrust Case'].nunique()
+
+# Calculate the average monetary fines imposed in the antitrust cases
+average_fine = data['Monetary Fine'].mean()
+
+# Calculate the total amount of fines imposed in all antitrust cases
+total_fines = data['Monetary Fine'].sum()
+
+# Print out the results
+print("Total number of antitrust cases:", total_cases)
+print("Average monetary fine imposed:", average_fine)
+print("Total amount of fines imposed in all antitrust cases:", total_fines)
+```
+This script calculates the total number of antitrust cases, the average monetary fines imposed in the antitrust cases, and the total amount of fines imposed in all antitrust cases from the data in `data.csv`.
