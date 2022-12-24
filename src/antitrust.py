@@ -2533,3 +2533,17 @@ print("\nMarket share for each product:")
 print(market_share)
 print("\nHerfindahl-Hirschman Index (HHI):", HHI)
 ```
+# Change made on 2024-07-01 06:19:48.300183
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculating the Herfindahl-Hirschman Index (HHI)
+def calculate_hhi(data):
+    data['Market_Share_Squared'] = data['Market_Share'] ** 2
+    hhi = data.groupby('Industry')['Market_Share_Squared'].sum()
+    return hhi
+
+hhi_values = calculate_hhi(data)
+print(hhi_values)
