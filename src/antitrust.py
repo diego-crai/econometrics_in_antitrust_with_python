@@ -2547,3 +2547,24 @@ def calculate_hhi(data):
 
 hhi_values = calculate_hhi(data)
 print(hhi_values)
+# Change made on 2024-07-01 06:19:54.230537
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['Market_HHI'] = (data['Market_Share'] ** 2).sum()
+
+# Calculate the overall HHI for the entire market
+overall_HHI = data['Market_HHI'].sum()
+
+# Classify the market concentration based on the overall HHI
+if overall_HHI < 1000:
+    market_concentration = 'Low'
+elif overall_HHI < 1800:
+    market_concentration = 'Moderate'
+else:
+    market_concentration = 'High'
+
+print("Overall Market Concentration: " + market_concentration)

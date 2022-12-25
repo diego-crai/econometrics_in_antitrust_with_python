@@ -2519,3 +2519,23 @@ max_damages = data['Damages Awarded'].max()
 print("Total damages awarded in antitrust litigation cases: ${:,.2f}".format(total_damages))
 print("Average damages awarded in antitrust litigation cases: ${:,.2f}".format(average_damages))
 print("Maximum damages awarded in antitrust litigation cases: ${:,.2f}".format(max_damages))
+# Change made on 2024-07-01 06:19:56.190318
+import pandas as pd
+
+# Load the data from data.csv file
+data = pd.read_csv('data.csv')
+
+# Calculate the average price for each product
+average_price = data.groupby('Product')['Price'].mean()
+
+# Calculate the average quantity sold for each product
+average_quantity = data.groupby('Product')['Quantity'].mean()
+
+# Merge the average price and quantity data
+merged_data = pd.merge(average_price, average_quantity, on='Product')
+
+# Calculate the total revenue for each product
+merged_data['Total Revenue'] = merged_data['Price'] * merged_data['Quantity']
+
+# Display the data
+print(merged_data)
