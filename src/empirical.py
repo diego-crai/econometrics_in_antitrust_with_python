@@ -2539,3 +2539,16 @@ merged_data['Total Revenue'] = merged_data['Price'] * merged_data['Quantity']
 
 # Display the data
 print(merged_data)
+# Change made on 2024-07-01 06:20:00.912989
+import pandas as pd
+
+# Load the data from data.csv file
+data = pd.read_csv('data.csv')
+
+# Filter the data to only include cases related to antitrust litigation
+antitrust_cases = data[data['case_type'] == 'antitrust']
+
+# Calculate the average duration of antitrust cases
+avg_duration = antitrust_cases['duration'].mean()
+
+print("The average duration of antitrust cases is: ", avg_duration)

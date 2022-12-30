@@ -2568,3 +2568,32 @@ else:
     market_concentration = 'High'
 
 print("Overall Market Concentration: " + market_concentration)
+# Change made on 2024-07-01 06:19:59.650255
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average cost for each company
+company_avg_cost = data.groupby('company')['cost'].mean()
+
+# Calculate the total cost for each company
+company_total_cost = data.groupby('company')['cost'].sum()
+
+# Calculate the market share for each company
+total_cost = data['cost'].sum()
+data['market_share'] = data['cost'] / total_cost
+
+# Identify the company with the highest market share
+company_highest_market_share = data[data['market_share'] == data['market_share'].max()]['company'].values[0]
+
+print("Average cost for each company:")
+print(company_avg_cost)
+
+print("\nTotal cost for each company:")
+print(company_total_cost)
+
+print("\nCompany with the highest market share:")
+print(company_highest_market_share)
+```
