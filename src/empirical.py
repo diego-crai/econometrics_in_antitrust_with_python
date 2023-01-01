@@ -2552,3 +2552,27 @@ antitrust_cases = data[data['case_type'] == 'antitrust']
 avg_duration = antitrust_cases['duration'].mean()
 
 print("The average duration of antitrust cases is: ", avg_duration)
+# Change made on 2024-07-01 06:20:09.096303
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv("data.csv")
+
+# Calculate the average market share of each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) as a measure of market concentration
+data['HHI'] = (data['Market Share'] ** 2).groupby(data['Year']).sum()
+
+# Analyze the change in market concentration over time
+max_hhi = data.groupby('Year')['HHI'].max()
+min_hhi = data.groupby('Year')['HHI'].min()
+change_in_hhi = max_hhi - min_hhi
+
+# Output the results
+print("Average Market Share by Company:")
+print(average_market_share)
+print("\nChange in HHI over Time:")
+print(change_in_hhi)
+```

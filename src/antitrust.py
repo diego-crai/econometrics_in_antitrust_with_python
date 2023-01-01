@@ -2597,3 +2597,26 @@ print(company_total_cost)
 print("\nCompany with the highest market share:")
 print(company_highest_market_share)
 ```
+# Change made on 2024-07-01 06:20:06.104845
+import pandas as pd
+
+# Load the data
+data = pd.read_csv("data.csv")
+
+# Calculate market concentration using the Herfindahl-Hirschman Index (HHI)
+data['market_share_squared'] = data['market_share'] ** 2
+hhi = data.groupby('industry')['market_share_squared'].sum()
+
+# Calculate the 4-Firm Concentration Ratio for each industry
+def four_firm_concentration_ratio(group):
+    sorted_market_share = group['market_share'].sort_values(ascending=False)
+    return sorted_market_share.iloc[:4].sum()
+
+four_firm_concentration_ratio = data.groupby('industry').apply(four_firm_concentration_ratio)
+
+# Merge the HHI and 4-Firm Concentration Ratio to the original data
+data = data.merge(hhi, on='industry', suffixes=('', '_hhi'))
+data = data.merge(four_firm_concentration_ratio, on='industry', suffixes=('', '_4fcr'))
+
+# Display the final dataframe with calculated metrics
+print(data[['industry', 'market_share', 'market_share_squared', 'HHI', '4_Firm_Concentration_Ratio']])
