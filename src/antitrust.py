@@ -2620,3 +2620,18 @@ data = data.merge(four_firm_concentration_ratio, on='industry', suffixes=('', '_
 
 # Display the final dataframe with calculated metrics
 print(data[['industry', 'market_share', 'market_share_squared', 'HHI', '4_Firm_Concentration_Ratio']])
+# Change made on 2024-07-01 06:20:12.483557
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data to include only antitrust litigation cases
+antitrust_data = data[data['case_type'] == 'antitrust']
+
+# Calculate the average damages awarded in antitrust litigation cases
+average_damages = antitrust_data['damages_awarded'].mean()
+
+print("Average damages awarded in antitrust litigation cases: ${:.2f}".format(average_damages))
+```

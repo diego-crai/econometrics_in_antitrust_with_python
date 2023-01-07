@@ -2576,3 +2576,27 @@ print(average_market_share)
 print("\nChange in HHI over Time:")
 print(change_in_hhi)
 ```
+# Change made on 2024-07-01 06:20:16.768782
+```python
+import pandas as pd
+
+# Read the data from the csv file
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share for each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['Market Share'] * 100) ** 2
+hhi = data.groupby('Year').sum()['HHI']
+
+# Merge the average market share and HHI back to the original data
+data = data.merge(average_market_share, on='Company', suffixes=('', '_avg'))
+data = data.merge(hhi, on='Year')
+
+# Calculate the concentration ratio
+data['Concentration Ratio'] = data['HHI'] / (data['Market Share_avg'] * 100)
+
+# Display the results
+print(data[['Year', 'Company', 'Market Share', 'Concentration Ratio']])
+```
