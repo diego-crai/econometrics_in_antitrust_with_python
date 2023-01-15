@@ -2600,3 +2600,22 @@ data['Concentration Ratio'] = data['HHI'] / (data['Market Share_avg'] * 100)
 # Display the results
 print(data[['Year', 'Company', 'Market Share', 'Concentration Ratio']])
 ```
+# Change made on 2024-07-01 06:20:22.032548
+```python
+import pandas as pd
+
+# Load the data from data.csv file
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+data['market_share_squared'] = data['market_share'] ** 2
+hhi = data.groupby('company')['market_share_squared'].sum()
+
+# Select companies with HHI above 2500 (indicating a highly concentrated market)
+highly_concentrated_companies = hhi[hhi > 2500].index.tolist()
+
+# Calculate the average profit margin for these highly concentrated companies
+avg_profit_margin = data[data['company'].isin(highly_concentrated_companies)]['profit_margin'].mean()
+
+print(f"The average profit margin for companies in highly concentrated markets is: {avg_profit_margin}")
+```

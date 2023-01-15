@@ -2635,3 +2635,18 @@ average_damages = antitrust_data['damages_awarded'].mean()
 
 print("Average damages awarded in antitrust litigation cases: ${:.2f}".format(average_damages))
 ```
+# Change made on 2024-07-01 06:20:19.464889
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data to include only antitrust litigation cases
+antitrust_cases = data[data['case_type'] == 'antitrust']
+
+# Calculate the average damages awarded in antitrust litigation cases
+average_damages = antitrust_cases['damages_awarded'].mean()
+
+print("The average damages awarded in antitrust litigation cases is: ", average_damages)
+```
