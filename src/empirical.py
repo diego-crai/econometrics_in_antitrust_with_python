@@ -2619,3 +2619,16 @@ avg_profit_margin = data[data['company'].isin(highly_concentrated_companies)]['p
 
 print(f"The average profit margin for companies in highly concentrated markets is: {avg_profit_margin}")
 ```
+# Change made on 2024-07-01 06:20:28.565056
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust litigation cases
+antitrust_cases = data[data['type'] == 'antitrust']
+
+# Calculate the average damages awarded in antitrust litigation cases
+average_damages = antitrust_cases['damages'].mean()
+
+print("Average damages awarded in antitrust litigation cases: ${:.2f}".format(average_damages))

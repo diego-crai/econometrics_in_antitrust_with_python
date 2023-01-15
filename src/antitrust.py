@@ -2650,3 +2650,30 @@ average_damages = antitrust_cases['damages_awarded'].mean()
 
 print("The average damages awarded in antitrust litigation cases is: ", average_damages)
 ```
+# Change made on 2024-07-01 06:20:27.016991
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total sales revenue for each company
+total_sales_revenue = data.groupby('company')['sales'].sum()
+
+# Calculate the market share for each company
+data['market_share'] = data['sales'] / data['sales'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market concentration
+HHI = (data['market_share'] ** 2).sum()
+
+# Print the total sales revenue for each company
+print('Total Sales Revenue:')
+print(total_sales_revenue)
+
+# Print the market share for each company
+print('\nMarket Share:')
+print(data[['company', 'market_share']])
+
+# Print the Herfindahl-Hirschman Index (HHI)
+print('\nHerfindahl-Hirschman Index (HHI):', HHI)
+```
