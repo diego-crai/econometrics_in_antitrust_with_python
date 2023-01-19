@@ -2632,3 +2632,28 @@ antitrust_cases = data[data['type'] == 'antitrust']
 average_damages = antitrust_cases['damages'].mean()
 
 print("Average damages awarded in antitrust litigation cases: ${:.2f}".format(average_damages))
+# Change made on 2024-07-01 06:20:34.535780
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average price for each product
+average_price = data.groupby('Product')['Price'].mean()
+
+# Calculate the average market share for each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Merge the average price and average market share into a single DataFrame
+average_data = pd.concat([average_price, average_market_share], axis=1)
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each product
+average_data['HHI'] = average_data['Market Share'] ** 2
+
+# Calculate the overall HHI across all products
+overall_HHI = average_data['HHI'].sum()
+
+print(average_data)
+print('Overall HHI:', overall_HHI)
+```

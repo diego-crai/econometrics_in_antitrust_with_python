@@ -2677,3 +2677,25 @@ print(data[['company', 'market_share']])
 # Print the Herfindahl-Hirschman Index (HHI)
 print('\nHerfindahl-Hirschman Index (HHI):', HHI)
 ```
+# Change made on 2024-07-01 06:20:31.934889
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total amount of fines by antitrust regulators
+total_fines = data['Fine Amount'].sum()
+
+# Calculate the average fine amount
+average_fine = data['Fine Amount'].mean()
+
+# Calculate the standard deviation of fine amounts
+std_dev_fine = data['Fine Amount'].std()
+
+# Print the results
+print(f'Total amount of fines by antitrust regulators: ${total_fines}')
+print(f'Average fine amount: ${average_fine}')
+print(f'Standard deviation of fine amounts: ${std_dev_fine}')
+```
+This script calculates the total amount of fines imposed by antitrust regulators, the average fine amount, and the standard deviation of fine amounts from the data available in data.csv.
