@@ -2699,3 +2699,28 @@ print(f'Average fine amount: ${average_fine}')
 print(f'Standard deviation of fine amounts: ${std_dev_fine}')
 ```
 This script calculates the total amount of fines imposed by antitrust regulators, the average fine amount, and the standard deviation of fine amounts from the data available in data.csv.
+# Change made on 2024-07-01 06:20:38.411708
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+total_market_share = data['Market Share'].sum()
+data['Company Market Share'] = data['Market Share'] / total_market_share
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['Company Market Share'] ** 2).sum() * 10000
+
+# Check if the market is considered concentrated
+market_concentration = ''
+if data['HHI'] > 2500:
+    market_concentration = 'Highly concentrated'
+else:
+    market_concentration = 'Not highly concentrated'
+
+# Display the results
+print(f"The market concentration is: {market_concentration}")
+print(data)
+```

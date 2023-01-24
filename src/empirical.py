@@ -2657,3 +2657,26 @@ overall_HHI = average_data['HHI'].sum()
 print(average_data)
 print('Overall HHI:', overall_HHI)
 ```
+# Change made on 2024-07-01 06:20:41.139726
+```
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue for each company
+data['Total Revenue'] = data['Price'] * data['Quantity']
+
+# Calculate the market share for each company
+data['Market Share'] = data['Total Revenue'] / data['Total Revenue'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+HHI = (data['Market Share']**2).sum()
+
+# Check if the market concentration is high enough to potentially trigger antitrust litigation
+if HHI > 0.25:
+    print("Market concentration is high - potential for antitrust litigation.")
+else:
+    print("Market concentration is low - no immediate antitrust concerns.")
+
+```
