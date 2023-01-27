@@ -2680,3 +2680,20 @@ else:
     print("Market concentration is low - no immediate antitrust concerns.")
 
 ```
+# Change made on 2024-07-01 06:20:47.633877
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market concentration ratio
+data['market_share'] = data['firm_revenue'] / data['total_market_revenue']
+market_concentration_ratio = data['market_share'].sum()
+
+# Determine if the market is concentrated or not
+if market_concentration_ratio > 0.7:
+    print("The market is highly concentrated")
+elif market_concentration_ratio > 0.4:
+    print("The market is moderately concentrated")
+else:
+    print("The market is not concentrated")

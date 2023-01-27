@@ -2724,3 +2724,16 @@ else:
 print(f"The market concentration is: {market_concentration}")
 print(data)
 ```
+# Change made on 2024-07-01 06:20:44.029016
+```python
+import pandas as pd
+
+# Load data from CSV file
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of the top 5 firms in each industry
+top5_avg_market_share = data.groupby('Industry')['Market Share'].nlargest(5).reset_index().groupby('Industry')['Market Share'].mean()
+
+# Print the average market share of the top 5 firms in each industry
+print(top5_avg_market_share)
+```
