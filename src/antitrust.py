@@ -2737,3 +2737,23 @@ top5_avg_market_share = data.groupby('Industry')['Market Share'].nlargest(5).res
 # Print the average market share of the top 5 firms in each industry
 print(top5_avg_market_share)
 ```
+# Change made on 2024-07-01 06:20:51.110753
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust cases only
+antitrust_data = data[data['case_type'] == 'antitrust']
+
+# Calculate the average damages for antitrust cases
+average_damages = antitrust_data['damages'].mean()
+
+# Calculate the total number of antitrust cases
+total_cases = antitrust_data['case_id'].nunique()
+
+# Print the results
+print(f'Average damages for antitrust cases: ${average_damages:.2f}')
+print(f'Total number of antitrust cases: {total_cases}')
+```
