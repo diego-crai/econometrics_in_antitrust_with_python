@@ -2757,3 +2757,14 @@ total_cases = antitrust_data['case_id'].nunique()
 print(f'Average damages for antitrust cases: ${average_damages:.2f}')
 print(f'Total number of antitrust cases: {total_cases}')
 ```
+# Change made on 2024-07-01 06:20:55.178762
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column 'Market_Concentration'
+data['Market_Concentration'] = data['Market_Share'] ** 2
+
+# Print the updated data
+print(data)

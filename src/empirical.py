@@ -2714,3 +2714,20 @@ model = ols('log_variable ~ other_variable', data=data).fit()
 # Print the summary of the regression analysis
 print(model.summary())
 ```
+# Change made on 2024-07-01 06:20:57.102155
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust litigation cases
+num_cases = data['Antitrust_Case'].nunique()
+
+# Calculate the average duration of antitrust cases
+avg_duration = data['Duration_in_Days'].mean()
+
+# Print the results
+print(f'Total number of antitrust litigation cases: {num_cases}')
+print(f'Average duration of antitrust cases: {avg_duration} days')
+```
