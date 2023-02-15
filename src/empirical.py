@@ -2731,3 +2731,17 @@ avg_duration = data['Duration_in_Days'].mean()
 print(f'Total number of antitrust litigation cases: {num_cases}')
 print(f'Average duration of antitrust cases: {avg_duration} days')
 ```
+# Change made on 2024-07-01 06:21:02.169194
+```python
+import pandas as pd
+
+# Load data from CSV file
+data = pd.read_csv('data.csv')
+
+# Calculate the concentration ratio (CR4) for a specific industry using the sales data
+industry_sales = data.groupby('industry')['sales'].sum()
+industry_CR4 = industry_sales.nlargest(4).sum() / industry_sales.sum()
+
+# Print the concentration ratio (CR4) for the specific industry
+print(f"The concentration ratio (CR4) for the specific industry is: {industry_CR4}")
+```

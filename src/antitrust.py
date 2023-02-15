@@ -2768,3 +2768,16 @@ data['Market_Concentration'] = data['Market_Share'] ** 2
 
 # Print the updated data
 print(data)
+# Change made on 2024-07-01 06:21:00.480907
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of the top 5 firms in each industry
+top_5_avg_market_share = data.groupby('Industry')['Market Share'].nlargest(5).groupby('Industry').mean()
+
+# Print the average market share of the top 5 firms in each industry
+print(top_5_avg_market_share)
+```
