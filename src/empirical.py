@@ -2745,3 +2745,22 @@ industry_CR4 = industry_sales.nlargest(4).sum() / industry_sales.sum()
 # Print the concentration ratio (CR4) for the specific industry
 print(f"The concentration ratio (CR4) for the specific industry is: {industry_CR4}")
 ```
+# Change made on 2024-07-01 06:21:07.685820
+```python
+import pandas as pd
+
+# Read data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total market share of all companies in the dataset
+total_market_share = data['market_share'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['market_share_squared'] = data['market_share'] ** 2
+HHI = data['market_share_squared'].sum()
+
+print('Total Market Share:', total_market_share)
+print('Herfindahl-Hirschman Index (HHI):', HHI)
+```
+
+This script calculates the total market share of all companies in the dataset and then calculates the Herfindahl-Hirschman Index (HHI), a measure of market concentration used in antitrust analysis.

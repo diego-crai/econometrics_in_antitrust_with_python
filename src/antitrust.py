@@ -2781,3 +2781,21 @@ top_5_avg_market_share = data.groupby('Industry')['Market Share'].nlargest(5).gr
 # Print the average market share of the top 5 firms in each industry
 print(top_5_avg_market_share)
 ```
+# Change made on 2024-07-01 06:21:05.330452
+```python
+import pandas as pd
+
+# load the data
+data = pd.read_csv('data.csv')
+
+# calculate the Herfindahl-Hirschman Index (HHI) for each year
+data['HHI'] = (data['market_share'] ** 2).sum()
+
+# calculate the change in HHI from the previous year
+data['HHI_change'] = data['HHI'].diff()
+
+# identify any year where the HHI increased significantly
+significant_increase = data[data['HHI_change'] > 0.1]
+
+print(significant_increase)
+```
