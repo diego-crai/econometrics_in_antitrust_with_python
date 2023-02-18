@@ -2764,3 +2764,17 @@ print('Herfindahl-Hirschman Index (HHI):', HHI)
 ```
 
 This script calculates the total market share of all companies in the dataset and then calculates the Herfindahl-Hirschman Index (HHI), a measure of market concentration used in antitrust analysis.
+# Change made on 2024-07-01 06:21:13.051153
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Feature: Calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['Market Share Squared'] = data['Market Share'] ** 2
+HHI_by_market = data.groupby('Market')['Market Share Squared'].sum()
+
+# Print the HHI for each market
+print(HHI_by_market)
+```

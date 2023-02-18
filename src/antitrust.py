@@ -2799,3 +2799,25 @@ significant_increase = data[data['HHI_change'] > 0.1]
 
 print(significant_increase)
 ```
+# Change made on 2024-07-01 06:21:11.567430
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average price for each product
+avg_price = data.groupby('Product')['Price'].mean()
+
+# Calculate the market share of each company in each product market
+data['Market Share'] = data.groupby('Product')['Sales'].transform(lambda x: x / x.sum())
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each product market
+data['HHI'] = (data['Market Share'] ** 2).groupby(data['Product']).sum()
+
+# Identify the product markets with HHI above a certain threshold (e.g. 2500)
+high_concentration_markets = data[data['HHI'] > 2500]['Product'].unique()
+
+print("Product markets with high concentration (HHI > 2500):")
+print(high_concentration_markets)
+```
