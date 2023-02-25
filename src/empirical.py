@@ -2778,3 +2778,14 @@ HHI_by_market = data.groupby('Market')['Market Share Squared'].sum()
 # Print the HHI for each market
 print(HHI_by_market)
 ```
+# Change made on 2024-07-01 06:21:17.774689
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate average market share of the top 5 companies in each year
+top_5_avg_market_share = data.groupby('Year')['Market Share'].nlargest(5).groupby('Year').mean()
+
+# Display the results
+print(top_5_avg_market_share)

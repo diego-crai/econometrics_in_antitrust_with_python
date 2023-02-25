@@ -2821,3 +2821,23 @@ high_concentration_markets = data[data['HHI'] > 2500]['Product'].unique()
 print("Product markets with high concentration (HHI > 2500):")
 print(high_concentration_markets)
 ```
+# Change made on 2024-07-01 06:21:16.647297
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average price for each product
+average_price = data.groupby('Product')['Price'].mean()
+
+# Find the product with the highest average price
+max_price_product = average_price.idxmax()
+
+# Filter the data for the product with the highest average price
+max_price_data = data[data['Product'] == max_price_product]
+
+# Calculate the total revenue for the product with the highest average price
+total_revenue = max_price_data['Price'].sum()
+
+# Print the total revenue for the product with the highest average price
+print(f'Total revenue for product with highest average price ({max_price_product}): ${total_revenue}')
