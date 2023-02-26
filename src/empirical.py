@@ -2789,3 +2789,22 @@ top_5_avg_market_share = data.groupby('Year')['Market Share'].nlargest(5).groupb
 
 # Display the results
 print(top_5_avg_market_share)
+# Change made on 2024-07-01 06:21:23.232158
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['market_share_squared'] = data['market_share'] ** 2
+HHI = data.groupby('industry')['market_share_squared'].sum()
+
+# Check if any industry has a HHI above the threshold (e.g. 2500)
+antitrust_concern = any(HHI > 2500)
+if antitrust_concern:
+    print('Antitrust concern detected in one or more industries')
+else:
+    print('No antitrust concern detected')
+
+```

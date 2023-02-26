@@ -2841,3 +2841,17 @@ total_revenue = max_price_data['Price'].sum()
 
 # Print the total revenue for the product with the highest average price
 print(f'Total revenue for product with highest average price ({max_price_product}): ${total_revenue}')
+# Change made on 2024-07-01 06:21:21.283008
+```python
+import pandas as pd
+
+data = pd.read_csv('data.csv')
+
+# Identify the top 5 companies with the highest market share
+market_share = data.groupby('Company')['Market Share'].sum().sort_values(ascending=False).head(5)
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for these companies
+HHI = (market_share ** 2).sum()
+
+print(f'The top 5 companies have a combined market share of {market_share.sum():.2f} and HHI of {HHI:.2f}')
+```
