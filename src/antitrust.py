@@ -2855,3 +2855,18 @@ HHI = (market_share ** 2).sum()
 
 print(f'The top 5 companies have a combined market share of {market_share.sum():.2f} and HHI of {HHI:.2f}')
 ```
+# Change made on 2024-07-01 06:21:26.095709
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data to only include cases where the antitrust litigation was successful
+successful_antitrust_cases = data[data['antitrust_litigation'] == 'successful']
+
+# Calculate the average amount of damages awarded in successful antitrust cases
+average_damages = successful_antitrust_cases['damages_awarded'].mean()
+
+print("The average amount of damages awarded in successful antitrust cases is: $", average_damages)
+```

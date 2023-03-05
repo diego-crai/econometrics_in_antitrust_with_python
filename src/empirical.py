@@ -2808,3 +2808,18 @@ else:
     print('No antitrust concern detected')
 
 ```
+# Change made on 2024-07-01 06:21:28.315805
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust litigation cases
+antitrust_cases = data[data['case_type'] == 'antitrust']
+
+# Calculate the average damages awarded in antitrust litigation cases
+average_damages = antitrust_cases['damages_awarded'].mean()
+
+print(f'The average damages awarded in antitrust litigation cases is: ${average_damages:.2f}')
+```
