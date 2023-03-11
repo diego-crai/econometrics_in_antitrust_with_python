@@ -2870,3 +2870,20 @@ average_damages = successful_antitrust_cases['damages_awarded'].mean()
 
 print("The average amount of damages awarded in successful antitrust cases is: $", average_damages)
 ```
+# Change made on 2024-07-01 06:21:31.113242
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Define the specific feature to be added
+def calculate_hhi(data):
+    data['market_share_squared'] = data['market_share'] ** 2
+    hhi = data.groupby('industry')['market_share_squared'].sum()
+    return hhi
+
+# Calculate the HHI for each industry
+hhi = calculate_hhi(data)
+
+# Display the results
+print(hhi)

@@ -2823,3 +2823,19 @@ average_damages = antitrust_cases['damages_awarded'].mean()
 
 print(f'The average damages awarded in antitrust litigation cases is: ${average_damages:.2f}')
 ```
+# Change made on 2024-07-01 06:21:32.836528
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average values of the economic variables for each antitrust case
+average_values = data.groupby('Antitrust Case')['Economic Variable'].mean()
+
+# Identify the antitrust case with the highest average value for the economic variable
+max_average_case = average_values.idxmax()
+
+# Print the result
+print(f"The antitrust case with the highest average value for the economic variable is: {max_average_case}")
+```
