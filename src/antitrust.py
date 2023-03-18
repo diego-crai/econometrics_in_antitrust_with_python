@@ -2887,3 +2887,27 @@ hhi = calculate_hhi(data)
 
 # Display the results
 print(hhi)
+# Change made on 2024-07-01 06:21:36.202822
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average prices for each company
+average_prices = data.groupby('Company')['Price'].mean()
+
+# Calculate the market share of each company
+total_sales = data['Sales'].sum()
+market_shares = data.groupby('Company')['Sales'].sum() / total_sales
+
+# Combine the average prices and market shares into a single dataframe
+economic_analysis = pd.concat([average_prices, market_shares], axis=1)
+economic_analysis.columns = ['Average Price', 'Market Share']
+
+# Add a new column for the Herfindahl-Hirschman Index (HHI)
+economic_analysis['HHI'] = (economic_analysis['Market Share'] * 10000) ** 2
+
+# Print the economic analysis with the new HHI column
+print(economic_analysis)
+```

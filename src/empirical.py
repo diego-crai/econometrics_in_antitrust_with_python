@@ -2839,3 +2839,22 @@ max_average_case = average_values.idxmax()
 # Print the result
 print(f"The antitrust case with the highest average value for the economic variable is: {max_average_case}")
 ```
+# Change made on 2024-07-01 06:21:38.040046
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market concentration before and after the antitrust litigation
+avg_concentration_before = data[data['Time'] < '2021-01-01']['Market Concentration'].mean()
+avg_concentration_after = data[data['Time'] >= '2021-01-01']['Market Concentration'].mean()
+
+# Calculate the change in market concentration after the antitrust litigation
+change_in_concentration = avg_concentration_after - avg_concentration_before
+
+print(f'Average market concentration before antitrust litigation: {avg_concentration_before}')
+print(f'Average market concentration after antitrust litigation: {avg_concentration_after}')
+print(f'Change in market concentration after antitrust litigation: {change_in_concentration}')
+```
+This script calculates and prints out the average market concentration before and after antitrust litigation, as well as the change in market concentration after the litigation. This analysis allows for the investigation of the impact of antitrust litigation on market concentration.
