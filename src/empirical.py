@@ -2858,3 +2858,20 @@ print(f'Average market concentration after antitrust litigation: {avg_concentrat
 print(f'Change in market concentration after antitrust litigation: {change_in_concentration}')
 ```
 This script calculates and prints out the average market concentration before and after antitrust litigation, as well as the change in market concentration after the litigation. This analysis allows for the investigation of the impact of antitrust litigation on market concentration.
+# Change made on 2024-07-01 06:21:42.443368
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company in the data
+data['market_share'] = data['revenue'] / data['total_revenue']
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+HHI = (data['market_share'] ** 2).sum()
+
+# Determine if the market is highly concentrated based on the HHI score
+if HHI > 2500:
+    print("The market is highly concentrated.")
+else:
+    print("The market is not highly concentrated.")

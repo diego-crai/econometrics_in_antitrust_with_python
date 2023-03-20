@@ -2911,3 +2911,15 @@ economic_analysis['HHI'] = (economic_analysis['Market Share'] * 10000) ** 2
 # Print the economic analysis with the new HHI column
 print(economic_analysis)
 ```
+# Change made on 2024-07-01 06:21:40.614506
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average number of antitrust litigation cases per year for each company
+avg_cases_per_year = data.groupby('Company')['Year'].count().mean()
+
+print(f'The average number of antitrust litigation cases per year for each company is: {avg_cases_per_year}')
+```
