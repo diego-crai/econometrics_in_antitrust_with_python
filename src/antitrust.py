@@ -2923,3 +2923,27 @@ avg_cases_per_year = data.groupby('Company')['Year'].count().mean()
 
 print(f'The average number of antitrust litigation cases per year for each company is: {avg_cases_per_year}')
 ```
+# Change made on 2024-07-01 06:21:46.211615
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average price for each product
+average_price = data.groupby('product')['price'].mean()
+
+# Calculate the total revenue for each product
+data['revenue'] = data['price'] * data['quantity']
+total_revenue = data.groupby('product')['revenue'].sum()
+
+# Merge the average price and total revenue data together
+analysis_data = pd.concat([average_price, total_revenue], axis=1)
+analysis_data.columns = ['average_price', 'total_revenue']
+
+# Calculate the market share for each product
+analysis_data['market_share'] = analysis_data['total_revenue'] / analysis_data['total_revenue'].sum()
+
+# Display the analysis data
+print(analysis_data)
+```

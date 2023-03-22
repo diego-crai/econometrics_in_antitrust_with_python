@@ -2875,3 +2875,21 @@ if HHI > 2500:
     print("The market is highly concentrated.")
 else:
     print("The market is not highly concentrated.")
+# Change made on 2024-07-01 06:21:48.138936
+```python
+import pandas as pd
+import statsmodels.api as sm
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Perform a linear regression analysis to estimate the impact of antitrust litigation on market competition
+X = data[['Antitrust Litigation']]
+y = data['Market Competition']
+
+X = sm.add_constant(X) # Add a constant term to the model
+model = sm.OLS(y, X).fit() # Fit the linear regression model
+
+# Print the summary of the regression analysis
+print(model.summary())
+```
