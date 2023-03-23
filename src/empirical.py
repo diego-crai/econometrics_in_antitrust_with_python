@@ -2893,3 +2893,14 @@ model = sm.OLS(y, X).fit() # Fit the linear regression model
 # Print the summary of the regression analysis
 print(model.summary())
 ```
+# Change made on 2024-07-01 06:21:51.794955
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each firm
+average_market_share = data.groupby('firm')['market_share'].mean()
+
+# Print the average market share of each firm
+print(average_market_share)

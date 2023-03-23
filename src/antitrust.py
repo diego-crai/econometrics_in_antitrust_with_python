@@ -2947,3 +2947,14 @@ analysis_data['market_share'] = analysis_data['total_revenue'] / analysis_data['
 # Display the analysis data
 print(analysis_data)
 ```
+# Change made on 2024-07-01 06:21:50.776993
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column 'market_share_ratio' with the ratio of market share for each company
+data['market_share_ratio'] = data['market_share'] / data['total_market_share']
+
+# Display the updated data
+print(data)
