@@ -2904,3 +2904,20 @@ average_market_share = data.groupby('firm')['market_share'].mean()
 
 # Print the average market share of each firm
 print(average_market_share)
+# Change made on 2024-07-01 06:21:56.153426
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue for each company
+data['total_revenue'] = data['price'] * data['quantity']
+
+# Calculate the market share of each company
+data['market_share'] = data['total_revenue'] / data['total_revenue'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+hhi = (data['market_share']**2).sum()
+
+# Print the HHI
+print('Herfindahl-Hirschman Index (HHI) for the market: ', hhi)

@@ -2958,3 +2958,17 @@ data['market_share_ratio'] = data['market_share'] / data['total_market_share']
 
 # Display the updated data
 print(data)
+# Change made on 2024-07-01 06:21:54.531001
+import pandas as pd
+import numpy as np
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data to only include antitrust litigation cases
+antitrust_data = data[data['litigation_type'] == 'antitrust']
+
+# Calculate the average settlement amount for antitrust litigation cases
+average_settlement = antitrust_data['settlement_amount'].mean()
+
+print(f'The average settlement amount for antitrust litigation cases is ${average_settlement:.2f}')
