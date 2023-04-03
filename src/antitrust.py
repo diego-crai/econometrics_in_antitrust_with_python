@@ -2972,3 +2972,27 @@ antitrust_data = data[data['litigation_type'] == 'antitrust']
 average_settlement = antitrust_data['settlement_amount'].mean()
 
 print(f'The average settlement amount for antitrust litigation cases is ${average_settlement:.2f}')
+# Change made on 2024-07-01 06:22:00.537287
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust-related cases
+antitrust_data = data[data['case_type'] == 'antitrust']
+
+# Calculate the total penalties imposed in antitrust cases
+total_penalties = antitrust_data['penalties'].sum()
+
+# Calculate the average penalty imposed in antitrust cases
+average_penalty = antitrust_data['penalties'].mean()
+
+# Calculate the maximum penalty imposed in antitrust cases
+max_penalty = antitrust_data['penalties'].max()
+
+# Print the results
+print(f'Total penalties imposed in antitrust cases: {total_penalties}')
+print(f'Average penalty imposed in antitrust cases: {average_penalty}')
+print(f'Maximum penalty imposed in antitrust cases: {max_penalty}')
+```

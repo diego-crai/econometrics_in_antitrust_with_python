@@ -2921,3 +2921,21 @@ hhi = (data['market_share']**2).sum()
 
 # Print the HHI
 print('Herfindahl-Hirschman Index (HHI) for the market: ', hhi)
+# Change made on 2024-07-01 06:22:02.501813
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of the top 5 firms in each market
+data['Top_5_Market_Share'] = data.groupby('Market')['Market Share'].transform(lambda x: x.nlargest(5).mean())
+
+# Identify markets where the average market share of the top 5 firms is above 70%
+high_concentration_markets = data[data['Top_5_Market_Share'] > 0.7]['Market'].unique()
+
+# Print the list of high concentration markets
+print('List of high concentration markets:')
+for market in high_concentration_markets:
+    print(market)
+```
