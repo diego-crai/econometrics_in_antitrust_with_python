@@ -2939,3 +2939,24 @@ print('List of high concentration markets:')
 for market in high_concentration_markets:
     print(market)
 ```
+# Change made on 2024-07-01 06:22:07.848514
+```python
+import pandas as pd
+import statsmodels.api as sm
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Perform linear regression analysis to determine the impact of market concentration on prices
+X = data['Market Concentration']
+Y = data['Prices']
+
+# Add a constant term to the independent variable
+X = sm.add_constant(X)
+
+# Fit the linear regression model
+model = sm.OLS(Y,X).fit()
+
+# Print the summary of the regression analysis
+print(model.summary())
+```

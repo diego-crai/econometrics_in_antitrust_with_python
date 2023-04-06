@@ -2996,3 +2996,24 @@ print(f'Total penalties imposed in antitrust cases: {total_penalties}')
 print(f'Average penalty imposed in antitrust cases: {average_penalty}')
 print(f'Maximum penalty imposed in antitrust cases: {max_penalty}')
 ```
+# Change made on 2024-07-01 06:22:06.040601
+```
+import pandas as pd
+
+# Load the data
+data = pd.read_csv("data.csv")
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+data['Market Share Squared'] = data['Market Share'] ** 2
+hhi = data.groupby('Company')['Market Share Squared'].sum()
+
+# Add a column to the data with the calculated HHI for each company
+data['HHI'] = data['Company'].map(hhi)
+
+# Sort the data by HHI in descending order
+data = data.sort_values(by='HHI', ascending=False)
+
+# Display the top 5 companies with the highest HHI
+top_5_hhi = data.head(5)
+print(top_5_hhi)
+```
