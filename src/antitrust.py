@@ -3017,3 +3017,23 @@ data = data.sort_values(by='HHI', ascending=False)
 top_5_hhi = data.head(5)
 print(top_5_hhi)
 ```
+# Change made on 2024-07-01 06:22:11.772914
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+data['Market Share Squared'] = data['Market Share'] ** 2
+hhi = data.groupby('Company')['Market Share Squared'].sum()
+
+# Add the HHI to the original data
+data = data.merge(hhi, on='Company', how='left')
+data.rename(columns={'Market Share Squared_y': 'HHI'}, inplace=True)
+
+# Print the HHI for each company
+print(data[['Company', 'HHI']])
+```
+
+This Python script calculates the Herfindahl-Hirschman Index (HHI) for each company in the dataset and adds it as a new column to the original data. The HHI is a measure of market concentration and can be useful for antitrust litigation analysis.

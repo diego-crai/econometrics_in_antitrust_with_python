@@ -2960,3 +2960,27 @@ model = sm.OLS(Y,X).fit()
 # Print the summary of the regression analysis
 print(model.summary())
 ```
+# Change made on 2024-07-01 06:22:15.336274
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for a specific market
+def calculate_hhi(data, market):
+    market_data = data[data['Market'] == market]
+    market_data['Market Share Squared'] = (market_data['Market Share'] ** 2)
+    hhi = market_data['Market Share Squared'].sum() * 10000
+    return hhi
+
+# Specify the market for analysis
+market = 'Tech Industry'
+
+# Calculate the HHI for the specified market
+hhi = calculate_hhi(data, market)
+
+print(f'The Herfindahl-Hirschman Index (HHI) for the {market} is: {hhi}')
+```
+
+This Python script calculates the Herfindahl-Hirschman Index (HHI) for a specific market in an economic analysis dataset. The HHI is a measure of market concentration and is commonly used in antitrust litigation. The script reads the data from 'data.csv', calculates the HHI for the specified market ('Tech Industry' in this example), and prints the result.
