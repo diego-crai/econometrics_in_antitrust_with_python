@@ -2984,3 +2984,24 @@ print(f'The Herfindahl-Hirschman Index (HHI) for the {market} is: {hhi}')
 ```
 
 This Python script calculates the Herfindahl-Hirschman Index (HHI) for a specific market in an economic analysis dataset. The HHI is a measure of market concentration and is commonly used in antitrust litigation. The script reads the data from 'data.csv', calculates the HHI for the specified market ('Tech Industry' in this example), and prints the result.
+# Change made on 2024-07-01 06:22:20.618585
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['market_share_squared'] = data['market_share'] ** 2
+HHI = data.groupby('industry')['market_share_squared'].sum()
+
+# Determine whether the HHI exceeds the threshold for market concentration
+threshold = 2500
+concentrated_markets = HHI[HHI > threshold].index.tolist()
+
+# Add a column to the data indicating whether the market is concentrated
+data['concentrated_market'] = data['industry'].apply(lambda x: x in concentrated_markets)
+
+# Display the result
+print(data)
+```

@@ -3037,3 +3037,19 @@ print(data[['Company', 'HHI']])
 ```
 
 This Python script calculates the Herfindahl-Hirschman Index (HHI) for each company in the dataset and adds it as a new column to the original data. The HHI is a measure of market concentration and can be useful for antitrust litigation analysis.
+# Change made on 2024-07-01 06:22:18.376032
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Extract the necessary columns for the analysis
+relevant_data = data[['Case Name', 'Plaintiff', 'Defendant', 'Date Filed', 'Damages Awarded']]
+
+# Calculate the average damages awarded in antitrust litigation cases
+average_damages = relevant_data['Damages Awarded'].mean()
+
+# Print the average damages awarded
+print("The average damages awarded in antitrust litigation cases is: $", round(average_damages, 2))
+```
