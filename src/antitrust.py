@@ -3053,3 +3053,29 @@ average_damages = relevant_data['Damages Awarded'].mean()
 # Print the average damages awarded
 print("The average damages awarded in antitrust litigation cases is: $", round(average_damages, 2))
 ```
+# Change made on 2024-07-01 06:22:24.895267
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['market_share'] = data['revenue'] / data['total_revenue']
+
+# Define the Herfindahl-Hirschman Index (HHI) function
+def calculate_hhi(data):
+    hhi = (data['market_share'] ** 2).sum() * 10000
+    return hhi
+
+# Calculate the HHI for the entire market
+total_hhi = calculate_hhi(data)
+
+# Find the top company in the market
+top_company = data.loc[data['market_share'].idxmax(), 'company']
+
+# Output the results
+print(f'The Herfindahl-Hirschman Index for the market is: {total_hhi}')
+print(f'The top company in the market is: {top_company}')
+```
+This code calculates the Herfindahl-Hirschman Index (HHI) for the market based on the market share of each company and identifies the top company in the market based on its market share.

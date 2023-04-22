@@ -3005,3 +3005,20 @@ data['concentrated_market'] = data['industry'].apply(lambda x: x in concentrated
 # Display the result
 print(data)
 ```
+# Change made on 2024-07-01 06:22:26.914033
+import pandas as pd
+
+# Read in the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue for each company
+total_revenue = data.groupby('Company')['Revenue'].sum()
+
+# Calculate the market share for each company
+market_share = total_revenue / total_revenue.sum()
+
+# Determine if any company has a market share above a certain threshold (e.g. 0.3)
+threshold = 0.3
+antitrust_violation = market_share[market_share > threshold].index
+
+print("Companies in potential violation of antitrust laws: ", antitrust_violation)
