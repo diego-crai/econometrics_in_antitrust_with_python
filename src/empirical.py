@@ -3022,3 +3022,26 @@ threshold = 0.3
 antitrust_violation = market_share[market_share > threshold].index
 
 print("Companies in potential violation of antitrust laws: ", antitrust_violation)
+# Change made on 2024-07-01 06:22:32.784006
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market concentration
+data['Market Share Squared'] = data['Market Share'] ** 2
+HHI = data.groupby('Market').agg({'Market Share Squared': 'sum'})
+HHI.rename(columns={'Market Share Squared': 'HHI'}, inplace=True)
+
+# Merge the calculated HHI back to the original data
+data = data.merge(HHI, on='Market')
+
+# Identify markets with high market concentration based on HHI threshold
+high_concentration_threshold = 0.25
+high_concentration_markets = data[data['HHI'] > high_concentration_threshold]
+
+# Print out the high concentration markets
+print("High concentration markets:")
+print(high_concentration_markets)
+```

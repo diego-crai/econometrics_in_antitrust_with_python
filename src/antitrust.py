@@ -3079,3 +3079,16 @@ print(f'The Herfindahl-Hirschman Index for the market is: {total_hhi}')
 print(f'The top company in the market is: {top_company}')
 ```
 This code calculates the Herfindahl-Hirschman Index (HHI) for the market based on the market share of each company and identifies the top company in the market based on its market share.
+# Change made on 2024-07-01 06:22:30.417252
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a feature that calculates the market share of each company in the dataset
+data['Market Share'] = data['Revenue'] / data['Total Revenue']
+
+# Display the updated data with market share
+print(data)
+```
