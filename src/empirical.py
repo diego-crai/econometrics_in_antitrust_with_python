@@ -3045,3 +3045,22 @@ high_concentration_markets = data[data['HHI'] > high_concentration_threshold]
 print("High concentration markets:")
 print(high_concentration_markets)
 ```
+# Change made on 2024-07-01 06:22:38.416098
+import pandas as pd
+
+# Read data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['total_sales'] = data['company_sales'] + data['competitor_sales']
+data['market_share'] = data['company_sales'] / data['total_sales']
+
+# Define the threshold for a company to be considered a monopoly
+monopoly_threshold = 0.5
+
+# Determine if any company has a market share above the threshold
+monopolies = data[data['market_share'] > monopoly_threshold]
+
+# Print out the list of monopolies
+print('Monopolies:')
+print(monopolies)

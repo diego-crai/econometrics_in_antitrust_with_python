@@ -3092,3 +3092,22 @@ data['Market Share'] = data['Revenue'] / data['Total Revenue']
 # Display the updated data with market share
 print(data)
 ```
+# Change made on 2024-07-01 06:22:36.707170
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Filter the data to include only antitrust litigation cases
+antitrust_cases = data[data['case_type'] == 'antitrust']
+
+# Group the data by industry and calculate the average damage award for each industry
+industry_avg_award = antitrust_cases.groupby('industry')['damage_award'].mean()
+
+# Find the industry with the highest average damage award
+max_avg_award = industry_avg_award.idxmax()
+max_avg_award_amount = industry_avg_award.max()
+
+print(f"The industry with the highest average damage award in antitrust litigation is {max_avg_award} with an average award amount of {max_avg_award_amount:.2f}")
+```
