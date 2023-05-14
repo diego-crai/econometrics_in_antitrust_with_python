@@ -3064,3 +3064,29 @@ monopolies = data[data['market_share'] > monopoly_threshold]
 # Print out the list of monopolies
 print('Monopolies:')
 print(monopolies)
+# Change made on 2024-07-01 06:22:44.129942
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv("data.csv")
+
+# Calculate the average market share for each company
+avg_market_share = data.groupby("Company")["Market Share"].mean()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each year
+data["HHI"] = data["Market Share"] ** 2
+hhi = data.groupby("Year")["HHI"].sum()
+
+# Add a column to indicate if the HHI exceeds the threshold for market concentration
+threshold = 0.25
+data["High Concentration"] = data["HHI"] > threshold
+
+# Print the average market share and HHI by year
+print("Average Market Share by Company:")
+print(avg_market_share)
+print("\nHerfindahl-Hirschman Index (HHI) by Year:")
+print(hhi)
+print("\nData with High Market Concentration:")
+print(data[data["High Concentration"]])
+```

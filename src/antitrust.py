@@ -3111,3 +3111,19 @@ max_avg_award_amount = industry_avg_award.max()
 
 print(f"The industry with the highest average damage award in antitrust litigation is {max_avg_award} with an average award amount of {max_avg_award_amount:.2f}")
 ```
+# Change made on 2024-07-01 06:22:41.212286
+```python
+import pandas as pd
+
+# Read data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate average price for each company
+avg_price_per_company = data.groupby('company')['price'].mean()
+
+# Filter out companies with average price higher than $100
+high_price_companies = avg_price_per_company[avg_price_per_company > 100]
+
+# Output the high price companies
+print(high_price_companies)
+```
