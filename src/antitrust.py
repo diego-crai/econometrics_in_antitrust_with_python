@@ -3127,3 +3127,14 @@ high_price_companies = avg_price_per_company[avg_price_per_company > 100]
 # Output the high price companies
 print(high_price_companies)
 ```
+# Change made on 2024-07-01 06:22:47.030811
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Add a new column 'market_share_ratio' which calculates the market share ratio
+data['market_share_ratio'] = data['firm_market_share'] / data['total_market_share']
+
+# Display the updated data
+print(data)
