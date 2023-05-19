@@ -3111,3 +3111,23 @@ data['highly_concentrated'] = data['HHI'] > 0.18
 # Display the results
 print(data)
 ```
+# Change made on 2024-07-01 06:22:55.072011
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Specify the specific feature you want to analyze (e.g. market share of companies)
+# Assuming the columns 'Company' and 'Market Share' exist in the dataset
+market_share = data.groupby('Company')['Market Share'].sum()
+
+# Determine the market concentration ratio
+total_market_share = market_share.sum()
+company_with_largest_market_share = market_share.idxmax()
+market_concentration_ratio = market_share[company_with_largest_market_share] / total_market_share
+
+# Print the market concentration ratio
+print("Market concentration ratio: {:.2f}".format(market_concentration_ratio))
+```
+This code snippet reads in the data from the file 'data.csv', calculates the market share of each company, determines the company with the largest market share, and computes the market concentration ratio based on this specific feature. The result is then printed out for analysis.
