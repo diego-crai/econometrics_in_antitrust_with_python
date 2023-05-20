@@ -3151,3 +3151,26 @@ antitrust_cases = data[data['case_type'] == 'antitrust']
 average_damages = antitrust_cases['damages_awarded'].mean()
 
 print(f"The average damages awarded in antitrust litigation cases is ${average_damages}")
+# Change made on 2024-07-01 06:22:59.234436
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each industry
+data['market_share_squared'] = data['market_share'] ** 2
+hhis = data.groupby('industry')['market_share_squared'].sum().rename('hhi').reset_index()
+
+# Merge the HHI back into the original data
+data = data.merge(hhis, on='industry')
+
+# Identify industries with high concentration (HHI > 2500)
+high_concentration_industries = data[data['hhi'] > 2500]['industry'].unique()
+
+# Create a new column indicating if an industry has high concentration
+data['high_concentration'] = data['industry'].isin(high_concentration_industries).astype(int)
+
+# Save the updated data with the new feature
+data.to_csv('data_with_high_concentration_feature.csv', index=False)
+```

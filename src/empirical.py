@@ -3131,3 +3131,19 @@ market_concentration_ratio = market_share[company_with_largest_market_share] / t
 print("Market concentration ratio: {:.2f}".format(market_concentration_ratio))
 ```
 This code snippet reads in the data from the file 'data.csv', calculates the market share of each company, determines the company with the largest market share, and computes the market concentration ratio based on this specific feature. The result is then printed out for analysis.
+# Change made on 2024-07-01 06:23:00.840393
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust cases in the data
+total_antitrust_cases = data['Case_Type'].str.contains('Antitrust').sum()
+
+# Calculate the average duration of antitrust cases
+avg_duration_antitrust_cases = data[data['Case_Type'].str.contains('Antitrust')]['Duration'].mean()
+
+print(f'Total number of antitrust cases: {total_antitrust_cases}')
+print(f'Average duration of antitrust cases: {avg_duration_antitrust_cases}')
+```
