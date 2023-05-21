@@ -3147,3 +3147,19 @@ avg_duration_antitrust_cases = data[data['Case_Type'].str.contains('Antitrust')]
 print(f'Total number of antitrust cases: {total_antitrust_cases}')
 print(f'Average duration of antitrust cases: {avg_duration_antitrust_cases}')
 ```
+# Change made on 2024-07-01 06:23:10.371708
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column 'market_concentration' that calculates the Herfindahl-Hirschman Index (HHI)
+data['market_concentration'] = data['market_share']**2
+
+# Group the data by 'industry' and calculate the total market concentration for each industry
+industry_concentration = data.groupby('industry')['market_concentration'].sum()
+
+# Print the market concentration for each industry
+print(industry_concentration)
+```

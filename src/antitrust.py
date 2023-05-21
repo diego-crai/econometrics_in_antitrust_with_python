@@ -3174,3 +3174,20 @@ data['high_concentration'] = data['industry'].isin(high_concentration_industries
 # Save the updated data with the new feature
 data.to_csv('data_with_high_concentration_feature.csv', index=False)
 ```
+# Change made on 2024-07-01 06:23:08.890402
+```python
+import pandas as pd
+
+# Load the data from data.csv
+df = pd.read_csv('data.csv')
+
+# Add a new column 'antitrust_score' which gives a score based on the level of antitrust concerns
+# For example, if the 'market_share' is above 0.5 and 'price_variation' is greater than 0, then assign a score of 1
+# If 'market_share' is below 0.5 but 'price_variation' is greater than 0, then assign a score of 0.5
+# Otherwise, assign a score of 0
+
+df['antitrust_score'] = df.apply(lambda x: 1 if x['market_share'] > 0.5 and x['price_variation'] > 0 else (0.5 if x['market_share'] < 0.5 and x['price_variation'] > 0 else 0), axis=1)
+
+# Display the updated dataframe
+print(df)
+```
