@@ -3163,3 +3163,18 @@ industry_concentration = data.groupby('industry')['market_concentration'].sum()
 # Print the market concentration for each industry
 print(industry_concentration)
 ```
+# Change made on 2024-07-01 06:23:18.235586
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Filter the data to include only antitrust cases
+antitrust_data = data[data['case_type'] == 'antitrust']
+
+# Calculate the average damages awarded in antitrust cases
+avg_damages = antitrust_data['damages_awarded'].mean()
+
+print(f"The average damages awarded in antitrust cases is: ${avg_damages:.2f}")
+```

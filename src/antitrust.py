@@ -3191,3 +3191,28 @@ df['antitrust_score'] = df.apply(lambda x: 1 if x['market_share'] > 0.5 and x['p
 # Display the updated dataframe
 print(df)
 ```
+# Change made on 2024-07-01 06:23:16.498209
+```python
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv("data.csv")
+
+# Calculate the average price for each product
+avg_price_per_product = data.groupby('product')['price'].mean()
+
+# Calculate the market share for each company
+total_sales = data.groupby('company')['sales'].sum()
+market_share = total_sales / data['sales'].sum()
+
+# Merge the average price per product and market share into a single DataFrame
+analysis = pd.merge(avg_price_per_product, market_share, left_on='product', right_index=True)
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each product
+analysis['HHI'] = (analysis['market_share'] * 100) ** 2
+
+# Sort the analysis by HHI in descending order
+analysis = analysis.sort_values('HHI', ascending=False)
+
+print(analysis)
+```
