@@ -3216,3 +3216,26 @@ analysis = analysis.sort_values('HHI', ascending=False)
 
 print(analysis)
 ```
+# Change made on 2024-07-01 06:23:22.211350
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+data['market_share_squared'] = data['market_share'] ** 2
+hhi = data.groupby('company')['market_share_squared'].sum()
+
+# Calculate the average HHI for the industry
+average_hhi = hhi.mean()
+
+# Identify companies with HHI above a certain threshold (e.g., 2000)
+high_hhi_companies = hhi[hhi > 2000].index.tolist()
+
+# Output the results
+print(f'Average HHI for the industry: {average_hhi}')
+print('Companies with HHI above 2000:')
+for company in high_hhi_companies:
+    print(company)
+```

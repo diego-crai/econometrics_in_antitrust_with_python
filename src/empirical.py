@@ -3178,3 +3178,25 @@ avg_damages = antitrust_data['damages_awarded'].mean()
 
 print(f"The average damages awarded in antitrust cases is: ${avg_damages:.2f}")
 ```
+# Change made on 2024-07-01 06:23:25.521716
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Perform the specific economic analysis for antitrust litigation (e.g. calculating market concentration, market share, or price fixing indicators)
+# Here we will calculate the Herfindahl-Hirschman Index (HHI) for market concentration
+
+# First, calculate the market share for each firm
+data['market_share'] = data['revenue'] / data['total_revenue']
+
+# Then, square the market share for each firm
+data['market_share_sq'] = data['market_share'] ** 2
+
+# Finally, calculate the HHI by summing the squared market shares for all firms in the market
+HHI = data['market_share_sq'].sum()
+
+print("Herfindahl-Hirschman Index (HHI) for market concentration:", HHI)
+```
+This script calculates the Herfindahl-Hirschman Index (HHI) for market concentration based on the revenue data provided in data.csv. Feel free to modify the analysis or add more features as needed for your specific economic analysis on antitrust litigation.
