@@ -3200,3 +3200,19 @@ HHI = data['market_share_sq'].sum()
 print("Herfindahl-Hirschman Index (HHI) for market concentration:", HHI)
 ```
 This script calculates the Herfindahl-Hirschman Index (HHI) for market concentration based on the revenue data provided in data.csv. Feel free to modify the analysis or add more features as needed for your specific economic analysis on antitrust litigation.
+# Change made on 2024-07-01 06:23:31.341679
+import pandas as pd
+
+# Load the dataset
+data = pd.read_csv('data.csv')
+
+# Calculate the percentage change in market share for each company
+data['Market Share Change'] = data.groupby('Company')['Market Share'].pct_change()
+
+# Find the company with the largest increase in market share
+largest_increase = data[data['Market Share Change'] == data['Market Share Change'].max()]['Company'].values[0]
+print(f"The company with the largest increase in market share is {largest_increase}")
+
+# Find the company with the largest decrease in market share
+largest_decrease = data[data['Market Share Change'] == data['Market Share Change'].min()]['Company'].values[0]
+print(f"The company with the largest decrease in market share is {largest_decrease}")

@@ -3239,3 +3239,18 @@ print('Companies with HHI above 2000:')
 for company in high_hhi_companies:
     print(company)
 ```
+# Change made on 2024-07-01 06:23:28.776442
+```
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column to calculate the Herfindahl-Hirschman Index (HHI)
+data['HHI'] = (data['Market Share'] * 100) ** 2
+
+# Print the company with the highest HHI value
+max_hhi_company = data[data['HHI'] == data['HHI'].max()]['Company'].values[0]
+print(f"The company with the highest Herfindahl-Hirschman Index is {max_hhi_company}")
+
+```
