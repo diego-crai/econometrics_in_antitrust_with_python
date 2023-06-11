@@ -3216,3 +3216,24 @@ print(f"The company with the largest increase in market share is {largest_increa
 # Find the company with the largest decrease in market share
 largest_decrease = data[data['Market Share Change'] == data['Market Share Change'].min()]['Company'].values[0]
 print(f"The company with the largest decrease in market share is {largest_decrease}")
+# Change made on 2024-07-01 06:23:37.131889
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust cases in the data
+total_antitrust_cases = data[data['Type'] == 'Antitrust'].shape[0]
+
+# Calculate the average settlement amount for antitrust cases
+avg_settlement_amount = data[data['Type'] == 'Antitrust']['Settlement Amount'].mean()
+
+# Calculate the average duration of antitrust cases
+avg_duration = data[data['Type'] == 'Antitrust']['Duration'].mean()
+
+print("Total number of antitrust cases:", total_antitrust_cases)
+print("Average settlement amount for antitrust cases:", avg_settlement_amount)
+print("Average duration of antitrust cases:", avg_duration)
+```
+This script calculates the total number of antitrust cases, the average settlement amount, and the average duration of antitrust cases from the data provided in data.csv.

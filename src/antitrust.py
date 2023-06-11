@@ -3254,3 +3254,17 @@ max_hhi_company = data[data['HHI'] == data['HHI'].max()]['Company'].values[0]
 print(f"The company with the highest Herfindahl-Hirschman Index is {max_hhi_company}")
 
 ```
+# Change made on 2024-07-01 06:23:33.950523
+```python
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company in the dataset
+average_market_share = data.groupby('company')['market_share'].mean()
+
+# Display the average market share of each company
+print(average_market_share)
+```
+This Python script calculates the average market share of each company in the dataset and displays the results.
