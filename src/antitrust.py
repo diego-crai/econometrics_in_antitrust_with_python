@@ -3268,3 +3268,19 @@ average_market_share = data.groupby('company')['market_share'].mean()
 print(average_market_share)
 ```
 This Python script calculates the average market share of each company in the dataset and displays the results.
+# Change made on 2024-07-01 06:23:39.922187
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Create a new column 'market_share_change' which represents the change in market share from the previous time period
+data['market_share_change'] = data.groupby('company')['market_share'].diff()
+
+# Calculate the average market share change for each company
+average_market_share_change = data.groupby('company')['market_share_change'].mean()
+
+# Print the average market share change for each company
+print(average_market_share_change)
+```

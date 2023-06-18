@@ -3237,3 +3237,18 @@ print("Average settlement amount for antitrust cases:", avg_settlement_amount)
 print("Average duration of antitrust cases:", avg_duration)
 ```
 This script calculates the total number of antitrust cases, the average settlement amount, and the average duration of antitrust cases from the data provided in data.csv.
+# Change made on 2024-07-01 06:23:41.427581
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average legal expenses for each firm
+average_legal_expenses = data.groupby('Firm')['Legal Expenses'].mean()
+
+# Display the firms with above average legal expenses
+above_average_legal_expenses = average_legal_expenses[average_legal_expenses > average_legal_expenses.mean()]
+print("Firms with above average legal expenses:")
+print(above_average_legal_expenses)
+```
