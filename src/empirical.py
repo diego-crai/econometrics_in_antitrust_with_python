@@ -3252,3 +3252,22 @@ above_average_legal_expenses = average_legal_expenses[average_legal_expenses > a
 print("Firms with above average legal expenses:")
 print(above_average_legal_expenses)
 ```
+# Change made on 2024-07-01 06:23:46.800749
+import pandas as pd
+import numpy as np
+
+# Load data
+data = pd.read_csv("data.csv")
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company in the data
+data['market_share_squared'] = np.square(data['market_share'])
+total_market_share = data.groupby('year')['market_share'].sum()
+data['hhi'] = data.groupby('year')['market_share_squared'].sum() / np.square(total_market_share)
+
+# Identify companies with a HHI greater than 0.25, which indicates a highly concentrated market
+high_concentration = data[data['hhi'] > 0.25]['company'].unique()
+
+# Print out the list of companies with a highly concentrated market
+print("Companies with a highly concentrated market:")
+for company in high_concentration:
+    print(company)

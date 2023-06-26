@@ -3284,3 +3284,21 @@ average_market_share_change = data.groupby('company')['market_share_change'].mea
 # Print the average market share change for each company
 print(average_market_share_change)
 ```
+# Change made on 2024-07-01 06:23:44.779822
+```python
+import pandas as pd
+
+# Load the data from data.csv file
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue for each company
+total_revenue = data.groupby('Company')['Revenue'].sum()
+
+# Calculate the market share of each company
+total_market_share = total_revenue / data['Revenue'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market concentration
+hhi = (total_market_share**2).sum() * 10000
+
+print(f"The Herfindahl-Hirschman Index for market concentration is: {hhi}")
+```
