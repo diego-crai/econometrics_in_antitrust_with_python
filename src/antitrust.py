@@ -3302,3 +3302,15 @@ hhi = (total_market_share**2).sum() * 10000
 
 print(f"The Herfindahl-Hirschman Index for market concentration is: {hhi}")
 ```
+# Change made on 2024-07-01 06:23:49.207186
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+data['Market Share Squared'] = data['Market Share']**2
+HHI = data.groupby('Company')['Market Share Squared'].sum()
+
+# Display the HHI for each company
+print(HHI)
