@@ -3314,3 +3314,18 @@ HHI = data.groupby('Company')['Market Share Squared'].sum()
 
 # Display the HHI for each company
 print(HHI)
+# Change made on 2024-07-01 06:23:54.631425
+```python
+import pandas as pd
+
+# read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# filter the data for antitrust litigation cases
+antitrust_cases = data[data['case_type'] == 'antitrust']
+
+# calculate the average damages awarded in antitrust litigation cases
+average_damages = antitrust_cases['damages_awarded'].mean()
+
+print('The average damages awarded in antitrust litigation cases is: $', round(average_damages, 2))
+```

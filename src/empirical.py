@@ -3291,3 +3291,19 @@ data['Highly Concentrated'] = data['HHI'].apply(lambda x: True if x > 2500 else 
 # Display the updated data
 print(data)
 ```
+# Change made on 2024-07-01 06:23:56.676991
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Extract the specific feature you want to analyze, for example, the market share of each company
+market_share = data.groupby('Company')['Sales'].sum() / data['Sales'].sum()
+
+# Add the market share information to the original data
+data['Market Share'] = data['Company'].map(market_share)
+
+# Visualize the market share of each company
+print(data[['Company', 'Market Share']].drop_duplicates())
+
+# Perform further analysis on the market share data as needed.
