@@ -3307,3 +3307,20 @@ data['Market Share'] = data['Company'].map(market_share)
 print(data[['Company', 'Market Share']].drop_duplicates())
 
 # Perform further analysis on the market share data as needed.
+# Change made on 2024-07-01 06:24:03.024585
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['total_market_share'] = data['company_sales'] / data['total_sales']
+
+# Define the threshold for market concentration
+threshold = 0.4
+
+# Identify companies with market share above the threshold
+concentrated_companies = data[data['total_market_share'] > threshold]
+
+# Display the list of concentrated companies
+print(concentrated_companies['company_name'])

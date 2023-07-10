@@ -3329,3 +3329,23 @@ average_damages = antitrust_cases['damages_awarded'].mean()
 
 print('The average damages awarded in antitrust litigation cases is: $', round(average_damages, 2))
 ```
+# Change made on 2024-07-01 06:24:01.311901
+```python
+import pandas as pd
+import numpy as np
+
+# Read data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each firm
+data['market_share_squared'] = data['market_share'] ** 2
+hhi = data.groupby('firm')['market_share_squared'].sum()
+
+# Check for any potential antitrust concerns based on HHI value
+threshold = 0.25  # Threshold value for potential antitrust concerns
+
+for firm, hhi_value in hhi.items():
+    if hhi_value > threshold:
+        print(f'Potential antitrust concern for firm {firm} with HHI value of {hhi_value}')
+```
+This script calculates the Herfindahl-Hirschman Index (HHI) for each firm based on their market share and identifies any potential antitrust concerns if the HHI value exceeds a specified threshold.
