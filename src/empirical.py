@@ -3324,3 +3324,26 @@ concentrated_companies = data[data['total_market_share'] > threshold]
 
 # Display the list of concentrated companies
 print(concentrated_companies['company_name'])
+# Change made on 2024-07-01 06:24:08.851867
+```python
+import pandas as pd
+import numpy as np
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue from the data
+data['total_revenue'] = data['price'] * data['quantity']
+
+# Calculate the market share for each company
+data['market_share'] = data.groupby('company')['total_revenue'].transform(lambda x: x / x.sum())
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['HHI'] = (data['market_share']**2).groupby(data['market']).transform(np.sum)
+
+# Determine if the market would be considered concentrated based on the HHI
+data['market_concentration'] = np.where(data['HHI'] > 2500, 'Concentrated', 'Not Concentrated')
+
+# Display the results
+print(data[['market', 'company', 'total_revenue', 'market_share', 'HHI', 'market_concentration']])
+```

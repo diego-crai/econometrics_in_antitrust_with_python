@@ -3349,3 +3349,15 @@ for firm, hhi_value in hhi.items():
         print(f'Potential antitrust concern for firm {firm} with HHI value of {hhi_value}')
 ```
 This script calculates the Herfindahl-Hirschman Index (HHI) for each firm based on their market share and identifies any potential antitrust concerns if the HHI value exceeds a specified threshold.
+# Change made on 2024-07-01 06:24:06.017310
+```python
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv("data.csv")
+
+# Calculate the average total assets of firms involved in antitrust litigation
+average_total_assets = data[data['Antitrust Litigation'] == 1]['Total Assets'].mean()
+
+print("Average total assets of firms involved in antitrust litigation: ${:,.2f}".format(average_total_assets))
+```
