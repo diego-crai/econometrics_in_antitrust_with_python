@@ -3347,3 +3347,16 @@ data['market_concentration'] = np.where(data['HHI'] > 2500, 'Concentrated', 'Not
 # Display the results
 print(data[['market', 'company', 'total_revenue', 'market_share', 'HHI', 'market_concentration']])
 ```
+# Change made on 2024-07-01 06:24:13.025301
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average price of products involved in antitrust litigation
+avg_price = data['Price'].mean()
+
+# Print the average price
+print("Average Price of Products Involved in Antitrust Litigation: $", avg_price)
+```

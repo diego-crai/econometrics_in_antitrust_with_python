@@ -3361,3 +3361,20 @@ average_total_assets = data[data['Antitrust Litigation'] == 1]['Total Assets'].m
 
 print("Average total assets of firms involved in antitrust litigation: ${:,.2f}".format(average_total_assets))
 ```
+# Change made on 2024-07-01 06:24:11.839213
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['market_share'] = data['company_sales'] / data['total_sales']
+
+# Determine if any company has a market share above a certain threshold (e.g. 0.3)
+threshold = 0.3
+antitrust_violation = data[data['market_share'] > threshold]
+
+# Print out the companies that have violated antitrust laws
+print("Companies that have violated antitrust laws:")
+for company in antitrust_violation['company']:
+    print(company)
