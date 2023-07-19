@@ -3360,3 +3360,24 @@ avg_price = data['Price'].mean()
 # Print the average price
 print("Average Price of Products Involved in Antitrust Litigation: $", avg_price)
 ```
+# Change made on 2024-07-01 06:24:18.061514
+```python
+import pandas as pd
+
+# Load the data from data.csv into a pandas DataFrame
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each industry in the dataset
+data['Market Share Squared'] = data['Market Share'] ** 2
+HHI = data.groupby('Industry')['Market Share Squared'].sum().reset_index()
+HHI.columns = ['Industry', 'HHI']
+
+# Merge the HHI values back into the original dataset
+data = data.merge(HHI, on='Industry')
+
+# Identify industries with HHI above the threshold value of 2500
+antitrust_concerns = data[data['HHI'] > 2500]['Industry'].unique()
+
+# Print out the list of industries that may raise antitrust concerns
+print('Industries with HHI above 2500: {}'.format(antitrust_concerns))
+```

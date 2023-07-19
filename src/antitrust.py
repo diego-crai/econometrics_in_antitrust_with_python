@@ -3378,3 +3378,18 @@ antitrust_violation = data[data['market_share'] > threshold]
 print("Companies that have violated antitrust laws:")
 for company in antitrust_violation['company']:
     print(company)
+# Change made on 2024-07-01 06:24:15.886493
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust litigation cases
+antitrust_cases = data[data['case_type'] == 'antitrust']
+
+# Calculate average damages awarded in antitrust litigation cases
+average_damages = antitrust_cases['damages_awarded'].mean()
+
+print(f'The average damages awarded in antitrust litigation cases is ${average_damages:.2f}')
+```
