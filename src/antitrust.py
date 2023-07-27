@@ -3393,3 +3393,20 @@ average_damages = antitrust_cases['damages_awarded'].mean()
 
 print(f'The average damages awarded in antitrust litigation cases is ${average_damages:.2f}')
 ```
+# Change made on 2024-07-01 06:24:21.015078
+```python
+import pandas as pd
+import statsmodels.api as sm
+
+# Load the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Perform a linear regression analysis with total revenue as the dependent variable
+# and market share as the independent variable
+X = data['Market Share']
+X = sm.add_constant(X) # add constant term to the model
+y = data['Total Revenue']
+
+model = sm.OLS(y, X).fit()
+print(model.summary())
+```

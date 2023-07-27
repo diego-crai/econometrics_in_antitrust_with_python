@@ -3381,3 +3381,32 @@ antitrust_concerns = data[data['HHI'] > 2500]['Industry'].unique()
 # Print out the list of industries that may raise antitrust concerns
 print('Industries with HHI above 2500: {}'.format(antitrust_concerns))
 ```
+# Change made on 2024-07-01 06:24:24.791032
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Calculate the average price of products for each year
+average_price = data.groupby('Year')['Price'].mean()
+
+# Calculate the total revenue for each year
+data['Revenue'] = data['Price'] * data['Quantity']
+total_revenue = data.groupby('Year')['Revenue'].sum()
+
+# Calculate the market share of each company for each year
+data['Total_Quantity'] = data.groupby(['Year', 'Company'])['Quantity'].transform('sum')
+data['Market_Share'] = data['Quantity'] / data['Total_Quantity']
+
+# Add the calculated values to the original dataset
+data['Average_Price'] = data['Year'].map(average_price)
+data['Total_Revenue'] = data['Year'].map(total_revenue)
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each year
+data['HHI'] = (data['Market_Share'] ** 2).groupby(data['Year']).sum()
+
+# Display the final dataset
+print(data)
+```
+This script calculates the average price of products, total revenue, market share of each company, and the Herfindahl-Hirschman Index (HHI) for each year in the dataset.
