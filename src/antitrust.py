@@ -3410,3 +3410,16 @@ y = data['Total Revenue']
 model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
+# Change made on 2024-07-01 06:24:27.308187
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average price of the products involved in the antitrust litigation
+average_price = data['Price'].mean()
+
+# Display the average price of the products
+print("The average price of the products involved in the antitrust litigation is: $", round(average_price, 2))
+```

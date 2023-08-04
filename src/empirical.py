@@ -3410,3 +3410,18 @@ data['HHI'] = (data['Market_Share'] ** 2).groupby(data['Year']).sum()
 print(data)
 ```
 This script calculates the average price of products, total revenue, market share of each company, and the Herfindahl-Hirschman Index (HHI) for each year in the dataset.
+# Change made on 2024-07-01 06:24:29.127085
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data to include only cases related to antitrust litigation
+antitrust_data = data[data['case_type'] == 'antitrust']
+
+# Calculate the average damages awarded in antitrust litigation cases
+average_damages = antitrust_data['damages_awarded'].mean()
+
+print(f'The average damages awarded in antitrust litigation cases is ${average_damages:.2f}')
+```
