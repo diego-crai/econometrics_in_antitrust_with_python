@@ -3423,3 +3423,20 @@ average_price = data['Price'].mean()
 # Display the average price of the products
 print("The average price of the products involved in the antitrust litigation is: $", round(average_price, 2))
 ```
+# Change made on 2024-07-01 06:24:32.168965
+```python
+import pandas as pd
+
+# Read data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate concentration ratio
+market_shares = data['market_share']
+HHI = sum(market_shares**2)
+
+# Check if market is concentrated based on HHI
+if HHI > 1800:
+    print("Market is highly concentrated")
+else:
+    print("Market is not highly concentrated")
+```

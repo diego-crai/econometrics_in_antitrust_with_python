@@ -3425,3 +3425,17 @@ average_damages = antitrust_data['damages_awarded'].mean()
 
 print(f'The average damages awarded in antitrust litigation cases is ${average_damages:.2f}')
 ```
+# Change made on 2024-07-01 06:24:34.291850
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column 'market_concentration' that represents the concentration of firms in a market
+data['market_concentration'] = data['market_share'].sum()
+
+# Print the average market concentration
+average_market_concentration = data['market_concentration'].mean()
+print('Average market concentration: {}'.format(average_market_concentration))
+```
