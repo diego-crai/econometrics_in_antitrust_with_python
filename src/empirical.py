@@ -3439,3 +3439,19 @@ data['market_concentration'] = data['market_share'].sum()
 average_market_concentration = data['market_concentration'].mean()
 print('Average market concentration: {}'.format(average_market_concentration))
 ```
+# Change made on 2024-07-01 06:24:39.441975
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust litigation cases
+total_cases = len(data)
+
+# Calculate the average settlement amount for antitrust litigation cases where the defendant is a technology company
+tech_cases = data[data['defendant_industry'] == 'Technology']
+average_settlement_amount_tech = tech_cases['settlement_amount'].mean()
+
+# Display the results
+print(f'Total number of antitrust litigation cases: {total_cases}')
+print(f'Average settlement amount for antitrust litigation cases involving technology companies: {average_settlement_amount_tech}')

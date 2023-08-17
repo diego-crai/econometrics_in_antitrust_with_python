@@ -3440,3 +3440,17 @@ if HHI > 1800:
 else:
     print("Market is not highly concentrated")
 ```
+# Change made on 2024-07-01 06:24:37.152475
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the HHI (Herfindahl-Hirschman Index) for each industry
+data['HHI'] = (data['Market Share'] ** 2).sum()
+
+# Identify industries with HHI greater than 2500 as highly concentrated
+highly_concentrated = data[data['HHI'] > 2500]
+
+# Print the industries that are highly concentrated
+print(highly_concentrated)
