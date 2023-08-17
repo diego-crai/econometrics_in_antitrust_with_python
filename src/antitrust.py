@@ -3454,3 +3454,20 @@ highly_concentrated = data[data['HHI'] > 2500]
 
 # Print the industries that are highly concentrated
 print(highly_concentrated)
+# Change made on 2024-07-01 06:24:42.841962
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate market concentration using the Herfindahl-Hirschman Index (HHI)
+data['Market Share Squared'] = data['Market Share'] ** 2
+HHI = data.groupby('Industry')['Market Share Squared'].sum()
+
+# Add the HHI values to the original dataframe
+data = data.merge(HHI, on='Industry', how='left')
+
+# Calculate the average HHI value for each antitrust litigation outcome
+avg_HHI = data.groupby('Antitrust Litigation Outcome')['Market Share Squared'].mean()
+
+print(avg_HHI)

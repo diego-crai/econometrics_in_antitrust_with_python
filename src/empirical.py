@@ -3455,3 +3455,21 @@ average_settlement_amount_tech = tech_cases['settlement_amount'].mean()
 # Display the results
 print(f'Total number of antitrust litigation cases: {total_cases}')
 print(f'Average settlement amount for antitrust litigation cases involving technology companies: {average_settlement_amount_tech}')
+# Change made on 2024-07-01 06:24:44.345711
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column 'market_concentration' to calculate the Herfindahl-Hirschman Index (HHI)
+def calculate_hhi(df, market_share_col):
+    df['market_concentration'] = (df[market_share_col] * 100) ** 2
+    hhi = df.groupby('industry')['market_concentration'].sum()
+    return hhi
+
+hhi = calculate_hhi(data, 'market_share')
+
+# Display the HHI for each industry
+print(hhi)
+```
