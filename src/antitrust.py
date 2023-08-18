@@ -3471,3 +3471,21 @@ data = data.merge(HHI, on='Industry', how='left')
 avg_HHI = data.groupby('Antitrust Litigation Outcome')['Market Share Squared'].mean()
 
 print(avg_HHI)
+# Change made on 2024-07-01 06:24:48.236063
+import pandas as pd
+import numpy as np
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+data['Market_Share_Squared'] = data['Market Share'] ** 2
+hhi = data.groupby('Company')['Market_Share_Squared'].sum()
+
+# Add the HHI values to the original data
+data = data.merge(hhi, on='Company', how='left')
+
+# Identify the companies with the highest HHI values
+top_companies = data.groupby('Company')[['HHI']].max().sort_values(by='HHI', ascending=False).head(5)
+
+print(top_companies)

@@ -3473,3 +3473,14 @@ hhi = calculate_hhi(data, 'market_share')
 # Display the HHI for each industry
 print(hhi)
 ```
+# Change made on 2024-07-01 06:24:49.662818
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column 'market_share_ratio' that calculates the ratio of a company's market share to the total market share
+data['market_share_ratio'] = data['market_share'] / data['total_market_share']
+
+# Print the first 5 rows of the updated data
+print(data.head())
