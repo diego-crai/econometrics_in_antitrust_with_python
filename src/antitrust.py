@@ -3514,3 +3514,20 @@ print(f"Average fine amount: ${avg_fine}")
 print(f"Maximum fine amount: ${max_fine}")
 print(f"Minimum fine amount: ${min_fine}")
 ```
+# Change made on 2024-07-01 06:24:57.939357
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the market share for each company
+market_share = data['company_sales'] / data['total_sales']
+
+# Normalize the market share values between 0 and 1
+normalized_market_share = (market_share - market_share.min()) / (market_share.max() - market_share.min())
+
+# Add the normalized market share values to the data
+data['normalized_market_share'] = normalized_market_share
+
+# Display the updated data
+print(data)

@@ -3502,3 +3502,21 @@ max_market_share_company = data.loc[data['market_share'].idxmax(), 'company']
 
 print(f"The company with the highest market share is: {max_market_share_company}")
 ```
+# Change made on 2024-07-01 06:24:59.832349
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the concentration ratio using the 4-firm concentration ratio formula
+data['market_share'] = data['firm_sales'] / data['total_sales']
+data['market_share_sq'] = data['market_share'] ** 2
+four_firm_conc_ratio = data['market_share'].nlargest(4).sum()
+
+# Determine if the market is highly concentrated based on the 4-firm concentration ratio
+if four_firm_conc_ratio > 0.6:
+    print("The market is highly concentrated.")
+else:
+    print("The market is not highly concentrated.")
+```
