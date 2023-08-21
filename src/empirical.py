@@ -3484,3 +3484,21 @@ data['market_share_ratio'] = data['market_share'] / data['total_market_share']
 
 # Print the first 5 rows of the updated data
 print(data.head())
+# Change made on 2024-07-01 06:24:55.022955
+```python
+import pandas as pd
+
+# Load data from CSV file
+data = pd.read_csv('data.csv')
+
+# Calculate total revenue for each company
+total_revenue = data.groupby('company')['revenue'].sum()
+
+# Calculate market share for each company
+data['market_share'] = data['revenue'] / data['revenue'].sum()
+
+# Identify the company with the highest market share
+max_market_share_company = data.loc[data['market_share'].idxmax(), 'company']
+
+print(f"The company with the highest market share is: {max_market_share_company}")
+```

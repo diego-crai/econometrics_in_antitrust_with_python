@@ -3489,3 +3489,28 @@ data = data.merge(hhi, on='Company', how='left')
 top_companies = data.groupby('Company')[['HHI']].max().sort_values(by='HHI', ascending=False).head(5)
 
 print(top_companies)
+# Change made on 2024-07-01 06:24:53.003154
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total amount of fines imposed in the dataset
+total_fines = data['Fines'].sum()
+
+# Calculate the average fine amount
+avg_fine = data['Fines'].mean()
+
+# Calculate the maximum fine amount
+max_fine = data['Fines'].max()
+
+# Calculate the minimum fine amount
+min_fine = data['Fines'].min()
+
+# Print the results
+print(f"Total fines imposed: ${total_fines}")
+print(f"Average fine amount: ${avg_fine}")
+print(f"Maximum fine amount: ${max_fine}")
+print(f"Minimum fine amount: ${min_fine}")
+```
