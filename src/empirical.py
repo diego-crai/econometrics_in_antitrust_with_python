@@ -3520,3 +3520,24 @@ if four_firm_conc_ratio > 0.6:
 else:
     print("The market is not highly concentrated.")
 ```
+# Change made on 2024-07-01 06:25:06.643371
+```python
+import pandas as pd
+
+# Read data from csv
+df = pd.read_csv('data.csv')
+
+# Calculate the average price for each product
+average_price = df.groupby('Product')['Price'].mean()
+
+# Create a new column to calculate the difference between each product's price and the average price for that product
+df['Price Difference'] = df['Price'] - df['Product'].map(average_price)
+
+# Identify products with prices significantly higher than the average price for that product
+threshold = 10  # set the threshold for significant price difference
+
+high_price_products = df[df['Price Difference'] > threshold]['Product'].unique()
+
+print("Products with prices significantly higher than average price:")
+print(high_price_products)
+```

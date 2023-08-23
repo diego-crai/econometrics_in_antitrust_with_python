@@ -3531,3 +3531,28 @@ data['normalized_market_share'] = normalized_market_share
 
 # Display the updated data
 print(data)
+# Change made on 2024-07-01 06:25:04.595437
+```python
+import pandas as pd
+
+# Read data from CSV file
+data = pd.read_csv('data.csv')
+
+# Calculate average price per unit
+data['average_price_per_unit'] = data['total_revenue'] / data['total_units']
+
+# Filter out rows where average price per unit is below a certain threshold
+threshold = 50
+filtered_data = data[data['average_price_per_unit'] > threshold]
+
+# Calculate total revenue for the filtered data
+total_revenue_filtered = filtered_data['total_revenue'].sum()
+
+# Calculate total units for the filtered data
+total_units_filtered = filtered_data['total_units'].sum()
+
+# Output the results
+print(f'Total revenue for products with an average price per unit above {threshold}: {total_revenue_filtered}')
+print(f'Total units sold for products with an average price per unit above {threshold}: {total_units_filtered}')
+```
+This script calculates the total revenue and total units sold for products with an average price per unit above a certain threshold in the provided data.
