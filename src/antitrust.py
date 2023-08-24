@@ -3556,3 +3556,23 @@ print(f'Total revenue for products with an average price per unit above {thresho
 print(f'Total units sold for products with an average price per unit above {threshold}: {total_units_filtered}')
 ```
 This script calculates the total revenue and total units sold for products with an average price per unit above a certain threshold in the provided data.
+# Change made on 2024-07-01 06:25:10.708242
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust cases
+total_cases = data['Antitrust Case'].nunique()
+
+# Calculate the average settlement amount for antitrust cases
+average_settlement = data['Settlement Amount'].mean()
+
+# Calculate the average duration of antitrust cases
+data['Duration'] = (pd.to_datetime(data['End Date']) - pd.to_datetime(data['Start Date'])).dt.days
+average_duration = data['Duration'].mean()
+
+# Display the results
+print(f'Total number of antitrust cases: {total_cases}')
+print(f'Average settlement amount for antitrust cases: {average_settlement}')
+print(f'Average duration of antitrust cases (in days): {average_duration}')

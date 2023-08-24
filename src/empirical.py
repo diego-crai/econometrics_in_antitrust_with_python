@@ -3541,3 +3541,17 @@ high_price_products = df[df['Price Difference'] > threshold]['Product'].unique()
 print("Products with prices significantly higher than average price:")
 print(high_price_products)
 ```
+# Change made on 2024-07-01 06:25:14.652752
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv("data.csv")
+
+# Group by company and calculate the average number of antitrust violations for each company
+average_violations = data.groupby('Company')['Antitrust Violations'].mean()
+
+# Find the company with the highest average number of antitrust violations
+company_with_most_violations = average_violations.idxmax()
+
+# Print out the company with the highest average number of antitrust violations
+print(f"The company with the highest average number of antitrust violations is: {company_with_most_violations}")
