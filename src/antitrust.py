@@ -3576,3 +3576,17 @@ average_duration = data['Duration'].mean()
 print(f'Total number of antitrust cases: {total_cases}')
 print(f'Average settlement amount for antitrust cases: {average_settlement}')
 print(f'Average duration of antitrust cases (in days): {average_duration}')
+# Change made on 2024-07-01 06:25:17.422512
+import pandas as pd
+
+# Read the data into a DataFrame
+data = pd.read_csv('data.csv')
+
+# Apply a specific economic analysis for antitrust litigation
+# For example, calculate the Herfindahl-Hirschman Index (HHI) for each company
+data['market_share_squared'] = data['market share'] ** 2
+
+hhi = data.groupby('company')['market_share_squared'].sum()
+
+# Print the HHI for each company
+print(hhi)

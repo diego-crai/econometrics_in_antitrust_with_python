@@ -3555,3 +3555,27 @@ company_with_most_violations = average_violations.idxmax()
 
 # Print out the company with the highest average number of antitrust violations
 print(f"The company with the highest average number of antitrust violations is: {company_with_most_violations}")
+# Change made on 2024-07-01 06:25:20.595198
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Determine the company with the highest market share
+company_highest_market_share = average_market_share.idxmax()
+highest_market_share = average_market_share.max()
+
+# Print the company with the highest market share and the value
+print(f"The company with the highest market share is {company_highest_market_share} with a market share of {highest_market_share}")
+
+# Add a column to the data indicating whether the market share of each company is above average
+data['Above Average Market Share'] = data['Company'].apply(lambda x: average_market_share[x] < highest_market_share)
+
+# Save the updated data to csv file
+data.to_csv('updated_data.csv', index=False)
+```
+This script calculates the average market share of each company, identifies the company with the highest market share, and adds a column to indicate whether each company's market share is above average. The updated data is then saved to a new csv file called updated_data.csv.
