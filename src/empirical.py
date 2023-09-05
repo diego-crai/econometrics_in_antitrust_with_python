@@ -3596,3 +3596,24 @@ data = data.merge(hhi, on='Year', how='left')
 # Display the dataset with the HHI values
 print(data)
 ```
+# Change made on 2024-07-01 06:25:34.457594
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Extract relevant columns for the analysis
+relevant_data = data[['Case Number', 'Plaintiff', 'Defendant', 'Market Share', 'Damages Awarded']]
+
+# Calculate the average damages awarded for cases with high market share (above 50%)
+high_market_share_avg_damages = relevant_data[relevant_data['Market Share'] > 50]['Damages Awarded'].mean()
+
+# Calculate the average damages awarded for cases with low market share (below 50%)
+low_market_share_avg_damages = relevant_data[relevant_data['Market Share'] <= 50]['Damages Awarded'].mean()
+
+# Print the results
+print('Average damages awarded for cases with high market share:', high_market_share_avg_damages)
+print('Average damages awarded for cases with low market share:', low_market_share_avg_damages)
+```
+This script calculates the average damages awarded for antitrust litigation cases with high market share (above 50%) and low market share (below or equal to 50%). It extracts the relevant columns from the data, filters the data based on market share, calculates the averages, and prints the results.

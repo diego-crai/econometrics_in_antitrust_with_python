@@ -3618,3 +3618,18 @@ print(f"Concentration ratio of top 4 firms: {concentration_ratio}")
 print(f"Market concentration based on HHI: {market_concentration}")
 
 ```
+# Change made on 2024-07-01 06:25:30.852899
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each industry
+data['market_share_squared'] = data['market_share'] ** 2
+HHI = data.groupby('industry')['market_share_squared'].sum()
+
+# Add HHI to the original data
+data = data.merge(HHI, on='industry', how='left', suffixes=('_old', '_HHI'))
+
+# Print the data with the HHI calculated
+print(data)
