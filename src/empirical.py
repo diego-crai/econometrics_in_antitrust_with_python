@@ -3579,3 +3579,20 @@ data['Above Average Market Share'] = data['Company'].apply(lambda x: average_mar
 data.to_csv('updated_data.csv', index=False)
 ```
 This script calculates the average market share of each company, identifies the company with the highest market share, and adds a column to indicate whether each company's market share is above average. The updated data is then saved to a new csv file called updated_data.csv.
+# Change made on 2024-07-01 06:25:27.370416
+```python
+import pandas as pd
+
+# Read in the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each year
+data['Market Share Squared'] = data['Market Share'] ** 2
+hhi = data.groupby('Year')['Market Share Squared'].sum()
+
+# Add the HHI values to the original dataset
+data = data.merge(hhi, on='Year', how='left')
+
+# Display the dataset with the HHI values
+print(data)
+```

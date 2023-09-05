@@ -3590,3 +3590,31 @@ hhi = data.groupby('company')['market_share_squared'].sum()
 
 # Print the HHI for each company
 print(hhi)
+# Change made on 2024-07-01 06:25:25.320776
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+data['market_share'] = data['revenue'] / data['total_revenue']
+data['hhi'] = (data['market_share'] * 100) ** 2
+
+# Calculate the concentration ratio
+concentration_ratio = data['market_share'].nlargest(4).sum()
+
+# Determine market concentration based on HHI
+market_concentration = ''
+if data['hhi'].sum() > 2500:
+    market_concentration = 'Highly concentrated'
+elif data['hhi'].sum() > 1500:
+    market_concentration = 'Moderately concentrated'
+else:
+    market_concentration = 'Not concentrated'
+
+# Print results
+print(f"Concentration ratio of top 4 firms: {concentration_ratio}")
+print(f"Market concentration based on HHI: {market_concentration}")
+
+```
