@@ -3617,3 +3617,16 @@ print('Average damages awarded for cases with high market share:', high_market_s
 print('Average damages awarded for cases with low market share:', low_market_share_avg_damages)
 ```
 This script calculates the average damages awarded for antitrust litigation cases with high market share (above 50%) and low market share (below or equal to 50%). It extracts the relevant columns from the data, filters the data based on market share, calculates the averages, and prints the results.
+# Change made on 2024-07-01 06:25:42.021516
+import pandas as pd
+
+# Load data from CSV file
+data = pd.read_csv('data.csv')
+
+# Create a new column to calculate the market share of each company
+data['market_share'] = data['company revenue'] / data['total industry revenue']
+
+# Identify the dominant company with the highest market share
+dominant_company = data[data['market_share'] == data['market_share'].max()]['company'].values[0]
+
+print(f"The dominant company in the market is: {dominant_company}")

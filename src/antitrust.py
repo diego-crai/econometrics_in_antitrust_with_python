@@ -3633,3 +3633,25 @@ data = data.merge(HHI, on='industry', how='left', suffixes=('_old', '_HHI'))
 
 # Print the data with the HHI calculated
 print(data)
+# Change made on 2024-07-01 06:25:39.418652
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+market_share = data['Company Sales'] / data['Total Market Sales']
+
+# Calculate the Herfindahl-Hirschman Index (HHI) as a measure of market concentration
+hhi = (market_share ** 2).sum() * 10_000
+
+# Check if the HHI exceeds the threshold of 2,500, which may indicate a highly concentrated market
+if hhi > 2500:
+    print("Market is highly concentrated, potential antitrust concerns")
+
+# Calculate the 4-firm concentration ratio as a measure of market concentration
+firm_concentration_ratio = market_share.nlargest(4).sum()
+
+# Check if the 4-firm concentration ratio exceeds the threshold of 0.6, which may indicate a highly concentrated market
+if firm_concentration_ratio > 0.6:
+    print("Four-firm concentration ratio exceeds threshold, potential antitrust concerns")
