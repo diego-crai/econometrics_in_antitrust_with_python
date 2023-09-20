@@ -3655,3 +3655,26 @@ firm_concentration_ratio = market_share.nlargest(4).sum()
 # Check if the 4-firm concentration ratio exceeds the threshold of 0.6, which may indicate a highly concentrated market
 if firm_concentration_ratio > 0.6:
     print("Four-firm concentration ratio exceeds threshold, potential antitrust concerns")
+# Change made on 2024-07-01 06:25:45.929467
+```python
+import pandas as pd
+
+# load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['HHI'] = (data['Market Share'] * 100) ** 2
+
+# summarize the total HHI for all markets
+total_HHI = data['HHI'].sum()
+
+# check if any market has HHI greater than 2500, which suggests high concentration
+high_concentration = any(data['HHI'] > 2500)
+
+print(f"Total HHI: {total_HHI}")
+if high_concentration:
+    print("At least one market has high concentration (HHI > 2500)")
+else:
+    print("No market has high concentration")
+
+```

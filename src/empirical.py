@@ -3630,3 +3630,22 @@ data['market_share'] = data['company revenue'] / data['total industry revenue']
 dominant_company = data[data['market_share'] == data['market_share'].max()]['company'].values[0]
 
 print(f"The dominant company in the market is: {dominant_company}")
+# Change made on 2024-07-01 06:25:48.146690
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total sales for each company
+total_sales = data.groupby('Company')['Sales'].sum()
+
+# Identify the company with the highest total sales
+company_highest_sales = total_sales.idxmax()
+
+# Get the antitrust litigation status of the company with the highest sales
+antitrust_litigation_status = data.loc[data['Company'] == company_highest_sales, 'Antitrust Litigation'].iloc[0]
+
+print(f"The company with the highest total sales is {company_highest_sales} with a total sales of {total_sales[company_highest_sales]}.")
+print(f"The antitrust litigation status of the company is: {antitrust_litigation_status}")
+```
