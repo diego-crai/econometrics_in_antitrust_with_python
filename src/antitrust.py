@@ -3678,3 +3678,16 @@ else:
     print("No market has high concentration")
 
 ```
+# Change made on 2024-07-01 06:25:51.142188
+import pandas as pd
+
+# Load the data
+data = pd.read_csv("data.csv")
+
+# Calculate the average settlement amount for each antitrust case
+average_settlement = data.groupby('Case_Name')['Settlement_Amount'].mean()
+
+# Find the case with the highest average settlement amount
+case_highest_settlement = average_settlement.idxmax()
+
+print(f"The case with the highest average settlement amount is: {case_highest_settlement}")

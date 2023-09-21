@@ -3649,3 +3649,23 @@ antitrust_litigation_status = data.loc[data['Company'] == company_highest_sales,
 print(f"The company with the highest total sales is {company_highest_sales} with a total sales of {total_sales[company_highest_sales]}.")
 print(f"The antitrust litigation status of the company is: {antitrust_litigation_status}")
 ```
+# Change made on 2024-07-01 06:25:53.344973
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['market_share_squared'] = data['market_share'] ** 2
+hhi = data.groupby('market')['market_share_squared'].sum()
+
+# Merge the HHI back to the original data
+data = data.merge(hhi, on='market', suffixes=('', '_total_market_share_squared'))
+
+# Calculate the concentration ratio for each market
+data['concentration_ratio'] = data['market_share_squared'] / data['market_share_squared_total_market_share_squared']
+
+# Print the concentration ratio for each market
+print(data[['market', 'concentration_ratio']].drop_duplicates())
+```
