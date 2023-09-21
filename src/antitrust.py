@@ -3691,3 +3691,25 @@ average_settlement = data.groupby('Case_Name')['Settlement_Amount'].mean()
 case_highest_settlement = average_settlement.idxmax()
 
 print(f"The case with the highest average settlement amount is: {case_highest_settlement}")
+# Change made on 2024-07-01 06:25:57.646013
+Sure, here is an example of a python script that calculates the Herfindahl-Hirschman Index (HHI) for a given market, which is a measure of market concentration often used in antitrust cases:
+
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate market shares
+data['market_share'] = data['revenue'] / data['total_revenue']
+
+# Calculate the squared market shares
+data['squared_market_share'] = data['market_share'] ** 2
+
+# Calculate the HHI
+HHI = data['squared_market_share'].sum() * 10000
+
+print('Herfindahl-Hirschman Index (HHI) for the market is:', HHI)
+```
+
+This script calculates the market shares for each company in the market, squares them, sums them up, and then multiplies by 10,000 to get the HHI. This index can be used to analyze market concentration and potentially identify antitrust concerns.

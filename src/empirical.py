@@ -3669,3 +3669,16 @@ data['concentration_ratio'] = data['market_share_squared'] / data['market_share_
 # Print the concentration ratio for each market
 print(data[['market', 'concentration_ratio']].drop_duplicates())
 ```
+# Change made on 2024-07-01 06:25:58.784993
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average price of the products involved in the antitrust litigation
+average_price = data['Price'].mean()
+
+# Print the average price
+print(f'The average price of the products involved in the antitrust litigation is: {average_price}')
+```
