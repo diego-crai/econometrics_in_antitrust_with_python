@@ -3713,3 +3713,22 @@ print('Herfindahl-Hirschman Index (HHI) for the market is:', HHI)
 ```
 
 This script calculates the market shares for each company in the market, squares them, sums them up, and then multiplies by 10,000 to get the HHI. This index can be used to analyze market concentration and potentially identify antitrust concerns.
+# Change made on 2024-07-01 06:26:01.977939
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue of each company
+total_revenue = data.groupby('company')['revenue'].sum()
+
+# Calculate the market share of each company
+market_share = total_revenue / data['revenue'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+hhi = (market_share**2).sum() * 10000
+
+# Display the HHI value
+print('Herfindahl-Hirschman Index (HHI):', hhi)
+```

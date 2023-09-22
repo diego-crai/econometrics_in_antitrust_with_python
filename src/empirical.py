@@ -3682,3 +3682,24 @@ average_price = data['Price'].mean()
 # Print the average price
 print(f'The average price of the products involved in the antitrust litigation is: {average_price}')
 ```
+# Change made on 2024-07-01 06:26:04.246449
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust litigation cases
+antitrust_cases = data[data['case_type'] == 'antirust']
+
+# Calculate the average damages awarded in antitrust cases
+average_damages = antitrust_cases['damages_awarded'].mean()
+
+# Calculate the total number of cases included in the analysis
+total_cases = len(antitrust_cases)
+
+# Display the results
+print(f'Analysis of antitrust litigation cases:')
+print(f'Average damages awarded: ${average_damages:.2f}')
+print(f'Total number of cases: {total_cases}')
+```
