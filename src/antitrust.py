@@ -3732,3 +3732,23 @@ hhi = (market_share**2).sum() * 10000
 # Display the HHI value
 print('Herfindahl-Hirschman Index (HHI):', hhi)
 ```
+# Change made on 2024-07-01 06:26:08.302030
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each firm in the data
+data['total_sales'] = data.groupby('firm')['sales'].transform('sum')
+data['market_share'] = data['sales'] / data['total_sales']
+
+# Calculate the Herfindahl-Hirschman Index (HHI) as a measure of market concentration
+data['hhi'] = (data['market_share'] * 100) ** 2
+hhi = data.groupby('year')['hhi'].sum()
+
+# Print the HHI values for each year
+print(hhi)
+```
+
+In this script, we have added a feature that calculates the Herfindahl-Hirschman Index (HHI) as a measure of market concentration in the antitrust litigation economic analysis. The HHI values for each year are calculated based on the market share of each firm in the dataset.

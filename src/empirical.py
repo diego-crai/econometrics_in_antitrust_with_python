@@ -3703,3 +3703,18 @@ print(f'Analysis of antitrust litigation cases:')
 print(f'Average damages awarded: ${average_damages:.2f}')
 print(f'Total number of cases: {total_cases}')
 ```
+# Change made on 2024-07-01 06:26:10.597539
+import pandas as pd
+
+# Read in the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each industry
+data['HHI'] = (data['market_share'] ** 2).sum()
+
+# Identify industries with an HHI above a certain threshold
+threshold = 0.25
+concentrated_industries = data[data['HHI'] > threshold]
+
+# Print out the list of concentrated industries
+print(concentrated_industries[['industry', 'HHI']])
