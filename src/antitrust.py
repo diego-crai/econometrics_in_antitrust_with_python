@@ -3752,3 +3752,26 @@ print(hhi)
 ```
 
 In this script, we have added a feature that calculates the Herfindahl-Hirschman Index (HHI) as a measure of market concentration in the antitrust litigation economic analysis. The HHI values for each year are calculated based on the market share of each firm in the dataset.
+# Change made on 2024-07-01 06:26:14.712294
+import pandas as pd
+
+# Read the data from csv file
+data = pd.read_csv('data.csv')
+
+# Calculate the total amount of fines imposed on companies for antitrust violations
+total_fines = data['Fine'].sum()
+
+# Calculate the mean fine amount per company
+mean_fine = data['Fine'].mean()
+
+# Calculate the maximum fine amount imposed on a single company
+max_fine = data['Fine'].max()
+
+# Calculate the number of companies that were fined
+num_companies_fined = data['Company'].nunique()
+
+# Print the results
+print(f"Total amount of fines imposed: ${total_fines}")
+print(f"Mean fine amount per company: ${mean_fine}")
+print(f"Maximum fine amount imposed on a single company: ${max_fine}")
+print(f"Number of companies fined: {num_companies_fined}")

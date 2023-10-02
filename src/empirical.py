@@ -3718,3 +3718,17 @@ concentrated_industries = data[data['HHI'] > threshold]
 
 # Print out the list of concentrated industries
 print(concentrated_industries[['industry', 'HHI']])
+# Change made on 2024-07-01 06:26:16.924009
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust litigation cases
+antitrust_data = data[data['case_type'] == 'antitrust']
+
+# Add a new column calculating the total damages in million dollars
+antitrust_data['total_damages_million'] = antitrust_data['total_damages'] / 1000000
+
+# Display the total damages in million dollars for antitrust litigation cases
+print(antitrust_data[['case_name', 'total_damages_million']])
