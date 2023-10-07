@@ -3732,3 +3732,14 @@ antitrust_data['total_damages_million'] = antitrust_data['total_damages'] / 1000
 
 # Display the total damages in million dollars for antitrust litigation cases
 print(antitrust_data[['case_name', 'total_damages_million']])
+# Change made on 2024-07-01 06:26:22.088190
+```python
+import pandas as pd
+
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of the top 3 firms in each industry
+top_firms = data.groupby('Industry')['Market Share'].nlargest(3).groupby('Industry').mean()
+
+print(top_firms)
+```

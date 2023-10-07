@@ -3775,3 +3775,25 @@ print(f"Total amount of fines imposed: ${total_fines}")
 print(f"Mean fine amount per company: ${mean_fine}")
 print(f"Maximum fine amount imposed on a single company: ${max_fine}")
 print(f"Number of companies fined: {num_companies_fined}")
+# Change made on 2024-07-01 06:26:21.071320
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['market_share'] = data['company_sales'] / data['total_market_sales']
+
+# Calculate the Herfindahl-Hirschman Index (HHI) to measure market concentration
+data['HHI'] = (data['market_share'] * 100)**2
+
+# Identify the company with the highest market share
+max_market_share_company = data.loc[data['market_share'].idxmax()]['company_name']
+
+# Display the results
+print("Company with the highest market share: ", max_market_share_company)
+print("HHI for each company:")
+print(data[['company_name', 'HHI']])
+```
+This code calculates the market share of each company, computes the Herfindahl-Hirschman Index (HHI) to measure market concentration, identifies the company with the highest market share, and displays the HHI for each company in the data.
