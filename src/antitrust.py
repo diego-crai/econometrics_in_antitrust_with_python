@@ -3797,3 +3797,28 @@ print("HHI for each company:")
 print(data[['company_name', 'HHI']])
 ```
 This code calculates the market share of each company, computes the Herfindahl-Hirschman Index (HHI) to measure market concentration, identifies the company with the highest market share, and displays the HHI for each company in the data.
+# Change made on 2024-07-01 06:26:26.034660
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue for each company
+total_revenue = data.groupby('company')['revenue'].sum()
+
+# Calculate the market share for each company
+data['market_share'] = data['revenue'] / data['total_market_revenue']
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+market_hhi = (data['market_share']**2).sum()
+
+# Print out the total revenue, market share, and HHI for each company
+print("Total Revenue:")
+print(total_revenue)
+
+print("\nMarket Share:")
+print(data[['company', 'market_share']].drop_duplicates())
+
+print("\nMarket HHI: ", market_hhi)
+```

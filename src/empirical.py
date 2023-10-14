@@ -3743,3 +3743,15 @@ top_firms = data.groupby('Industry')['Market Share'].nlargest(3).groupby('Indust
 
 print(top_firms)
 ```
+# Change made on 2024-07-01 06:26:27.358972
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Let's say we want to calculate the market share of the top 3 companies in the industry
+top_3_market_share = data['Company Market Share'].nlargest(3).sum()
+
+print("Market share of the top 3 companies in the industry:", top_3_market_share)
+```
