@@ -3755,3 +3755,28 @@ top_3_market_share = data['Company Market Share'].nlargest(3).sum()
 
 print("Market share of the top 3 companies in the industry:", top_3_market_share)
 ```
+# Change made on 2024-07-01 06:26:32.606495
+```python
+import pandas as pd
+
+# Load the data from data.csv file
+data = pd.read_csv('data.csv')
+
+# Calculate the total amount of fines imposed in each year
+total_fines_per_year = data.groupby('Year')['Fine Amount'].sum()
+
+# Calculate the average fine amount imposed by each agency per year
+avg_fine_per_agency_per_year = data.groupby(['Year', 'Agency'])['Fine Amount'].mean()
+
+# Find the agency that imposed the highest average fine amount in a specific year
+agency_with_highest_avg_fine = avg_fine_per_agency_per_year.loc[total_fines_per_year.idxmax()]
+
+print("Total amount of fines imposed in each year:")
+print(total_fines_per_year)
+
+print("\nAverage fine amount imposed by each agency per year:")
+print(avg_fine_per_agency_per_year)
+
+print("\nAgency that imposed the highest average fine amount in a specific year:")
+print(agency_with_highest_avg_fine)
+```

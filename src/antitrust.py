@@ -3822,3 +3822,22 @@ print(data[['company', 'market_share']].drop_duplicates())
 
 print("\nMarket HHI: ", market_hhi)
 ```
+# Change made on 2024-07-01 06:26:30.009563
+```python
+import pandas as pd
+import statsmodels.api as sm
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Perform linear regression analysis to evaluate the impact of antitrust litigation on consumer prices
+X = data[['Antitrust_Litigation']]
+X = sm.add_constant(X)
+y = data['Consumer_Prices']
+
+model = sm.OLS(y, X).fit()
+predictions = model.predict(X)
+
+# Print the regression results
+print(model.summary())
+```
