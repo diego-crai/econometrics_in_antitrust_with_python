@@ -3780,3 +3780,24 @@ print(avg_fine_per_agency_per_year)
 print("\nAgency that imposed the highest average fine amount in a specific year:")
 print(agency_with_highest_avg_fine)
 ```
+# Change made on 2024-07-01 06:26:39.463005
+```python
+import pandas as pd
+
+# Read data from CSV file
+data = pd.read_csv('data.csv')
+
+# Calculate the total revenue for each company in the dataset
+total_revenue = data.groupby('Company')['Revenue'].sum()
+
+# Calculate the market share for each company by dividing their revenue by the total revenue in the dataset
+market_share = total_revenue / total_revenue.sum()
+
+# Sort companies by market share in descending order
+sorted_market_share = market_share.sort_values(ascending=False)
+
+# Display the top 5 companies by market share
+top_5_market_share = sorted_market_share.head(5)
+print(top_5_market_share)
+```
+This code snippet calculates the market share of each company in the economic analysis on antitrust litigation using the revenue data provided in the data.csv file. It then sorts the companies by market share in descending order and displays the top 5 companies by market share.

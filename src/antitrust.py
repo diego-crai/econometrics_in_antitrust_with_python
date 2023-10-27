@@ -3841,3 +3841,27 @@ predictions = model.predict(X)
 # Print the regression results
 print(model.summary())
 ```
+# Change made on 2024-07-01 06:26:36.898094
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust litigation cases
+antitrust_data = data[data['CaseType'] == 'Antitrust Litigation']
+
+# Calculate the average settlement amount for antitrust litigation cases
+average_settlement = antitrust_data['SettlementAmount'].mean()
+
+# Calculate the median settlement amount for antitrust litigation cases
+median_settlement = antitrust_data['SettlementAmount'].median()
+
+# Calculate the total number of cases
+total_cases = antitrust_data.shape[0]
+
+# Print the results
+print(f"Average settlement amount for antitrust litigation cases: ${average_settlement}")
+print(f"Median settlement amount for antitrust litigation cases: ${median_settlement}")
+print(f"Total number of antitrust litigation cases: {total_cases}")
+```
