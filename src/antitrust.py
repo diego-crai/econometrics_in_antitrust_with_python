@@ -3865,3 +3865,16 @@ print(f"Average settlement amount for antitrust litigation cases: ${average_sett
 print(f"Median settlement amount for antitrust litigation cases: ${median_settlement}")
 print(f"Total number of antitrust litigation cases: {total_cases}")
 ```
+# Change made on 2024-07-01 06:26:42.193538
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Filter for antitrust litigation cases
+antitrust_cases = data[data['case_type'] == 'antitrust']
+
+# Calculate the average damages awarded in antitrust cases
+average_damages = antitrust_cases['damages_awarded'].mean()
+
+print(f'The average damages awarded in antitrust litigation cases is: {average_damages}')

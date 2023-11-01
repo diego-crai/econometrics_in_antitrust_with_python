@@ -3801,3 +3801,34 @@ top_5_market_share = sorted_market_share.head(5)
 print(top_5_market_share)
 ```
 This code snippet calculates the market share of each company in the economic analysis on antitrust litigation using the revenue data provided in the data.csv file. It then sorts the companies by market share in descending order and displays the top 5 companies by market share.
+# Change made on 2024-07-01 06:26:45.317085
+'''
+The specific feature we will be adding to the economic analysis on antitrust litigation is calculating the Herfindahl-Hirschman Index (HHI) for each industry represented in the dataset.
+
+The formula for calculating the HHI is:
+HHI = (Market Share of Firm 1)^2 + (Market Share of Firm 2)^2 + ... + (Market Share of Firm n)^2
+
+Where the Market Share of each firm is calculated by dividing their sales by the total sales in the industry.
+
+Let's start by reading the data from the data.csv file and calculating the HHI for each industry:
+'''
+
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Group the data by industry
+grouped_data = data.groupby('Industry')
+
+# Calculate the HHI for each industry
+for group_name, group_data in grouped_data:
+    total_sales = group_data['Sales'].sum()
+    group_data['Market Share'] = group_data['Sales'] / total_sales
+    group_data['HHI'] = (group_data['Market Share'] ** 2).sum()
+
+    print(f'HHI for {group_name}: {group_data["HHI"].iloc[0]}')
+
+'''
+This script will read the data from data.csv, calculate the market share of each firm in each industry, and then calculate the HHI for each industry. The HHI values will be printed out for each industry.
+'''
