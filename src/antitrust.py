@@ -3878,3 +3878,29 @@ antitrust_cases = data[data['case_type'] == 'antitrust']
 average_damages = antitrust_cases['damages_awarded'].mean()
 
 print(f'The average damages awarded in antitrust litigation cases is: {average_damages}')
+# Change made on 2024-07-01 06:26:50.063350
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Extract the columns needed for the analysis
+relevant_data = data[['Company', 'Market Share', 'Revenue', 'Antitrust Violation']]
+
+# Calculate the total market revenue
+total_market_revenue = relevant_data['Revenue'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+relevant_data['Market Share Squared'] = (relevant_data['Market Share'] ** 2) * 10000
+hhi = relevant_data['Market Share Squared'].sum()
+
+# Check if there was an antitrust violation
+if relevant_data['Antitrust Violation'].any():
+    print("There was an antitrust violation in the market.")
+
+# Output the total market revenue and HHI
+print("Total Market Revenue:", total_market_revenue)
+print("HHI:", hhi)
+```
+This code snippet extracts the necessary data from a CSV file and calculates the Total Market Revenue, as well as the Herfindahl-Hirschman Index (HHI) for the given market. It also checks if there was any Antitrust Violation in the market and prints the results accordingly.

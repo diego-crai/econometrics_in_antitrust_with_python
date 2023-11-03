@@ -3832,3 +3832,23 @@ for group_name, group_data in grouped_data:
 '''
 This script will read the data from data.csv, calculate the market share of each firm in each industry, and then calculate the HHI for each industry. The HHI values will be printed out for each industry.
 '''
+# Change made on 2024-07-01 06:26:53.099369
+```python
+
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the HHI (Herfindahl-Hirschman Index) for each market
+data['HHI'] = (data['Market Share'] * 100) ** 2
+
+# Calculate the average HHI for all markets
+average_HHI = data['HHI'].mean()
+
+# Print the average HHI
+print('Average HHI for all markets: ', average_HHI)
+
+```
+
+This Python script calculates the Herfindahl-Hirschman Index (HHI) for each market in the dataset and then calculates the average HHI for all markets. The HHI is a measure of market concentration that is often used in antitrust litigation to determine the level of competition in a market.
