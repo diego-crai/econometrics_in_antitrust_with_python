@@ -3904,3 +3904,17 @@ print("Total Market Revenue:", total_market_revenue)
 print("HHI:", hhi)
 ```
 This code snippet extracts the necessary data from a CSV file and calculates the Total Market Revenue, as well as the Herfindahl-Hirschman Index (HHI) for the given market. It also checks if there was any Antitrust Violation in the market and prints the results accordingly.
+# Change made on 2024-07-01 06:26:56.543270
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate Herfindahl-Hirschman Index (HHI) for market concentration
+data['Market_Share_Squared'] = data['Market Share'] ** 2
+hhi = data.groupby('Industry')['Market_Share_Squared'].sum()
+
+# Identify industries with HHI above 2500 (threshold for highly concentrated markets)
+highly_concentrated = hhi[hhi > 2500]
+
+print(highly_concentrated)

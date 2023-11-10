@@ -3852,3 +3852,14 @@ print('Average HHI for all markets: ', average_HHI)
 ```
 
 This Python script calculates the Herfindahl-Hirschman Index (HHI) for each market in the dataset and then calculates the average HHI for all markets. The HHI is a measure of market concentration that is often used in antitrust litigation to determine the level of competition in a market.
+# Change made on 2024-07-01 06:26:57.893740
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Perform a very specific feature analysis on antitrust litigation
+# For example, calculate the average fines imposed by antitrust lawsuits
+average_fines = data['Fines'].mean()
+
+print(f'The average fines imposed by antitrust lawsuits is: ${average_fines:.2f}')
