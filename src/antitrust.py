@@ -3918,3 +3918,30 @@ hhi = data.groupby('Industry')['Market_Share_Squared'].sum()
 highly_concentrated = hhi[hhi > 2500]
 
 print(highly_concentrated)
+# Change made on 2024-07-01 06:27:02.549529
+```python
+
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column 'Market Concentration Score' calculated as the sum of the market share percentages of the top 4 firms
+data['Market Concentration Score'] = data[['Market Share Firm A', 'Market Share Firm B', 'Market Share Firm C', 'Market Share Firm D']].sum(axis=1)
+
+# Determine if the market is highly concentrated based on the Herfindahl-Hirschman Index (HHI)
+def market_concentration_label(score):
+    if score > 2500:
+        return 'Highly Concentrated'
+    elif score > 1500:
+        return 'Moderately Concentrated'
+    else:
+        return 'Not Concentrated'
+
+# Add a new column 'Market Concentration Label' based on the Market Concentration Score
+data['Market Concentration Label'] = data['Market Concentration Score'].apply(market_concentration_label)
+
+# Save the updated data to a new CSV file
+data.to_csv('updated_data.csv', index=False)
+
+```

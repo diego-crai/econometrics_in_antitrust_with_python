@@ -3863,3 +3863,23 @@ data = pd.read_csv('data.csv')
 average_fines = data['Fines'].mean()
 
 print(f'The average fines imposed by antitrust lawsuits is: ${average_fines:.2f}')
+# Change made on 2024-07-01 06:27:04.827390
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each year
+data['HHI'] = data.groupby('Year')['Market Share'].transform(lambda x: sum(x ** 2) * 10000)
+
+# Calculate the change in HHI from the previous year
+data['HHI Change'] = data['HHI'] - data['HHI'].shift(1)
+
+# Identify the years where the HHI decreased by more than 50 points
+antitrust_years = data[data['HHI Change'] < -50]['Year'].unique()
+
+print("Years with significant decrease in HHI:")
+for year in antitrust_years:
+    print(year)
+```
