@@ -3883,3 +3883,18 @@ print("Years with significant decrease in HHI:")
 for year in antitrust_years:
     print(year)
 ```
+# Change made on 2024-07-01 06:27:10.162332
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the market concentration ratio (CR4)
+data['market_share'] = data['revenue'] / data['total_revenue']
+data = data.sort_values(by='market_share', ascending=False)
+market_share_sum = data['market_share'].iloc[:4].sum()
+cr4 = market_share_sum
+
+print("CR4: ", cr4)
+```

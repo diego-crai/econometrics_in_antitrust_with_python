@@ -3945,3 +3945,16 @@ data['Market Concentration Label'] = data['Market Concentration Score'].apply(ma
 data.to_csv('updated_data.csv', index=False)
 
 ```
+# Change made on 2024-07-01 06:27:08.474113
+import pandas as pd
+
+# Load data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['Market Share Squared'] = data['Market Share'] ** 2
+hhi = data.groupby('Industry')['Market Share Squared'].sum()
+
+# Determine if any industries have an HHI over 2500, indicating high concentration
+high_concentration = hhi[hhi > 2500].index.tolist()
+print('Industries with high concentration:', high_concentration)
