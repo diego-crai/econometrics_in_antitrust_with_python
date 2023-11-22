@@ -3898,3 +3898,21 @@ cr4 = market_share_sum
 
 print("CR4: ", cr4)
 ```
+# Change made on 2024-07-01 06:27:17.567170
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Extract the relevant columns for the analysis
+relevant_data = data[['company_name', 'antitrust_penalties_paid', 'market_share']]
+
+# Calculate the average antitrust penalties paid per unit of market share for each company
+relevant_data['avg_penalties_per_market_share'] = relevant_data['antitrust_penalties_paid'] / relevant_data['market_share']
+
+# Sort the companies based on the average penalties paid per unit of market share in descending order
+relevant_data = relevant_data.sort_values(by='avg_penalties_per_market_share', ascending=False)
+
+# Display the top 10 companies with highest average penalties paid per unit of market share
+top_10_companies = relevant_data.head(10)
+print(top_10_companies)
