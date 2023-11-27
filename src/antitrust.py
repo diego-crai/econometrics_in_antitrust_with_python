@@ -3977,3 +3977,20 @@ data['high_concentration'] = data['hhi'] > threshold
 
 # Display the results
 print(data[['market', 'company', 'market_share', 'hhi', 'high_concentration']])
+# Change made on 2024-07-01 06:27:20.421266
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each industry in the dataset
+data['Market Size Squared'] = data['Market Size'] ** 2
+industry_hhi = data.groupby('Industry')['Market Size Squared'].sum()
+
+# Identify industries with high concentration based on HHI score
+high_concentration_industries = industry_hhi[industry_hhi > 2500].index
+
+# Print out the list of industries with high concentration
+print('Industries with high market concentration:')
+for industry in high_concentration_industries:
+    print(industry)

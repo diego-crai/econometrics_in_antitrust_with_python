@@ -3916,3 +3916,27 @@ relevant_data = relevant_data.sort_values(by='avg_penalties_per_market_share', a
 # Display the top 10 companies with highest average penalties paid per unit of market share
 top_10_companies = relevant_data.head(10)
 print(top_10_companies)
+# Change made on 2024-07-01 06:27:23.486374
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['Market Share Squared'] = data['Market Share'].apply(lambda x: x**2)
+hhi = data.groupby('Market')['Market Share Squared'].sum()
+
+# Merge the HHI back to the original data
+data = pd.merge(data, hhi, on='Market', suffixes=('', '_total'))
+data['HHI'] = data['Market Share Squared'] / data['Market Share Squared_total']
+
+# Define a threshold for high concentration markets
+threshold = 0.25
+
+# Label markets as highly concentrated
+data['High Concentration'] = data['HHI'].apply(lambda x: 'Yes' if x >= threshold else 'No')
+
+# Save the updated data
+data.to_csv('updated_data.csv', index=False)
+```
