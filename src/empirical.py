@@ -3940,3 +3940,29 @@ data['High Concentration'] = data['HHI'].apply(lambda x: 'Yes' if x >= threshold
 # Save the updated data
 data.to_csv('updated_data.csv', index=False)
 ```
+# Change made on 2024-07-01 06:27:30.609410
+```python
+import pandas as pd
+from scipy.stats import ttest_ind
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust litigation cases only
+antitrust_data = data[data['case_type'] == 'antitrust']
+
+# Perform a t-test to compare the mean settlement amounts between antitrust cases and non-antitrust cases
+antitrust_settlements = antitrust_data['settlement_amount']
+non_antitrust_settlements = data[data['case_type'] != 'antitrust']['settlement_amount']
+
+t_stat, p_value = ttest_ind(antitrust_settlements, non_antitrust_settlements)
+
+# Print the results
+print("T-statistic:", t_stat)
+print("P-value:", p_value)
+
+if p_value < 0.05:
+    print("There is a significant difference in settlement amounts between antitrust cases and non-antitrust cases.")
+else:
+    print("There is no significant difference in settlement amounts between antitrust cases and non-antitrust cases.")
+```

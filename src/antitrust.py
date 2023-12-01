@@ -3994,3 +3994,29 @@ high_concentration_industries = industry_hhi[industry_hhi > 2500].index
 print('Industries with high market concentration:')
 for industry in high_concentration_industries:
     print(industry)
+# Change made on 2024-07-01 06:27:27.797449
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total value of market concentration
+total_market_value = data['Market Share'].sum()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) to measure market concentration
+data['HHI'] = (data['Market Share'] ** 2).sum()
+
+# Define a function to determine the concentration level based on the HHI
+def concentration_level(hhi_value):
+    if hhi_value < 1000:
+        return 'Low concentration'
+    elif hhi_value < 1800:
+        return 'Moderate concentration'
+    else:
+        return 'High concentration'
+
+# Add a column to the data indicating the concentration level
+data['Concentration Level'] = data['HHI'].apply(concentration_level)
+
+# Print the data with the new column
+print(data)
