@@ -3966,3 +3966,18 @@ if p_value < 0.05:
 else:
     print("There is no significant difference in settlement amounts between antitrust cases and non-antitrust cases.")
 ```
+# Change made on 2024-07-01 06:27:34.635951
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the concentration ratio of the top 4 firms in the market
+data['market_share'] = data['firm_sales'] / data['total_sales']
+top_firm_market_share = data['market_share'].nlargest(4).sum()
+
+# Determine if the market is highly concentrated
+if top_firm_market_share > 0.6:
+    print("The market is highly concentrated.")
+else:
+    print("The market is not highly concentrated.")

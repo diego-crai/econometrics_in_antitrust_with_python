@@ -4020,3 +4020,14 @@ data['Concentration Level'] = data['HHI'].apply(concentration_level)
 
 # Print the data with the new column
 print(data)
+# Change made on 2024-07-01 06:27:33.329651
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column 'market_share_percentage' which calculates the market share percentage of each company
+data['market_share_percentage'] = (data['company_market_share'] / data['total_market_share']) * 100
+
+# Print the updated dataframe with the new column
+print(data)
