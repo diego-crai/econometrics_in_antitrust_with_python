@@ -3981,3 +3981,24 @@ if top_firm_market_share > 0.6:
     print("The market is highly concentrated.")
 else:
     print("The market is not highly concentrated.")
+# Change made on 2024-07-01 06:27:40.915432
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['market_share_squared'] = data['market_share'] ** 2
+total_market_share_squared = data['market_share_squared'].sum()
+data['HHI'] = total_market_share_squared * 10000
+
+# Determine the market concentration level
+if data['HHI'].values[0] < 1000:
+    concentration_level = 'Low'
+elif data['HHI'].values[0] < 1800:
+    concentration_level = 'Moderate'
+else:
+    concentration_level = 'High'
+
+print(f"The Herfindahl-Hirschman Index (HHI) is: {data['HHI'].values[0]}")
+print(f"The market concentration level is: {concentration_level}")

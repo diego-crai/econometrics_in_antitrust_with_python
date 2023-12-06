@@ -4031,3 +4031,21 @@ data['market_share_percentage'] = (data['company_market_share'] / data['total_ma
 
 # Print the updated dataframe with the new column
 print(data)
+# Change made on 2024-07-01 06:27:38.278573
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share for each company
+data['total_sales'] = data.groupby('company')['sales'].transform('sum')
+data['market_share'] = data['sales'] / data['total_sales']
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each market
+data['hhi'] = (data['market_share'] ** 2).groupby(data['market']).transform('sum')
+
+# Check if any market has a HHI above the threshold of 2500
+concentrated_markets = data[data['hhi'] > 2500]['market'].unique()
+
+# Print out the list of concentrated markets
+print('Concentrated markets:', concentrated_markets)
