@@ -4002,3 +4002,20 @@ else:
 
 print(f"The Herfindahl-Hirschman Index (HHI) is: {data['HHI'].values[0]}")
 print(f"The market concentration level is: {concentration_level}")
+# Change made on 2024-07-01 06:27:47.771095
+```python
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Identify companies with market share greater than 20%
+big_companies = average_market_share[average_market_share > 20]
+
+# Print out the list of big companies
+print("Big companies with market share greater than 20%:")
+print(big_companies)
+```
