@@ -4019,3 +4019,23 @@ big_companies = average_market_share[average_market_share > 20]
 print("Big companies with market share greater than 20%:")
 print(big_companies)
 ```
+# Change made on 2024-07-01 06:27:54.227396
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average price for each product
+avg_price = data.groupby('product')['price'].mean()
+
+# Calculate the market share of each company
+data['market_share'] = data['sales'] / data.groupby('company')['sales'].transform('sum')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each product market
+data['HHI'] = (data['market_share'] * 100) ** 2
+HHI = data.groupby('product')['HHI'].sum()
+
+# Display the results
+print(avg_price)
+print(data[['product', 'company', 'market_share']])
+print(HHI)

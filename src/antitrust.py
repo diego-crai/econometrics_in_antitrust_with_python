@@ -4070,3 +4070,24 @@ highly_concentrated_markets = data[(data['hhi'] > 2500) & (data['concentration_r
 print("Highly concentrated markets:")
 print(highly_concentrated_markets)
 ```
+# Change made on 2024-07-01 06:27:51.821733
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) to measure market concentration
+data['HHI'] = (data['Market Share'] * 100) ** 2
+HHI = data.groupby('Year')['HHI'].sum()
+
+# Identify companies with a market share above a certain threshold
+threshold = 20
+high_market_share_companies = data[data['Market Share'] > threshold]['Company'].unique()
+
+# Print the results
+print("Average Market Share:\n", average_market_share)
+print("\nHHI:\n", HHI)
+print("\nCompanies with a Market Share above", threshold, ":\n", high_market_share_companies)
