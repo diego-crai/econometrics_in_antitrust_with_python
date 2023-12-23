@@ -4039,3 +4039,22 @@ HHI = data.groupby('product')['HHI'].sum()
 print(avg_price)
 print(data[['product', 'company', 'market_share']])
 print(HHI)
+# Change made on 2024-07-01 06:28:01.002861
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of the top 5 firms in the industry
+top_firms = data.nlargest(5, 'market_share')
+average_market_share_top_firms = top_firms['market_share'].mean()
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+HHI = sum(data['market_share']**2)
+
+# Output the results
+print("Average market share of the top 5 firms:", average_market_share_top_firms)
+print("Herfindahl-Hirschman Index:", HHI)
+```
+This script calculates the average market share of the top 5 firms in the industry and the Herfindahl-Hirschman Index (HHI) based on the data provided in data.csv.

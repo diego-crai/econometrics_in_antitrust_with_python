@@ -4091,3 +4091,22 @@ high_market_share_companies = data[data['Market Share'] > threshold]['Company'].
 print("Average Market Share:\n", average_market_share)
 print("\nHHI:\n", HHI)
 print("\nCompanies with a Market Share above", threshold, ":\n", high_market_share_companies)
+# Change made on 2024-07-01 06:27:58.307630
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total sales for each company
+total_sales = data.groupby('company')['sales'].sum()
+
+# Calculate the market share percentage for each company
+total_sales['market_share_percentage'] = total_sales / total_sales.sum() * 100
+
+# Identifying the company with the highest market share
+highest_market_share = total_sales.idxmax()
+
+print(f"The company with the highest market share is {highest_market_share} with a market share of {total_sales['market_share_percentage'][highest_market_share]:.2f}%")
+```
+This script calculates the total sales for each company in the dataset, then calculates the market share percentage for each company. Finally, it identifies the company with the highest market share and prints out the result.
