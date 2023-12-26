@@ -4058,3 +4058,20 @@ print("Average market share of the top 5 firms:", average_market_share_top_firms
 print("Herfindahl-Hirschman Index:", HHI)
 ```
 This script calculates the average market share of the top 5 firms in the industry and the Herfindahl-Hirschman Index (HHI) based on the data provided in data.csv.
+# Change made on 2024-07-01 06:28:05.911251
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average price of the products involved in the antitrust litigation
+average_price = data['price'].mean()
+
+# Calculate the median price of the products involved in the antitrust litigation
+median_price = data['price'].median()
+
+# Display the results
+print(f"The average price of the products involved in the antitrust litigation is: {average_price}")
+print(f"The median price of the products involved in the antitrust litigation is: {median_price}")
+```

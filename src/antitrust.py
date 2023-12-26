@@ -4110,3 +4110,20 @@ highest_market_share = total_sales.idxmax()
 print(f"The company with the highest market share is {highest_market_share} with a market share of {total_sales['market_share_percentage'][highest_market_share]:.2f}%")
 ```
 This script calculates the total sales for each company in the dataset, then calculates the market share percentage for each company. Finally, it identifies the company with the highest market share and prints out the result.
+# Change made on 2024-07-01 06:28:04.204142
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the concentration ratio for a specific industry (e.g., banking)
+industry = 'banking'
+industry_data = data[data['industry'] == industry]
+market_share = industry_data['market_share']
+total_market_share = market_share.sum()
+concentration_ratio = total_market_share
+
+# Output the concentration ratio
+print(f"The concentration ratio for the {industry} industry is: {concentration_ratio}")
+```
