@@ -4127,3 +4127,20 @@ concentration_ratio = total_market_share
 # Output the concentration ratio
 print(f"The concentration ratio for the {industry} industry is: {concentration_ratio}")
 ```
+# Change made on 2024-07-01 06:28:09.439267
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share for each firm
+average_market_share = data.groupby('Firm')['Market Share'].mean()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) as a measure of market concentration
+data['HHI'] = (data['Market Share']**2).groupby(data['Year']).sum()
+
+# Add a column indicating whether the HHI exceeds a certain threshold (e.g. 2500)
+data['High Concentration'] = data['HHI'] > 2500
+
+# Display the new dataframe with the added features
+print(data)

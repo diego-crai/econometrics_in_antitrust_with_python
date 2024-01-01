@@ -4075,3 +4075,20 @@ median_price = data['price'].median()
 print(f"The average price of the products involved in the antitrust litigation is: {average_price}")
 print(f"The median price of the products involved in the antitrust litigation is: {median_price}")
 ```
+# Change made on 2024-07-01 06:28:12.188607
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Extract only the relevant columns for analysis
+relevant_data = data[['company', 'market_share', 'market_concentration', 'antitrust_lawsuit']]
+
+# Calculate the average market share for companies involved in antitrust lawsuits
+avg_market_share_antitrust = relevant_data[relevant_data['antitrust_lawsuit'] == 1]['market_share'].mean()
+
+# Calculate the average market concentration for companies involved in antitrust lawsuits
+avg_market_concentration_antitrust = relevant_data[relevant_data['antitrust_lawsuit'] == 1]['market_concentration'].mean()
+
+print("Average market share for companies involved in antitrust lawsuits: ", avg_market_share_antitrust)
+print("Average market concentration for companies involved in antitrust lawsuits: ", avg_market_concentration_antitrust)
