@@ -4144,3 +4144,18 @@ data['High Concentration'] = data['HHI'] > 2500
 
 # Display the new dataframe with the added features
 print(data)
+# Change made on 2024-07-01 06:28:15.854815
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each firm in the dataset
+average_market_share = data.groupby('Firm')['Market Share'].mean()
+
+# Print out the firms with a market share above the average market share
+above_average_market_share = average_market_share[average_market_share > average_market_share.mean()]
+print("Firms with market share above average:")
+print(above_average_market_share)
+```
