@@ -4111,3 +4111,20 @@ max_fine = data['Fine Amount'].max()
 print("Total amount of fines imposed: ${:,.2f}".format(total_fines))
 print("Average fine amount imposed: ${:,.2f}".format(avg_fine))
 print("Maximum fine amount imposed: ${:,.2f}".format(max_fine))
+# Change made on 2024-07-01 06:28:22.713598
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each year
+data['HHI'] = (data['Market Share'] ** 2).sum()
+
+# Determine if the market is highly concentrated based on the HHI threshold
+threshold = 2500
+data['Highly Concentrated'] = data['HHI'] > threshold
+
+# Display the results
+print(data)
+```

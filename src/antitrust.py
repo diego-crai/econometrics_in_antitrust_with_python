@@ -4159,3 +4159,16 @@ above_average_market_share = average_market_share[average_market_share > average
 print("Firms with market share above average:")
 print(above_average_market_share)
 ```
+# Change made on 2024-07-01 06:28:20.745411
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter out the antitrust litigation cases
+antitrust_data = data[data['type'] == 'antitrust']
+
+# Calculate the average settlement amount for antitrust litigation cases
+average_settlement_amount = antitrust_data['settlement_amount'].mean()
+
+print(f"The average settlement amount for antitrust litigation cases is ${average_settlement_amount:.2f}")
