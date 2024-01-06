@@ -4128,3 +4128,16 @@ data['Highly Concentrated'] = data['HHI'] > threshold
 # Display the results
 print(data)
 ```
+# Change made on 2024-07-01 06:28:26.560894
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each year
+data['HHI'] = data.groupby('Year')['Market Share'].transform(lambda x: (x**2).sum())
+
+# Display the HHI for each year
+print(data[['Year', 'HHI']])
+```
