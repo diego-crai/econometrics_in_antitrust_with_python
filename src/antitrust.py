@@ -4185,3 +4185,19 @@ avg_market_share = data['Market Share'].mean()
 # Print the average market share
 print("The average market share of the companies involved in the antitrust litigation is:", avg_market_share)
 ```
+# Change made on 2024-07-01 06:28:30.750547
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Add a new column to calculate the market share of each company
+data['market_share'] = data['sales'] / data['total_sales']
+
+# Determine the companies with a market share greater than 0.3
+high_market_share = data[data['market_share'] > 0.3]
+
+# Output the results
+print(high_market_share)
+```

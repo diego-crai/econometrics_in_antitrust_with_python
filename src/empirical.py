@@ -4141,3 +4141,20 @@ data['HHI'] = data.groupby('Year')['Market Share'].transform(lambda x: (x**2).su
 # Display the HHI for each year
 print(data[['Year', 'HHI']])
 ```
+# Change made on 2024-07-01 06:28:32.393304
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust cases in the data
+total_cases = data['Antitrust'].sum()
+
+# Calculate the average damages awarded in antitrust cases
+average_damages = data[data['Antitrust'] == 1]['Damages'].mean()
+
+# Print the results
+print(f'Total number of antitrust cases: {total_cases}')
+print(f'Average damages awarded in antitrust cases: {average_damages}')
+```
