@@ -4201,3 +4201,27 @@ high_market_share = data[data['market_share'] > 0.3]
 # Output the results
 print(high_market_share)
 ```
+# Change made on 2024-07-01 06:28:37.427103
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Identify the companies involved in antitrust litigation
+antitrust_companies = ['CompanyA', 'CompanyB']
+
+# Create a new column to flag whether a company is involved in antitrust litigation
+data['Antitrust Involved'] = data['Company'].apply(lambda x: 'Yes' if x in antitrust_companies else 'No')
+
+# Perform economic analysis based on the new feature
+antitrust_data = data[data['Antitrust Involved'] == 'Yes']
+non_antitrust_data = data[data['Antitrust Involved'] == 'No']
+
+# Print out the results of the analysis
+print("Companies involved in antitrust litigation:")
+print(antitrust_data)
+print("\nCompanies not involved in antitrust litigation:")
+print(non_antitrust_data)
+```
+This code snippet identifies companies involved in antitrust litigation based on a list of specific companies, creates a new column to flag whether a company is involved in antitrust litigation, and performs economic analysis based on this new feature. The results are then printed out for further analysis.

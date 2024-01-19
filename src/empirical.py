@@ -4158,3 +4158,21 @@ average_damages = data[data['Antitrust'] == 1]['Damages'].mean()
 print(f'Total number of antitrust cases: {total_cases}')
 print(f'Average damages awarded in antitrust cases: {average_damages}')
 ```
+# Change made on 2024-07-01 06:28:39.118955
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust lawsuits in the dataset
+total_lawsuits = data['lawsuit_type'].value_counts()['antitrust']
+
+# Calculate the average duration of antitrust lawsuits
+antitrust_data = data[data['lawsuit_type'] == 'antitrust']
+average_duration = antitrust_data['duration'].mean()
+
+# Print the results
+print(f'Total number of antitrust lawsuits: {total_lawsuits}')
+print(f'Average duration of antitrust lawsuits: {average_duration} days')
+```
