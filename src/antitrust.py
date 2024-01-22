@@ -4225,3 +4225,29 @@ print("\nCompanies not involved in antitrust litigation:")
 print(non_antitrust_data)
 ```
 This code snippet identifies companies involved in antitrust litigation based on a list of specific companies, creates a new column to flag whether a company is involved in antitrust litigation, and performs economic analysis based on this new feature. The results are then printed out for further analysis.
+# Change made on 2024-07-01 06:28:43.317836
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Extract the necessary columns from the data
+relevant_data = data[['Company', 'Market Share', 'Revenue', 'Antitrust Case']]
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+relevant_data['HHI'] = (relevant_data['Market Share'] * 100) ** 2
+
+# Group the data by the Antitrust Case column
+grouped_data = relevant_data.groupby('Antitrust Case')['HHI'].sum()
+
+# Determine if there is a potential monopoly based on HHI threshold
+potential_monopoly = grouped_data[grouped_data > 2500]
+
+if not potential_monopoly.empty:
+    print("Potential monopolies found in the following antitrust cases:")
+    print(potential_monopoly)
+else:
+    print("No potential monopolies found.")
+
+```

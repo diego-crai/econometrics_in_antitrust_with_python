@@ -4176,3 +4176,20 @@ average_duration = antitrust_data['duration'].mean()
 print(f'Total number of antitrust lawsuits: {total_lawsuits}')
 print(f'Average duration of antitrust lawsuits: {average_duration} days')
 ```
+# Change made on 2024-07-01 06:28:45.274355
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total market share of all companies in the dataset
+total_market_share = data['market_share'].sum()
+
+# Create a new column in the dataframe indicating the percentage of market share for each company
+data['market_share_percentage'] = (data['market_share'] / total_market_share) * 100
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the dataset
+data['HHI'] = (data['market_share_percentage'] ** 2).sum()
+
+# Print the HHI
+print('Herfindahl-Hirschman Index (HHI):', data['HHI'].values[0])
