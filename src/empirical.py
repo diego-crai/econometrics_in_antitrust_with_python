@@ -4193,3 +4193,21 @@ data['HHI'] = (data['market_share_percentage'] ** 2).sum()
 
 # Print the HHI
 print('Herfindahl-Hirschman Index (HHI):', data['HHI'].values[0])
+# Change made on 2024-07-01 06:28:50.039310
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI)
+data['market_share_squared'] = data['market_share'] ** 2
+hhi = data.groupby('market')['market_share_squared'].sum()
+
+# Add the HHI to the data frame
+data = data.merge(hhi, on='market', how='left')
+data.rename(columns={'market_share_squared_y': 'hhi'}, inplace=True)
+
+# Display the results
+print(data[['market', 'hhi']])
+```

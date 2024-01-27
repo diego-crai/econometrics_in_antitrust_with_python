@@ -4251,3 +4251,15 @@ else:
     print("No potential monopolies found.")
 
 ```
+# Change made on 2024-07-01 06:28:48.254332
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average penalty amount for antitrust violations
+average_penalty = data['Penalty Amount'].mean()
+
+print(f"The average penalty amount for antitrust violations is: ${average_penalty:.2f}")
+```
