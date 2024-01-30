@@ -4263,3 +4263,16 @@ average_penalty = data['Penalty Amount'].mean()
 
 print(f"The average penalty amount for antitrust violations is: ${average_penalty:.2f}")
 ```
+# Change made on 2024-07-01 06:28:52.483848
+```
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the total amount of fines imposed in antitrust litigation cases
+total_fines = data['Fine Amount'].sum()
+
+# Print the total amount of fines
+print("Total amount of fines imposed in antitrust litigation cases: $", total_fines)
+```

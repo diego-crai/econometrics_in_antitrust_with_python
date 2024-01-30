@@ -4211,3 +4211,16 @@ data.rename(columns={'market_share_squared_y': 'hhi'}, inplace=True)
 # Display the results
 print(data[['market', 'hhi']])
 ```
+# Change made on 2024-07-01 06:28:54.256023
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust litigation cases
+antitrust_cases = data[data['case_type'] == 'antitrust']
+
+# Calculate the average settlement amount for antitrust litigation cases
+average_settlement_amount = antitrust_cases['settlement_amount'].mean()
+
+print(f"The average settlement amount for antitrust litigation cases is: ${average_settlement_amount}")
