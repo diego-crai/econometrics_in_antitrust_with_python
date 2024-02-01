@@ -4276,3 +4276,24 @@ total_fines = data['Fine Amount'].sum()
 # Print the total amount of fines
 print("Total amount of fines imposed in antitrust litigation cases: $", total_fines)
 ```
+# Change made on 2024-07-01 06:28:58.243473
+```python
+import pandas as pd
+
+# Read data from CSV file
+data = pd.read_csv('data.csv')
+
+# Calculate the total amount of damages awarded in antitrust litigation cases
+total_damages = data['Damages Awarded'].sum()
+
+# Calculate the average amount of damages awarded in antitrust litigation cases
+average_damages = data['Damages Awarded'].mean()
+
+# Identify the antitrust litigation case with the highest amount of damages awarded
+max_damages_case = data.loc[data['Damages Awarded'].idxmax()]
+
+# Output the results
+print(f'Total damages awarded in antitrust litigation cases: ${total_damages}')
+print(f'Average damages awarded in antitrust litigation cases: ${average_damages}')
+print(f'Antitrust litigation case with the highest amount of damages awarded: {max_damages_case}')
+```
