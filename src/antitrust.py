@@ -4297,3 +4297,18 @@ print(f'Total damages awarded in antitrust litigation cases: ${total_damages}')
 print(f'Average damages awarded in antitrust litigation cases: ${average_damages}')
 print(f'Antitrust litigation case with the highest amount of damages awarded: {max_damages_case}')
 ```
+# Change made on 2024-07-01 06:29:03.063615
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust litigation cases only
+antitrust_data = data[data['case_type'] == 'antitrust']
+
+# Calculate the average amount of damages awarded in antitrust litigation cases
+avg_damages = antitrust_data['damages_awarded'].mean()
+
+print(f'The average amount of damages awarded in antitrust litigation cases is ${avg_damages:.2f}')
+```

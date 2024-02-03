@@ -4240,3 +4240,17 @@ company_highest_market_share = market_share.idxmax()
 # Print the company with the highest market share
 print(f"The company with the highest market share is: {company_highest_market_share}")
 ```
+# Change made on 2024-07-01 06:29:04.855358
+import pandas as pd
+
+# Load the data into a DataFrame
+data = pd.read_csv("data.csv")
+
+# Filter the data to only include antitrust litigation cases
+antitrust_data = data[data["type"] == "antitrust"]
+
+# Calculate the average damages awarded in antitrust litigation cases
+average_damages = antitrust_data["damages"].mean()
+
+# Print the average damages awarded in antitrust litigation cases
+print("The average damages awarded in antitrust litigation cases is: ${:.2f}".format(average_damages))
