@@ -4254,3 +4254,31 @@ average_damages = antitrust_data["damages"].mean()
 
 # Print the average damages awarded in antitrust litigation cases
 print("The average damages awarded in antitrust litigation cases is: ${:.2f}".format(average_damages))
+# Change made on 2024-07-01 06:29:10.302617
+```python
+import pandas as pd
+import statsmodels.api as sm
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Perform linear regression analysis
+X = data[['Variable1', 'Variable2', 'Variable3']]
+Y = data['Antitrust_Litigation']
+
+X = sm.add_constant(X) # add intercept term
+
+model = sm.OLS(Y, X).fit()
+
+# Print the regression results
+print(model.summary())
+
+# Calculate the predicted values
+data['Predicted_Antitrust_Litigation'] = model.predict(X)
+
+# Create a new column for the residual values
+data['Residuals'] = data['Antitrust_Litigation'] - data['Predicted_Antitrust_Litigation']
+
+# Save the updated data to a new csv file
+data.to_csv('updated_data.csv', index=False)
+```
