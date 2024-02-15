@@ -4282,3 +4282,20 @@ data['Residuals'] = data['Antitrust_Litigation'] - data['Predicted_Antitrust_Lit
 # Save the updated data to a new csv file
 data.to_csv('updated_data.csv', index=False)
 ```
+# Change made on 2024-07-01 06:29:15.884458
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each industry
+data['market_share_squared'] = data['market_share'] ** 2
+total_market_share = data.groupby('industry')['market_share'].sum()
+total_market_share_squared = data.groupby('industry')['market_share_squared'].sum()
+data['HHI'] = total_market_share_squared
+
+# Identify industries with high concentration
+highly_concentrated_industries = data[data['HHI'] > 2500]['industry'].unique()
+
+print("Industries with high concentration (HHI > 2500):")
+print(highly_concentrated_industries)

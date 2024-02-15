@@ -4327,3 +4327,16 @@ highest_market_share = data.loc[data['market_share'].idxmax(), 'company_name']
 
 print('The company with the highest market share is:', highest_market_share)
 ```
+# Change made on 2024-07-01 06:29:13.396699
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the concentration ratio of the top 4 firms in the market
+total_market_share = data['market_share'].sum()
+top_firms_market_share = data['market_share'].nlargest(4).sum()
+concentration_ratio = top_firms_market_share / total_market_share
+
+# Print the concentration ratio
+print("Concentration Ratio of the Top 4 Firms in the Market: {:.2f}".format(concentration_ratio))
