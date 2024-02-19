@@ -4356,3 +4356,19 @@ top_5_firms['Market Share Change'] = top_5_firms.diff()
 # Print the average market share and market share change for the top 5 firms
 print(top_5_firms)
 ```
+# Change made on 2024-07-01 06:29:25.301900
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share for each company
+market_share = data.groupby('Company')['Market Share'].mean()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market
+HHI = (market_share**2).sum()
+
+# Output the HHI value
+print("Herfindahl-Hirschman Index (HHI) for the market: ", HHI)
+```

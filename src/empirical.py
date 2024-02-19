@@ -4321,3 +4321,19 @@ print(f'Average Price: ${average_price:.2f}')
 print(f'Total Revenue: ${total_revenue:.2f}')
 print(data[['Product Name', 'Market Share']])
 ```
+# Change made on 2024-07-01 06:29:27.062161
+import pandas as pd
+
+# Load data
+data = pd.read_csv("data.csv")
+
+# Calculate market share for each company
+data['Market Share'] = data['Revenue'] / data['Total Revenue']
+
+# Identify companies with market share over 30%
+high_market_share_companies = data[data['Market Share'] > 0.3]['Company'].tolist()
+
+# Print out the list of companies with high market share
+print("Companies with market share over 30%:")
+for company in high_market_share_companies:
+    print(company)
