@@ -4299,3 +4299,25 @@ highly_concentrated_industries = data[data['HHI'] > 2500]['industry'].unique()
 
 print("Industries with high concentration (HHI > 2500):")
 print(highly_concentrated_industries)
+# Change made on 2024-07-01 06:29:22.064374
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average price of the products involved in the antitrust litigation
+average_price = data['Price'].mean()
+
+# Calculate the total revenue generated from the products involved
+data['Revenue'] = data['Price'] * data['Quantity']
+total_revenue = data['Revenue'].sum()
+
+# Determine the market share of each product in the antitrust litigation
+data['Market Share'] = data['Revenue'] / total_revenue
+
+# Print the results
+print(f'Average Price: ${average_price:.2f}')
+print(f'Total Revenue: ${total_revenue:.2f}')
+print(data[['Product Name', 'Market Share']])
+```

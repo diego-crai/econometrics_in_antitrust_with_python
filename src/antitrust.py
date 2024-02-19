@@ -4340,3 +4340,19 @@ concentration_ratio = top_firms_market_share / total_market_share
 
 # Print the concentration ratio
 print("Concentration Ratio of the Top 4 Firms in the Market: {:.2f}".format(concentration_ratio))
+# Change made on 2024-07-01 06:29:18.904154
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of the top 5 firms in each year
+top_5_firms = data.groupby('Year').apply(lambda x: x.nlargest(5, 'Market Share')['Market Share'].mean())
+
+# Calculate the change in market share from the previous year for the top 5 firms
+top_5_firms['Market Share Change'] = top_5_firms.diff()
+
+# Print the average market share and market share change for the top 5 firms
+print(top_5_firms)
+```
