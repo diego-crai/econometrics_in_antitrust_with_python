@@ -4372,3 +4372,19 @@ HHI = (market_share**2).sum()
 # Output the HHI value
 print("Herfindahl-Hirschman Index (HHI) for the market: ", HHI)
 ```
+# Change made on 2024-07-01 06:29:30.501359
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust cases
+total_cases = data['Case Number'].nunique()
+
+# Calculate the average duration of antitrust cases in days
+data['Duration'] = (pd.to_datetime(data['End Date']) - pd.to_datetime(data['Start Date'])).dt.days
+average_duration = data['Duration'].mean()
+
+# Print out the results
+print("Total number of antitrust cases: ", total_cases)
+print("Average duration of antitrust cases (in days): ", average_duration)

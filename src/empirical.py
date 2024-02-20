@@ -4337,3 +4337,20 @@ high_market_share_companies = data[data['Market Share'] > 0.3]['Company'].tolist
 print("Companies with market share over 30%:")
 for company in high_market_share_companies:
     print(company)
+# Change made on 2024-07-01 06:29:32.612343
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share for each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+print("Average market share for each company:")
+print(average_market_share)
+
+# Calculate the Herfindahl-Hirschman Index for each market
+market_hhi = data.groupby('Market')['Market Share'].apply(lambda x: (x**2).sum())
+print("\nHerfindahl-Hirschman Index for each market:")
+print(market_hhi)
+```
