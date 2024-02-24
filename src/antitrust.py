@@ -4388,3 +4388,23 @@ average_duration = data['Duration'].mean()
 # Print out the results
 print("Total number of antitrust cases: ", total_cases)
 print("Average duration of antitrust cases (in days): ", average_duration)
+# Change made on 2024-07-01 06:29:36.515724
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company involved in the antitrust litigation
+average_market_share = data.groupby('company')['market_share'].mean()
+
+# Calculate the average market share of all companies combined
+total_average_market_share = data['market_share'].mean()
+
+# Determine if any company's market share is significantly higher than the total average market share
+significant_market_share = average_market_share[average_market_share > total_average_market_share]
+
+# Print out the companies with significantly higher market share
+print("Companies with significantly higher market share:")
+print(significant_market_share)
+```

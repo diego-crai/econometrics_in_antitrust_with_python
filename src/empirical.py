@@ -4354,3 +4354,30 @@ market_hhi = data.groupby('Market')['Market Share'].apply(lambda x: (x**2).sum()
 print("\nHerfindahl-Hirschman Index for each market:")
 print(market_hhi)
 ```
+# Change made on 2024-07-01 06:29:40.489122
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['market_share'] = data['revenue'] / data['total_revenue']
+
+# Calculate the Herfindahl-Hirschman Index (HHI) to measure market concentration
+data['HHI'] = (data['market_share'] * 100) ** 2
+
+# Calculate the change in HHI after potential merger/acquisition
+acquiring_company = 'Company A'
+acquired_company = 'Company B'
+
+initial_HHI = data['HHI'].sum()
+
+acquired_company_market_share = data.loc[data['company'] == acquired_company, 'market_share'].values[0]
+data.loc[data['company'] == acquiring_company, 'market_share'] += acquired_company_market_share
+
+data['new_HHI'] = (data['market_share'] * 100) ** 2
+
+final_HHI = data['new_HHI'].sum()
+
+change_in_HHI = final_HHI - initial_HHI
+print('Change in HHI after potential merger/acquisition:', change_in_HHI)
