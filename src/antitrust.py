@@ -4408,3 +4408,18 @@ significant_market_share = average_market_share[average_market_share > total_ave
 print("Companies with significantly higher market share:")
 print(significant_market_share)
 ```
+# Change made on 2024-07-01 06:29:43.074378
+```python
+import pandas as pd
+
+# Read the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Filter the data for antitrust litigation cases only
+antitrust_data = data[data['case_type'] == 'antitrust']
+
+# Calculate the average duration of antitrust litigation cases
+average_duration = antitrust_data['duration'].mean()
+
+print(f"The average duration of antitrust litigation cases is: {average_duration}")
+```

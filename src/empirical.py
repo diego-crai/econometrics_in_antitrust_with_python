@@ -4381,3 +4381,18 @@ final_HHI = data['new_HHI'].sum()
 
 change_in_HHI = final_HHI - initial_HHI
 print('Change in HHI after potential merger/acquisition:', change_in_HHI)
+# Change made on 2024-07-01 06:29:44.986449
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the total number of antitrust cases
+total_cases = data['Antitrust Cases'].sum()
+
+# Calculate the average amount of damages awarded in antitrust cases
+average_damages = data['Amount Awarded'].mean()
+
+# Print the results
+print("Total number of antitrust cases: ", total_cases)
+print("Average amount of damages awarded in antitrust cases: $", average_damages)
