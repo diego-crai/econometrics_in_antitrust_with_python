@@ -4423,3 +4423,20 @@ average_duration = antitrust_data['duration'].mean()
 
 print(f"The average duration of antitrust litigation cases is: {average_duration}")
 ```
+# Change made on 2024-07-01 06:29:48.075888
+import pandas as pd
+
+# Load data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of each company
+average_market_share = data.groupby('Company')['Market Share'].mean()
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+data['HHI'] = (data['Market Share']**2)*10000
+
+# Determine if any company has a HHI above 2500, indicating potential antitrust concerns
+companies_with_high_HHI = data[data['HHI'] > 2500]['Company'].unique()
+
+print("Companies with potential antitrust concerns based on HHI above 2500:")
+print(companies_with_high_HHI)

@@ -4396,3 +4396,30 @@ average_damages = data['Amount Awarded'].mean()
 # Print the results
 print("Total number of antitrust cases: ", total_cases)
 print("Average amount of damages awarded in antitrust cases: $", average_damages)
+# Change made on 2024-07-01 06:29:51.770067
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for the market concentration
+def calculate_hhi(data):
+    data['market_share_squared'] = data['market_share'] ** 2
+    hhi = data.groupby('industry')['market_share_squared'].sum()
+    return hhi
+
+hhi = calculate_hhi(data)
+
+# Perform a merger simulation to analyze the impact on market concentration
+def merger_simulation(data, firm1, firm2):
+    merged_market_share = data.loc[data['firm'].isin([firm1, firm2]), 'market_share'].sum()
+    post_merger_hhi = hhi.append(pd.Series(merged_market_share ** 2, index=[f'{firm1}_{firm2}']))
+    return post_merger_hhi
+
+firm1 = 'ACME'
+firm2 = 'BetaCorp'
+
+post_merger_hhi = merger_simulation(data, firm1, firm2)
+
+print('Post-merger HHI:')
+print(post_merger_hhi)
