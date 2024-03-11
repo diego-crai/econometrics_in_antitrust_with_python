@@ -4423,3 +4423,16 @@ post_merger_hhi = merger_simulation(data, firm1, firm2)
 
 print('Post-merger HHI:')
 print(post_merger_hhi)
+# Change made on 2024-07-01 06:29:56.378269
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of the top 5 firms in the industry
+top_5_firms = data.nlargest(5, 'market_share')
+avg_market_share_top_5 = top_5_firms['market_share'].mean()
+
+print(f'The average market share of the top 5 firms in the industry is: {avg_market_share_top_5}')
+```

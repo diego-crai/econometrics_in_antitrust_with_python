@@ -4440,3 +4440,19 @@ companies_with_high_HHI = data[data['HHI'] > 2500]['Company'].unique()
 
 print("Companies with potential antitrust concerns based on HHI above 2500:")
 print(companies_with_high_HHI)
+# Change made on 2024-07-01 06:29:54.413766
+```python
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Select only the relevant columns for antitrust litigation analysis
+relevant_data = data[['year', 'market_concentration', 'antitrust_case_outcome']]
+
+# Calculate the average market concentration for each antitrust case outcome
+avg_concentration = relevant_data.groupby('antitrust_case_outcome')['market_concentration'].mean()
+
+# Print the results
+print(avg_concentration)
+```
