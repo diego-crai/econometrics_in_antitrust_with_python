@@ -4456,3 +4456,17 @@ avg_concentration = relevant_data.groupby('antitrust_case_outcome')['market_conc
 # Print the results
 print(avg_concentration)
 ```
+# Change made on 2024-07-01 06:29:59.212302
+```python
+import pandas as pd
+
+# Load data
+data = pd.read_csv('data.csv')
+
+# Feature: Calculate Herfindahl-Hirschman Index (HHI) for each industry
+data['Market Share Squared'] = data['Market Share'] ** 2
+hhi = data.groupby('Industry')['Market Share Squared'].sum()
+
+# Display results
+print(hhi)
+```

@@ -4436,3 +4436,24 @@ avg_market_share_top_5 = top_5_firms['market_share'].mean()
 
 print(f'The average market share of the top 5 firms in the industry is: {avg_market_share_top_5}')
 ```
+# Change made on 2024-07-01 06:30:02.784831
+```python
+import pandas as pd
+
+# Load the data from data.csv
+data = pd.read_csv('data.csv')
+
+# Calculate the Herfindahl-Hirschman Index (HHI) for each company
+data['Market Share (%)'] = data['Revenue'] / data['Total Revenue']
+data['HHI'] = (data['Market Share (%)'] * 100) ** 2
+
+# Calculate the Concentration Ratio for the top 4 firms
+top_firms = data.nlargest(4, 'Market Share (%)')
+CR4 = top_firms['Market Share (%)'].sum()
+
+# Print the results
+print("HHI for each company:")
+print(data[['Company', 'HHI']])
+print("\nConcentration Ratio for the top 4 firms:", CR4)
+```
+This code calculates the Herfindahl-Hirschman Index (HHI) for each company in the dataset and then calculates the Concentration Ratio for the top 4 firms. The HHI is a measure of market concentration and the CR4 gives insight into the market power held by the largest firms.
