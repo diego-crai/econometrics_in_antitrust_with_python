@@ -4470,3 +4470,16 @@ hhi = data.groupby('Industry')['Market Share Squared'].sum()
 # Display results
 print(hhi)
 ```
+# Change made on 2024-07-01 06:30:05.706450
+```python
+import pandas as pd
+
+# Read data from CSV file
+data = pd.read_csv('data.csv')
+
+# Calculate the average market share of firms involved in the antitrust litigation
+average_market_share = data['Market Share'].mean()
+
+# Print the average market share
+print("Average Market Share of firms involved in antitrust litigation: ", average_market_share)
+```

@@ -4457,3 +4457,18 @@ print(data[['Company', 'HHI']])
 print("\nConcentration Ratio for the top 4 firms:", CR4)
 ```
 This code calculates the Herfindahl-Hirschman Index (HHI) for each company in the dataset and then calculates the Concentration Ratio for the top 4 firms. The HHI is a measure of market concentration and the CR4 gives insight into the market power held by the largest firms.
+# Change made on 2024-07-01 06:30:06.998115
+import pandas as pd
+
+# Load the data
+data = pd.read_csv('data.csv')
+
+# Calculate the market share of each company
+data['market_share'] = data['revenue'] / data['total_revenue']
+
+# Sort the data based on market share in descending order
+data = data.sort_values(by='market_share', ascending=False)
+
+# Display the top 5 companies with the highest market share
+top_companies = data.head(5)
+print(top_companies)
