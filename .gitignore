@@ -4,3 +4,4 @@ src/play.py
 .env
 env/
 src/aaa.py
+data/
